@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 export default function Home() {
   return (
     <>
-      <div className="p-3 py-4 bg-slate-200">
+      <div className="p-3 py-5 bg-slate-200">
         <h1 className="font-semibold">Hello!</h1>
         <p>Welcome to your personal space</p>
       </div>
