@@ -23,7 +23,6 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
     "Swedish"
   ];
 
-  console.log(selectedLanguage);
 
   return (
     <>
