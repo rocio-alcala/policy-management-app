@@ -1,18 +1,12 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import Spinner from "../bits/Spinner";
 
+//will only render the navigation bar and an empty content container
+//to help you create a smooth transition to the route is going to be redirect
+//on the onRedirectCallback
 export default function Callback() {
-  const { user } = useAuth0();
-
-
-  if (!user) {
-    return <p>Loading</p>;
-  }
   return (
-    <>
-      <h1>{user.name}</h1>
-      <h1>{user.nickname}</h1>
-      <h1>{user.address}</h1>
-      <h1>{user.birthdate}</h1>
-    </>
+    <div className="flex justify-center items-center">
+      <Spinner />
+    </div>
   );
 }

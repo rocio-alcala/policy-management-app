@@ -23,8 +23,8 @@ export const Auth0ProviderWithNavigate = ({ children }: { children: ReactNode}) 
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      authorizationParams={{
-        redirect_uri: redirectUri,
+      authorizationParams={{  //define the query parameters that will be sent during the call to the Auth0 /authorize endpoint
+        redirect_uri: redirectUri, //passing here the redirect_uri, which is the URL where Auth0 will redirect your users back to your React application.
       }}
       onRedirectCallback={(appState)=>onRedirectCallback({appState})} //it is executed when app is redirected to Callback url
     >
