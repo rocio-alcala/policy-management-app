@@ -12,14 +12,14 @@ export default function Button({
   ...rest
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & ButtonSpecificPropsType) {
   const buttonColorClassName = clsx(
-    "w-full rounded disabled:bg-slate-400 p-3 text-center tracking-widest border-2 border-[#00008F] text-xs font-medium",
-    color && "bg-[#00008F] text-white",
-    !color && "bg-transparent text-[#00008F]"
+    "w-full rounded disabled:bg-slate-400 p-3 text-center border-2 border-tertiary-default tracking-widest text-sm font-semibold leading-4",
+    color && "bg-button-primary text-text-button-primary shadow-button",
+    !color && "bg-transparent text-tertiary-default "
   );
 
   return (
-    <button className={buttonColorClassName} {...rest}>
-      {isLoading ? <p>LOADING</p> : children}
+        <button className={buttonColorClassName} {...rest}>
+      {isLoading ? <p>LOADING</p> : children} <div className=""></div>
     </button>
   );
 }

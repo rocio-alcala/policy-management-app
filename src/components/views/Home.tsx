@@ -3,17 +3,21 @@ import { NavLink, Outlet } from "react-router-dom";
 export default function Home() {
   return (
     <>
-      <div className="p-3 py-5 bg-slate-200">
-        <h1 className="font-semibold">Hello!</h1>
-        <p>Welcome to your personal space</p>
+      <div
+        className="p-3 py-5 bg-background"
+      >
+        <h1 className="font-semibold leading-8 text-xl">Hello!</h1>
+        <p className="leading-6 text-base font-normal">
+          Welcome to your personal space
+        </p>
       </div>
       <div className="flex bg-slate-200">
         <NavLink
           to={`/home/allpolicies`}
           className={({ isActive }) =>
             isActive
-              ? "border-b-2 border-blue-950 p-2 flex-auto rounded-t-md bg-white text-center text-sm font-semibold text-blue-900"
-              : "p-2 flex-auto rounded-t-md bg-white shadow-inner-lg font-semibold text-sm text-gray-700 text-center shadow-inner-l-r-b"
+              ? "border-b-[3.5px] border-tertiary-default p-4 flex-auto  rounded-t-md leading-4 bg-white text-center text-base font-semibold text-tertiary-default"
+              : "p-4 flex-auto rounded-t-md bg-white shadow-inner-lg font-semibold text-base leading-4  text-placeholder text-center shadow-inner-l-r-b"
           }
         >
           ALL POLICIES
@@ -22,8 +26,8 @@ export default function Home() {
           to={`/home/activepolicies`}
           className={({ isActive }) =>
             isActive
-              ? "border-b-2 border-blue-950 p-2 flex-auto rounded-t-md bg-white text-center text-sm font-semibold text-blue-900"
-              : "p-2 flex-auto rounded-t-md bg-white shadow-inner-lg font-semibold text-sm text-gray-700 text-center shadow-inner-l-r-b"
+              ? "border-b-[3.5px] border-tertiary-default p-4 flex-auto  rounded-t-md leading-4 bg-white text-center text-base font-semibold text-tertiary-default"
+              : "p-4 flex-auto rounded-t-md bg-white shadow-inner-lg font-semibold text-base leading-4  text-placeholder text-center shadow-inner-l-r-b"
           }
         >
           ACTIVE POLICIES
