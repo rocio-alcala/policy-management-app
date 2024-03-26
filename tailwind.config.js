@@ -5,7 +5,31 @@ export default {
     extend: {
       boxShadow: {
         "inner-l-r-b":
-          "inset 0 -10px 10px -10px rgba(0, 0, 0, 0.2), inset -5px 0 5px -5px rgba(0, 0, 0, 0.1), inset 5px 0 5px -5px rgba(0, 0, 0, 0.1)" // Sombra izquierda y derecha
+          "inset 0 -10px 10px -10px rgba(0, 0, 0, 0.2), inset -5px 0 5px -5px rgba(0, 0, 0, 0.1), inset 5px 0 5px -5px rgba(0, 0, 0, 0.1)", // Sombra izquierda y derecha
+      "button": "inset 0 -3px 0px 0px rgba(0, 0, 0, 0.2)"
+        },
+      fontFamily: {
+        "source-sans-pro": ["Source Sans Pro"]
+      },
+      colors: {
+        "axa-blue": "#00008F",
+        "text-primary": "#343C3D",
+        "deep-blue": "#2D3648",
+        "tertiary-default": "#00008F",
+        success: "#1CC54E",
+        "button-primary": "#00008F",
+        "text-button-primary": "#FFFFFF",
+        "inner-shadow-button-primary": "#00006D",
+        "axa-sienna": "#F07662",
+        "grey8-dark-text": "#333333",
+        grey6: "#7F7F7F",
+        "grey1": "#FAFAFA",
+        "grey2": "#F5F5F5",
+        "grey3-disable": "#E5E5E5",
+        "placeholder":"#757575",
+        "divider": "#F0F0F0",
+        "border-default": "#CCCCCC",
+        "background": "#EDF0F7"
       }
     }
   },
