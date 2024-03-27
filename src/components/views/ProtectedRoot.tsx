@@ -2,12 +2,17 @@ import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
 import MobileMenu from "../organisms/MobileMenu";
+import { useAuth0 } from "@auth0/auth0-react";
+import Spinner from "../bits/Spinner";
 
-export default function Root() {
+export default function ProtectedRoot() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { isAuthenticated, isLoading } = useAuth0()
 
+  if (isLoading) { return <Spinner/>}
+  if (!isAuthenticated) { return <Navigate to="/login" replace={true}/>}
   return (
     <>
       <div className="font-source-sans-pro text-text-primary">
@@ -29,7 +34,13 @@ export default function Root() {
           <MobileMenu isMenuOpen={isMenuOpen} />
         </div>
       </div>
-      <>{location.pathname === "/" ? <Navigate to="/home" /> : <Outlet />}</>
+      <>
+        {location.pathname === "/" ? (
+          <Navigate to="/home" replace={true} />
+        ) : (
+          <Outlet />
+        )}
+      </>
     </>
   );
 }
