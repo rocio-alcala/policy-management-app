@@ -6,7 +6,6 @@ import Spinner from "../bits/Spinner";
 
 export default function Home() {
   const { isAuthenticated, isLoading } = useAuth0();
-  console.log(isAuthenticated, isLoading)
 
   if (isLoading) return <Spinner/>
   return (
