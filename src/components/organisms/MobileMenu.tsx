@@ -26,7 +26,7 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
   return (
     <>
       {isMenuOpen && (
-        <div className="absolute top-0 right-0 bg-white z-10 w-full">
+        <div className="absolute top-0 right-0 bg-white z-10 w-full h-screen">
           <div className="py-1">
             <div className="flex justify-between items-center p-4 py-6 border-b-[1px] border-divider">
               <div className="flex justify-between hover:cursor-pointer">

@@ -10,6 +10,7 @@ import Callback from "./components/views/Callback.tsx";
 import Provider from "./components/views/Provider.tsx";
 import Login from "./components/views/Login.tsx";
 import ProtectedRoot from "./components/views/ProtectedRoot.tsx";
+import ConfirmEmail from "./components/views/ConfirmEmail.tsx";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
           {
             path: "/policies/:policyId",
             element: <Policies />
+          },
+          {
+            path: "/confirm-email/:policyId",
+            element: <ConfirmEmail />
           },
           {
             path: "/callback",
