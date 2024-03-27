@@ -6,7 +6,9 @@ export default {
       boxShadow: {
         "inner-l-r-b":
           "inset 0 -10px 10px -10px rgba(0, 0, 0, 0.2), inset -5px 0 5px -5px rgba(0, 0, 0, 0.1), inset 5px 0 5px -5px rgba(0, 0, 0, 0.1)", // Sombra izquierda y derecha
-      "button": "inset 0 -3px 0px 0px rgba(0, 0, 0, 0.2)"
+      "button": "inset 0 -3px 0px 0px rgba(0, 0, 0, 0.2)",
+      "card": "0 4px 8px 0px rgba(0, 0, 0, 0.2)"
+
         },
       fontFamily: {
         "source-sans-pro": ["Source Sans Pro"],
@@ -27,6 +29,7 @@ export default {
         "grey1": "#FAFAFA",
         "grey2": "#F5F5F5",
         "grey3-disable": "#E5E5E5",
+        "grey5-text-secundary": "#999999",
         "placeholder":"#757575",
         "divider": "#F0F0F0",
         "border-default": "#CCCCCC",
