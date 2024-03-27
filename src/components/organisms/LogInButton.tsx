@@ -6,6 +6,7 @@ export default function LogInButton() {
 
   return (
     <Button
+      primary={true}
       onClick={() =>
         loginWithRedirect({
           appState: { returnTo: window.location.pathname }

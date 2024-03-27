@@ -9,7 +9,8 @@ export default {
       "button": "inset 0 -3px 0px 0px rgba(0, 0, 0, 0.2)"
         },
       fontFamily: {
-        "source-sans-pro": ["Source Sans Pro"]
+        "source-sans-pro": ["Source Sans Pro"],
+        "publico-headline": ["Publico Headline"]
       },
       colors: {
         "axa-blue": "#00008F",

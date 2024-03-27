@@ -23,7 +23,6 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
     "Swedish"
   ];
 
-
   return (
     <>
       {isMenuOpen && (
@@ -69,16 +68,17 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
             </div>
             {isLanguagesOpen && (
               <>
-                {languages.map((languague) => {
+                {languages.map((language, index) => {
                   return (
                     <div
-                      onClick={() => setSelectedLanguage(languague)}
+                      key={language + index}
+                      onClick={() => setSelectedLanguage(language)}
                       className={`p-2 px-6 hover:cursor-pointer text-grey8-dark-text bg-grey1 border-b-[1px] border-divider font-normal leading-6 text-base ${
-                        languague === selectedLanguage &&
+                        language === selectedLanguage &&
                         "bg-grey2 text-axa-blue"
                       }`}
                     >
-                      {languague} {/* label */}
+                      {language} {/* label */}
                     </div>
                   );
                 })}
