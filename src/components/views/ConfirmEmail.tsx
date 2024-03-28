@@ -2,8 +2,8 @@ import Button from "../bits/Button";
 
 export default function ConfirmEmail() {
   return (
-    <div className="bg-background h-min-screen">
-      <div className="bg-white flex flex-col m-4 p-3 rounded-md h-screen">
+    <div className="bg-background flex-1">
+      <div className="bg-white flex flex-col m-4 p-3 rounded-md">
         <h1 className="font-publico-headline py-3 text-2xl font-bold leading-7 text-grey8-dark-text">
           Confirm e-mail address
         </h1>

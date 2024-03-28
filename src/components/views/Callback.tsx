@@ -5,7 +5,7 @@ import Spinner from "../bits/Spinner";
 //on the onRedirectCallback
 export default function Callback() {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex flex-1 justify-center items-center">
       <Spinner />
     </div>
   );

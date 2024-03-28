@@ -7,7 +7,7 @@ export default function Home() {
 
   if (isLoading) return <Spinner/>
   return (
-        <>
+        <div className="flex-1">
           <div className="p-3 py-5 bg-background">
             <h1 className="font-semibold leading-8 text-xl">Hello!</h1>
             <p className="leading-6 text-base font-normal">
@@ -37,6 +37,6 @@ export default function Home() {
             </NavLink>
           </div>
           <Outlet></Outlet>
-        </>
+        </div>
   );
 }
