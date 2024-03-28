@@ -8,7 +8,6 @@ import ActivePolicies from "./components/views/ActivePolicies.tsx";
 import Home from "./components/views/Home.tsx";
 import Callback from "./components/views/Callback.tsx";
 import ProvidersWrappers from "./components/views/ProvidersWrappers.tsx";
-import Login from "./components/views/Login.tsx";
 import ProtectedRoot from "./components/views/ProtectedRoot.tsx";
 import ConfirmEmail from "./components/views/ConfirmEmail.tsx";
 
@@ -18,10 +17,6 @@ const router = createBrowserRouter([
     element: <ProvidersWrappers />, //defined to wrap with de Auth0 provider the app
     //keeping this last one inside the router provider
     children: [
-      {
-        path: "/login",
-        element: <Login />
-      },
       {
         path: "/",
         element: <ProtectedRoot />,
