@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 interface PolicyCardProps {
   policy: any;
 }
 
 export default function PolicyCard({ policy }: PolicyCardProps) {
+  const navigate = useNavigate();
   return (
     <>
       <div className="flex flex-col shadow-card m-3 rounded-lg">
@@ -55,13 +58,14 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
                 className="mr-2 mt-1 h-4 w-4"
               ></img>
               <p className="text-base leading-6 text-text-primary">
-                Beneficiary: {policy.beneficiary[0].name} {policy.beneficiary[0].last_name}
+                Beneficiary: {policy.beneficiary[0].name}{" "}
+                {policy.beneficiary[0].last_name}
               </p>
             </div>
           </div>
         </div>
         <div className="flex bg-background p-4 justify-around">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center hover:cursor-pointer">
             <img
               src="../../../public/MailIcon.png"
               className="h-8 w-8 mb-3"
@@ -70,7 +74,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
               POLICY/ CERTIFICATE
             </p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center hover:cursor-pointer">
             <img
               src="../../../public/PlusIcon.png"
               className="h-8 w-8 mb-3"
@@ -79,7 +83,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
               ADD TO WALLET
             </p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center hover:cursor-pointer">
             <img
               src="../../../public/TrashIcon.png"
               className="h-8 w-8 mb-3"
@@ -88,7 +92,10 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
               CANCEL POLICY
             </p>
           </div>
-          <div className="flex flex-col items-center">
+          <div
+            className="flex flex-col items-center hover:cursor-pointer"
+            onClick={() => navigate(`/${policy.policy_number}/personal-details`)}
+          >
             <img
               src="../../../public/NextIcon.png"
               className="h-8 w-8 mb-3"

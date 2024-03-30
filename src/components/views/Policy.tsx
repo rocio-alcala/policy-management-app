@@ -27,7 +27,7 @@ export default function Policy() {
           {policy.product}
         </div>
         <div className="flex justify-around my-4">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center hover:cursor-pointer">
             <img
               src="../../../public/MailIcon.png"
               className="h-8 w-8 mb-3"
@@ -36,7 +36,7 @@ export default function Policy() {
               POLICY/ CERTIFICATE
             </p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center hover:cursor-pointer">
             <img
               src="../../../public/PlusIcon.png"
               className="h-8 w-8 mb-3"
@@ -45,7 +45,7 @@ export default function Policy() {
               ADD TO WALLET
             </p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center hover:cursor-pointer">
             <img
               src="../../../public/TrashIcon.png"
               className="h-8 w-8 mb-3"
@@ -54,7 +54,7 @@ export default function Policy() {
               CANCEL POLICY
             </p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center hover:cursor-pointer">
             <img
               src="../../../public/PaymentMethod.png"
               className="h-8 w-8 mb-3"
