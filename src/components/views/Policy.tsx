@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { NavLink, Outlet, useNavigate, useParams } from "react-router-dom";
 
 const policy = {
   product: "Travel insurance",
@@ -12,9 +12,10 @@ const policy = {
 
 export default function Policy() {
   const { policyId } = useParams();
+  const navigate = useNavigate()
   return (
     <div className="bg-background p-5 flex flex-col flex-1">
-      <div className="flex mb-7 justify-start items-center">
+      <div className="flex mb-7 justify-start items-center hover:cursor-pointer" onClick={()=> navigate("/home/allpolicies")}>
         <img
           src=".././../../public/ArrowBack.png"
           className="h-4 w-4 mr-3"

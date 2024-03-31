@@ -12,7 +12,6 @@ export default function ProtectedRoot() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isAuthenticated, isLoading } = useAuth0();
 
-
   return (
     <>
       <div className="font-source-sans-pro text-text-primary">
@@ -23,11 +22,11 @@ export default function ProtectedRoot() {
           >
             Logo
           </div>
-          <div className=" border-2 p-2 border-blue-950 rounded">
-            <AiOutlineMenu
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-blue-950"
-            />
+          <div
+            className=" border-2 p-2 border-blue-950 rounded hover:cursor-pointer"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <AiOutlineMenu className="text-blue-950" />
           </div>
         </nav>
         <div className="relative">

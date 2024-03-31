@@ -40,13 +40,16 @@ const router = createBrowserRouter([
           {
             path: "/:policyId",
             element: <Policy />,
-            children: [ {
-              path: "/:policyId/policy-details",
-              element: <PolicyDetails />
-            },{
-              path: "/:policyId/personal-details",
-              element: <PersonalDetails />
-            }]
+            children: [
+              {
+                path: "/:policyId/policy-details",
+                element: <PolicyDetails />
+              },
+              {
+                path: "/:policyId/personal-details",
+                element: <PersonalDetails />
+              }
+            ]
           },
           {
             path: "/confirm-email",
