@@ -23,6 +23,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <ProtectedRoot />,
         children: [
+          //protected routes
           {
             path: "/home",
             element: <Home />,
