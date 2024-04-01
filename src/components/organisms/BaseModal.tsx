@@ -65,7 +65,7 @@ export default function BaseModal({
 
   return (
     <dialog
-      className="rounded-md p-4 backdrop:bg-black/50"
+      className="rounded-md backdrop:bg-black/50"
       ref={modalRef}
       onKeyDown={handleKeyDown}
     >

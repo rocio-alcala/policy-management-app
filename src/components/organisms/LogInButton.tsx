@@ -12,6 +12,7 @@ export default function LogInButton() {
           appState: { returnTo: window.location.pathname }
         })
       }
+      className="m-1"
     >
       LOG IN
     </Button>

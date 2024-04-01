@@ -16,6 +16,7 @@ export default function RegisterButton() {
           }
         })
       }
+      className="m-1"
     >
       REGISTER
     </Button>
