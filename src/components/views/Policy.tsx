@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { NavLink, Outlet, useNavigate, useParams } from "react-router-dom";
+import ConfirmModal from "../organisms/ConfirmModal";
+import SuccessfulModal from "../organisms/SuccessfulModal";
 
 const policy = {
   product: "Travel insurance",
@@ -12,10 +15,16 @@ const policy = {
 
 export default function Policy() {
   const { policyId } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [isConfirmCancelModalOpen, setConfirmCancelModalOpen] = useState(false);
+  const [isSuccessfulCancelModalOpen, setSuccessfulCancelModalOpen] =
+    useState(false);
   return (
     <div className="bg-background p-5 flex flex-col flex-1">
-      <div className="flex mb-7 justify-start items-center hover:cursor-pointer" onClick={()=> navigate("/home/allpolicies")}>
+      <div
+        className="flex mb-7 justify-start items-center hover:cursor-pointer"
+        onClick={() => navigate("/home/allpolicies")}
+      >
         <img
           src=".././../../public/ArrowBack.png"
           className="h-4 w-4 mr-3"
@@ -46,7 +55,10 @@ export default function Policy() {
               ADD TO WALLET
             </p>
           </div>
-          <div className="flex flex-col items-center hover:cursor-pointer">
+          <div
+            className="flex flex-col items-center hover:cursor-pointer"
+            onClick={() => setConfirmCancelModalOpen(true)}
+          >
             <img
               src="../../../public/TrashIcon.png"
               className="h-8 w-8 mb-3"
@@ -89,6 +101,18 @@ export default function Policy() {
         </NavLink>
       </div>
       <Outlet></Outlet>
+      {/* MODALS */}
+      {isConfirmCancelModalOpen && (
+        <ConfirmModal
+          onClose={() => setConfirmCancelModalOpen(false)}
+        ></ConfirmModal>
+      )}
+      {isSuccessfulCancelModalOpen && (
+        <SuccessfulModal
+          message="Your policy has been successfully canceled"
+          onClose={() => setSuccessfulCancelModalOpen(false)}
+        />
+      )}
     </div>
   );
 }

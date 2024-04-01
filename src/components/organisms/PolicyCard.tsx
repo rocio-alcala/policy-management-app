@@ -1,4 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import ConfirmModal from "./ConfirmModal";
+import { useState } from "react";
+import SuccessfulModal from "./SuccessfulModal";
 
 interface PolicyCardProps {
   policy: any;
@@ -6,6 +9,10 @@ interface PolicyCardProps {
 
 export default function PolicyCard({ policy }: PolicyCardProps) {
   const navigate = useNavigate();
+  const [isConfirmCancelModalOpen, setConfirmCancelModalOpen] = useState(false);
+  const [isSuccessfulCancelModalOpen, setSuccessfulCancelModalOpen] =
+    useState(false);
+
   return (
     <>
       <div className="flex flex-col shadow-card m-3 rounded-lg">
@@ -83,7 +90,10 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
               ADD TO WALLET
             </p>
           </div>
-          <div className="flex flex-col items-center hover:cursor-pointer">
+          <div
+            className="flex flex-col items-center hover:cursor-pointer "
+            onClick={() => setConfirmCancelModalOpen(true)}
+          >
             <img
               src="../../../public/TrashIcon.png"
               className="h-8 w-8 mb-3"
@@ -94,7 +104,9 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
           </div>
           <div
             className="flex flex-col items-center hover:cursor-pointer"
-            onClick={() => navigate(`/${policy.policy_number}/personal-details`)}
+            onClick={() =>
+              navigate(`/${policy.policy_number}/personal-details`)
+            }
           >
             <img
               src="../../../public/NextIcon.png"
@@ -106,6 +118,18 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
           </div>
         </div>
       </div>
+      {/* MODALS */}
+      {isConfirmCancelModalOpen && (
+        <ConfirmModal
+          onClose={() => setConfirmCancelModalOpen(false)}
+        ></ConfirmModal>
+      )}
+      {isSuccessfulCancelModalOpen && (
+        <SuccessfulModal
+          message="Your policy has been successfully canceled"
+          onClose={() => setSuccessfulCancelModalOpen(false)}
+        />
+      )}
     </>
   );
 }
