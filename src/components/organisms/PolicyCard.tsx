@@ -72,7 +72,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
           </div>
         </div>
         <div className="flex bg-background p-4 justify-around">
-          <div className="flex flex-col items-center hover:cursor-pointer">
+          <div className="flex flex-col items-center hover:cursor-pointer" onClick={()=> navigate("/confirm-email")}>
             <img
               src="../../../public/MailIcon.png"
               className="h-8 w-8 mb-3"

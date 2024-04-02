@@ -37,7 +37,7 @@ export default function Policy() {
           {policy.product}
         </div>
         <div className="flex justify-around my-4">
-          <div className="flex flex-col items-center hover:cursor-pointer">
+          <div className="flex flex-col items-center hover:cursor-pointer" onClick={()=> navigate("/confirm-email")} >
             <img
               src="../../../public/MailIcon.png"
               className="h-8 w-8 mb-3"
