@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { NavLink, Outlet, useNavigate, useParams } from "react-router-dom";
+import {
+  NavLink,
+  Navigate,
+  Outlet,
+  useNavigate,
+  useParams
+} from "react-router-dom";
 import ConfirmModal from "../organisms/ConfirmModal";
 import SuccessfulModal from "../organisms/SuccessfulModal";
 
@@ -23,7 +29,7 @@ export default function Policy() {
     <div className="bg-background p-5 flex flex-col flex-1">
       <div
         className="flex mb-7 justify-start items-center hover:cursor-pointer"
-        onClick={() => navigate("/home/allpolicies")}
+        onClick={() => navigate("/policies/all")}
       >
         <img
           src=".././../../public/ArrowBack.png"
@@ -37,7 +43,10 @@ export default function Policy() {
           {policy.product}
         </div>
         <div className="flex justify-around my-4">
-          <div className="flex flex-col items-center hover:cursor-pointer" onClick={()=> navigate("/confirm-email")} >
+          <div
+            className="flex flex-col items-center hover:cursor-pointer"
+            onClick={() => navigate("/confirm-email")}
+          >
             <img
               src="../../../public/MailIcon.png"
               className="h-8 w-8 mb-3"
@@ -67,7 +76,10 @@ export default function Policy() {
               CANCEL POLICY
             </p>
           </div>
-          <div className="flex flex-col items-center hover:cursor-pointer">
+          <div
+            className="flex flex-col items-center hover:cursor-pointer"
+            onClick={() => navigate(`/payment-method`)}
+          >
             <img
               src="../../../public/PaymentMethod.png"
               className="h-8 w-8 mb-3"
@@ -80,7 +92,7 @@ export default function Policy() {
       </div>
       <div className="flex mt-5 bg-slate-200">
         <NavLink
-          to={`/${policyId}/personal-details`}
+          to={`/policies/${policyId}/personal-details`}
           className={({ isActive }) =>
             isActive
               ? "border-b-[3.5px] border-tertiary-default p-4 flex-auto  rounded-t-md leading-4 bg-white text-center text-base font-semibold text-tertiary-default"
@@ -90,7 +102,7 @@ export default function Policy() {
           PERSONAL DETAILS
         </NavLink>
         <NavLink
-          to={`/${policyId}/policy-details`}
+          to={`/policies/${policyId}/policy-details`}
           className={({ isActive }) =>
             isActive
               ? "border-b-[3.5px] border-tertiary-default p-4 flex-auto  rounded-t-md leading-4 bg-white text-center text-base font-semibold text-tertiary-default"
@@ -111,6 +123,12 @@ export default function Policy() {
         <SuccessfulModal
           message="Your policy has been successfully canceled"
           onClose={() => setSuccessfulCancelModalOpen(false)}
+        />
+      )}
+      {location.pathname === `/policies/${policyId}` && (
+        <Navigate
+          to={`/policies/${policyId}/personal-details`}
+          replace={true}
         />
       )}
     </div>

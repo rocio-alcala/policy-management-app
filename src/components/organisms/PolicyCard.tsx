@@ -105,7 +105,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
           <div
             className="flex flex-col items-center hover:cursor-pointer"
             onClick={() =>
-              navigate(`/${policy.policy_number}/personal-details`)
+              navigate(`/policies/${policy.policy_number}/personal-details`)
             }
           >
             <img
