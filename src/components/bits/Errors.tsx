@@ -6,7 +6,7 @@ export default function Errors({ message }: ErrorsTypeProps) {
   return (
     <>
       {message ? (
-        <p className="text-red-500 text-sm mt-[-18px]">{message}</p>
+        <p className="text-red-500 text-sm">{message}</p>
       ) : null}
     </>
   );

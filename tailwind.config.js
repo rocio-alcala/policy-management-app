@@ -31,7 +31,7 @@ export default {
         "grey1": "#FAFAFA",
         "grey2": "#F5F5F5",
         "grey3-disable": "#E5E5E5",
-        "grey5-text-secundary": "#999999",
+        "grey5-text-secondary": "#999999",
         "placeholder":"#757575",
         "divider": "#F0F0F0",
         "border-default": "#CCCCCC",

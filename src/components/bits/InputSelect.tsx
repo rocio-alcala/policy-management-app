@@ -2,17 +2,18 @@ import { ComponentPropsWithoutRef, forwardRef } from "react";
 import Errors from "./Errors";
 import clsx from "clsx/lite";
 
-interface InputTextSpecificProps {
+interface SelectSpecificProps {
   id: string | number;
-  description?: string;
+  options: { value: string | number; label: string }[];
+  placeholder?: string;
   errors?: string;
   label?: string;
 }
 
-const InputText = forwardRef<
-  HTMLInputElement,
-  ComponentPropsWithoutRef<"input"> & InputTextSpecificProps
->(({ label, errors, required, description, className, ...props }, ref) => {
+const InputSelect = forwardRef<
+  HTMLSelectElement,
+  ComponentPropsWithoutRef<"select"> & SelectSpecificProps
+>(({ label, options, errors, required, placeholder, className, ...props }, ref) => {
   return (
     <div className={clsx("flex-col",className)}>
       <label>
@@ -22,22 +23,28 @@ const InputText = forwardRef<
             {required && <span className="text-red-500">*</span>}
           </legend>
         )}
-        <input
+        <select
+        defaultValue=""
           className="mt-1 p-3 border border-border-default placeholder:text-placeholder rounded-md w-full focus:outline-none focus:border-blue-500"
           ref={ref}
-          type="text"
           aria-label={label}
           {...props}
-        />
+        >
+          {placeholder && (
+            <option className="text-placeholder" disabled value="">
+              {placeholder}
+            </option>
+          )}
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       </label>
       <Errors message={errors} />
-      {description && (
-        <div className="text-xs  text-gray-400 tracking-wide leading-6">
-          {description}
-        </div>
-      )}
     </div>
   );
 });
 
-export default InputText;
+export default InputSelect;
