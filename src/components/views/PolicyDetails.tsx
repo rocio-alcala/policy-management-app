@@ -1,5 +1,6 @@
+import { useParams } from "react-router-dom";
 import Button from "../bits/Button";
-import Document from "../organisms/Document";
+import DocumentCard from "../organisms/DocumentCard";
 
 const policy = {
   policy_number: "AHCBB45636",
@@ -28,6 +29,7 @@ const documents = [
 ];
 
 export default function PolicyDetails() {
+  const { policyId } = useParams()
   return (
     <div className="bg-background">
       {/*  contract id */}
@@ -137,7 +139,7 @@ export default function PolicyDetails() {
           Documents
         </h1>
         {documents.map((document, index) => (
-          <Document key={index + document.title} document={document} />
+          <DocumentCard key={index + document.title} document={document} />
         ))}
         <div className="p-5">
           <Button primary>DOWNLOAD ALL</Button>

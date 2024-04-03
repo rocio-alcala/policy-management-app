@@ -1,6 +1,6 @@
 interface DocumentProps { document: any}
 
-export default function Document({ document }: DocumentProps) {
+export default function DocumentCard({ document }: DocumentProps) {
   return (
     <div className="flex flex-col ">
       <div className="flex px-5 py-3 hover:cursor-pointer border-border-default border-b-[1px] justify-between items-center">

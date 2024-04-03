@@ -6,6 +6,7 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
+  //to-do: name aplication menu y hacer responsive
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const [isLanguagesOpen, setIsLanguagesOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -32,7 +33,7 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
               <div className="flex justify-between hover:cursor-pointer">
                 <img className="mr-2" src="../../../public/ContactIcon.png" />
                 <h1 className="font-semibold text-sm leading-5 text-deep-blue">
-                  CONTACT {/* label */}
+                  CONTACT
                 </h1>
               </div>
               <div
@@ -45,10 +46,10 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
             {isContactOpen && (
               <>
                 <div className="p-2 px-6 text-grey8-dark-text bg-grey1 border-b-[1px] border-divider font-normal leading-6 text-base">
-                  + 34 123 456 789 {/* label */}
+                  + 34 123 456 789
                 </div>
                 <div className="p-2 px-6 text-grey8-dark-text bg-grey1 border-b-[1px] border-divider font-normal leading-6 text-base">
-                  support@axa-support.com {/* label */}
+                  support@axa-support.com
                 </div>
               </>
             )}
@@ -56,7 +57,7 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
               <div className="flex justify-between hover:cursor-pointer">
                 <img className="mr-2" src="../../../public/LanguagesIcon.png" />
                 <h1 className="font-semibold text-sm leading-5 text-deep-blue">
-                  LANGUAGES {/* label */}
+                  LANGUAGES
                 </h1>
               </div>
               <div className="hover:cursor-pointer">
@@ -78,7 +79,7 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
                         "bg-grey2 text-axa-blue"
                       }`}
                     >
-                      {language} {/* label */}
+                      {language}
                     </div>
                   );
                 })}
@@ -98,7 +99,7 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
                 >
                   <img className="mr-2" src="../../../public/LogoutIcon.png" />
                   <h1 className="font-semibold text-sm leading-5 text-deep-blue">
-                    LOG OUT {/* label */}
+                    LOG OUT
                   </h1>
                 </div>
               </div>
@@ -118,7 +119,7 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
                       src="../../../public/LogoutIcon.png"
                     />
                     <h1 className="font-semibold text-sm leading-5 text-deep-blue">
-                      LOG IN {/* label */}
+                      LOG IN
                     </h1>
                   </div>
                 </div>
@@ -142,7 +143,7 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
                       src="../../../public/LogoutIcon.png"
                     />
                     <h1 className="font-semibold text-sm leading-5 text-deep-blue">
-                      REGISTER {/* label */}
+                      REGISTER
                     </h1>
                   </div>
                 </div>

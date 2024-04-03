@@ -1,4 +1,5 @@
-import BeneficiarieCard from "../organisms/BeneficiarieCard";
+import { useNavigate, useParams } from "react-router-dom";
+import BeneficiaryCard from "../organisms/BeneficiaryCard";
 
 const policyHolder = {
   title: "Mrs",
@@ -52,6 +53,8 @@ const beneficiaries = [
 ];
 
 export default function PersonalDetails() {
+  const { policyId } = useParams()
+  const navigate = useNavigate()
   return (
     <div className="bg-background">
       {/*  policy holder */}
@@ -60,7 +63,7 @@ export default function PersonalDetails() {
           <h1 className=" p-5 leading-8 font-bold text-xl text-grey8-dark-text">
             Policy holder
           </h1>
-          <div className="flex mr-5 items-center">
+          <div className="flex mr-5 items-center hover:cursor-pointer" onClick={()=> navigate(`/policies/${policyId}/edit/policy-holder`)}>
             <img
               src=".././../../public/Edit.png"
               className="h-4 w-4 mr-2"
@@ -129,7 +132,7 @@ export default function PersonalDetails() {
           <h1 className="p-5 leading-8 font-bold text-xl text-grey8-dark-text">
             Beneficiaries
           </h1>
-          <div className="flex mr-5 items-center">
+          <div className="flex mr-5 items-center hover:cursor-pointer" onClick={()=> navigate(`/policies/${policyId}/edit/beneficiaries`)}>
             <img
               src=".././../../public/Edit.png"
               className="h-4 w-4 mr-2"
@@ -137,10 +140,10 @@ export default function PersonalDetails() {
             <div className="text-axa-blue leading-5">EDIT</div>
           </div>
         </div>
-        {beneficiaries.map((beneficiarie) => (
-          <BeneficiarieCard
-            beneficiarie={beneficiarie}
-            key={beneficiarie.idNumber}
+        {beneficiaries.map((beneficiary) => (
+          <BeneficiaryCard
+            beneficiary={beneficiary}
+            key={beneficiary.idNumber}
           />
         ))}
       </div>
