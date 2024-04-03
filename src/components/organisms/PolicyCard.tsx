@@ -48,7 +48,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
                 className="mr-2 mt-1 h-4 w-4"
               ></img>
               <p className="text-base leading-6 text-text-primary">
-                Effective dates: {policy.start_date} - {policy.end_date}
+                Purchase date: {policy.purchase_date}
               </p>
             </div>
             <div className="flex py-1">
@@ -66,8 +66,8 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
                 className="mr-2 mt-1 h-4 w-4"
               ></img>
               <p className="text-base leading-6 text-text-primary">
-                Beneficiary: {policy.beneficiary[0].name}{" "}
-                {policy.beneficiary[0].last_name}
+                Policy holder: {policy.policy_holder.first_name}{" "}
+                {policy.policy_holder.last_name}
               </p>
             </div>
           </div>
