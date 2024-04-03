@@ -43,16 +43,14 @@ const InputDate = forwardRef<
             </legend>
           )}
         </label>
-        <div className="mt-2 mb-5">
+        <div className="mt-2">
           <DatePicker
             className="cursor-pointer w-full p-10 border rounded-md focus:outline-none border-border-default focus:border-blue-500 disabled:bg-slate-100"
             dateFormat="yyyy/MM/dd"
-            customInput={
-              <input className="h-[52px] text-xl text-center px-12" />
-            }
+            customInput={<input className="h-11 text-xl text-center px-12" />}
             showIcon={showIcon}
             wrapperClassName="w-full"
-            calendarIconClassname="mt-[8px] ml-[10px] text-xl"
+            calendarIconClassname="mt-[4px] ml-[10px] text-xl"
             ref={ref}
             selected={selectedValue}
             id={id}

@@ -13,38 +13,43 @@ interface SelectSpecificProps {
 const InputSelect = forwardRef<
   HTMLSelectElement,
   ComponentPropsWithoutRef<"select"> & SelectSpecificProps
->(({ label, options, errors, required, placeholder, className, ...props }, ref) => {
-  return (
-    <div className={cn("flex-col",className)}>
-      <label>
-        {label && (
-          <legend className="font-semibold leading-6 py-1 text-grey8-dark-text">
-            {label}
-            {required && <span className="text-red-500">*</span>}
-          </legend>
-        )}
-        <select
-        defaultValue=""
-          className="mt-1 p-3 border border-border-default placeholder:text-placeholder rounded-md w-full focus:outline-none focus:border-blue-500"
-          ref={ref}
-          aria-label={label}
-          {...props}
-        >
-          {placeholder && (
-            <option className="text-placeholder" disabled value="">
-              {placeholder}
-            </option>
+>(
+  (
+    { label, options, errors, required, placeholder, className, ...props },
+    ref
+  ) => {
+    return (
+      <div className={cn("flex-col", className)}>
+        <label>
+          {label && (
+            <legend className="font-semibold leading-6 py-1 text-grey8-dark-text">
+              {label}
+              {required && <span className="text-red-500">*</span>}
+            </legend>
           )}
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </label>
-      <Errors message={errors} />
-    </div>
-  );
-});
+          <select
+            defaultValue=""
+            className="mt-1 p-3 h-11 border border-border-default placeholder:text-placeholder rounded-md w-full focus:outline-none focus:border-blue-500"
+            ref={ref}
+            aria-label={label}
+            {...props}
+          >
+            {placeholder && (
+              <option className="text-placeholder" disabled value="">
+                {placeholder}
+              </option>
+            )}
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <Errors message={errors} />
+      </div>
+    );
+  }
+);
 
 export default InputSelect;

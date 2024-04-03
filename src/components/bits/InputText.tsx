@@ -23,7 +23,7 @@ const InputText = forwardRef<
           </legend>
         )}
         <input
-          className="mt-1 p-3 border border-border-default placeholder:text-placeholder rounded-md w-full focus:outline-none focus:border-blue-500 disabled:bg-grey2"
+          className="mt-1 p-3 h-11 border border-border-default placeholder:text-placeholder rounded-md w-full focus:outline-none focus:border-blue-500 disabled:bg-grey2"
           ref={ref}
           type="text"
           aria-label={label}

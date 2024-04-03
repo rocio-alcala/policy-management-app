@@ -25,7 +25,7 @@ const InputCounter = forwardRef<
         <input
           ref={ref}
           type="number"
-          className="cursor-pointer w-full border-border-default placeholder:text-placeholder mt-1 p-3 border rounded-md focus:outline-none focus:border-blue-500"
+          className="cursor-pointer h-11 w-full border-border-default placeholder:text-placeholder mt-1 p-3 border rounded-md focus:outline-none focus:border-blue-500"
           aria-label={label}
           {...restProps}
         ></input>

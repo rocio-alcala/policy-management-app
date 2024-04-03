@@ -32,24 +32,21 @@ export default function PolicyDetails() {
     <div className="bg-background">
       {/*  contract id */}
       <div className="flex flex-col rounded-b-md bg-white">
+        <div className="flex mr-5 mt-5 items-center self-end">
+          <img src=".././../../public/Edit.png" className="h-4 w-4 mr-2"></img>
+          <div className="text-axa-blue leading-5">EDIT</div>
+        </div>
         <div className="flex justify-between content-center items-center border-grey6">
           <h1 className=" p-5 leading-8 font-bold text-xl text-grey8-dark-text">
             Contract ID
           </h1>
-          <div className="flex mr-5 items-center hover:cursor-pointer">
-            <img
-              src=".././../../public/Edit.png"
-              className="h-4 w-4 mr-2"
-            ></img>
-            <div className="text-axa-blue leading-5">EDIT</div>
-          </div>
         </div>
-        <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
+        <li className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Policy number</p>
           <p className="text-start leading-6 text-grey8-dark-text">
             {policy.policy_number}
           </p>
-        </div>
+        </li>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Status</p>
           <p className="text-start leading-6 text-grey8-dark-text">
@@ -87,13 +84,6 @@ export default function PolicyDetails() {
           <h1 className=" p-5 leading-8 font-bold text-xl text-grey8-dark-text">
             Contract details
           </h1>
-          <div className="flex mr-5 items-center hover:cursor-pointer">
-            <img
-              src=".././../../public/Edit.png"
-              className="h-4 w-4 mr-2"
-            ></img>
-            <div className="text-axa-blue leading-5">EDIT</div>
-          </div>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Party composition</p>
@@ -131,7 +121,7 @@ export default function PolicyDetails() {
             {policy.cost}
           </p>
         </div>
-        <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
+        <div className="flex justify-between border-y-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Destination area</p>
           <p className="text-start leading-6 text-grey8-dark-text">
             {policy.destination}
