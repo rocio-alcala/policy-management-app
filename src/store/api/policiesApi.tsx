@@ -1,34 +1,25 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { getEnvironmentalVariable } from "../../utils/utils";
 
-const SERVER_URL = "";
+const SERVER_URL = getEnvironmentalVariable("VITE_API_BASE_URL");
+console.log(SERVER_URL)
 
 export const policiesApi = createApi({
   reducerPath: "policiesApi",
   tagTypes: ["policies"],
   baseQuery: fetchBaseQuery({ baseUrl: SERVER_URL }),
-  endpoints: (builder) => ({   //querys son ejemplificadoras y faltan tipados!!!
-    getPolicies: builder.query({
+  endpoints: (builder) => ({   // faltan tipados
+    getPolicies: builder.query<any, void>({
       query: () => `/policies`, 
       providesTags: ["policies"]
     }),
-    getPoliciesById: builder.query({
-      query: (id) => `/policies/${id}`,
+    getPoliciesById: builder.query<any, string>({
+      query: (policyId) => `/policies/${policyId}`,
       providesTags: ["policies"],
-    }),
-    updateBadDebt: builder.mutation({
-      query: (updatedPolicy) => ({
-        url: `/policies/${updatedPolicy.id}`,
-        method: "PUT",
-        body: updatedPolicy
-      }),
-      invalidatesTags: ["policies"],
-    }),
-    postEmail: builder.mutation({
-      query: (email) => ({
-        url: "/confirmationemail",
-        method: "POST",
-        body: email,
-      }),
-    }),
+    })
   })
 });
+
+export const { useGetPoliciesByIdQuery, useGetPoliciesQuery} = policiesApi
+
+
