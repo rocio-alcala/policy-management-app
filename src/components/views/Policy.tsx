@@ -114,17 +114,17 @@ export default function Policy() {
       </div>
       <Outlet></Outlet>
       {/* MODALS */}
-      {isConfirmCancelModalOpen && (
-        <ConfirmModal
-          onClose={() => setConfirmCancelModalOpen(false)}
-        ></ConfirmModal>
-      )}
-      {isSuccessfulCancelModalOpen && (
-        <SuccessfulModal
-          message="Your policy has been successfully canceled"
-          onClose={() => setSuccessfulCancelModalOpen(false)}
-        />
-      )}
+      <ConfirmModal
+        isOpen={isConfirmCancelModalOpen}
+        onClose={() => setConfirmCancelModalOpen(false)}
+      ></ConfirmModal>
+
+      <SuccessfulModal
+        isOpen={isSuccessfulCancelModalOpen}
+        message="Your policy has been successfully canceled"
+        onClose={() => setSuccessfulCancelModalOpen(false)}
+      />
+
       {location.pathname === `/policies/${policyId}` && (
         <Navigate
           to={`/policies/${policyId}/personal-details`}

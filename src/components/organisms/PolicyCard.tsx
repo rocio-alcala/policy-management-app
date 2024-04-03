@@ -72,7 +72,10 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
           </div>
         </div>
         <div className="flex bg-background p-4 justify-around">
-          <div className="flex flex-col items-center hover:cursor-pointer" onClick={()=> navigate("/confirm-email")}>
+          <div
+            className="flex flex-col items-center hover:cursor-pointer"
+            onClick={() => navigate("/confirm-email")}
+          >
             <img
               src="../../../public/MailIcon.png"
               className="h-8 w-8 mb-3"
@@ -119,17 +122,17 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
         </div>
       </div>
       {/* MODALS */}
-      {isConfirmCancelModalOpen && (
-        <ConfirmModal
-          onClose={() => setConfirmCancelModalOpen(false)}
-        ></ConfirmModal>
-      )}
-      {isSuccessfulCancelModalOpen && (
-        <SuccessfulModal
-          message="Your policy has been successfully canceled"
-          onClose={() => setSuccessfulCancelModalOpen(false)}
-        />
-      )}
+
+      <ConfirmModal
+        isOpen={isConfirmCancelModalOpen}
+        onClose={() => setConfirmCancelModalOpen(false)}
+      ></ConfirmModal>
+
+      <SuccessfulModal
+        isOpen={isSuccessfulCancelModalOpen}
+        message="Your policy has been successfully canceled"
+        onClose={() => setSuccessfulCancelModalOpen(false)}
+      />
     </>
   );
 }

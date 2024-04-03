@@ -1,16 +1,10 @@
-import {
-  PropsWithChildren,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from "react";
+import { PropsWithChildren, useCallback, useEffect, useRef } from "react";
 
 interface BaseModalProps {
   isOpen: boolean;
+  onClose: () => void;
   title?: string;
   hasCloseBtn?: boolean;
-  onClose?: () => void;
 }
 
 export default function BaseModal({
@@ -20,17 +14,11 @@ export default function BaseModal({
   onClose,
   children
 }: PropsWithChildren<BaseModalProps>) {
-  const [isModalOpen, setModalOpen] = useState(isOpen);
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLDialogElement>) {
-    if (event.key === "Escape") handleCloseModal();
+    if (event.key === "Escape") onClose();
   }
-
-  const handleCloseModal = useCallback(() => {
-    if (onClose) onClose();
-    setModalOpen(false);
-  }, [onClose, setModalOpen]);
 
   const closeMenu = useCallback(
     (event: MouseEvent) => {
@@ -38,10 +26,10 @@ export default function BaseModal({
       //target inside the dialog will be one of <dialog> children
       //only close when target is dialog (outside <dialog>)
       if (modalRef.current && modalRef.current === event.target) {
-        handleCloseModal();
+        onClose();
       }
     },
-    [handleCloseModal]
+    [onClose]
   );
 
   //add event listener for close on click outside
@@ -55,13 +43,13 @@ export default function BaseModal({
     const modalElement = modalRef.current;
 
     if (modalElement) {
-      if (isModalOpen) {
+      if (isOpen) {
         modalElement.showModal();
       } else {
         modalElement.close();
       }
     }
-  }, [isModalOpen]);
+  }, [isOpen]);
 
   return (
     <dialog
@@ -75,7 +63,7 @@ export default function BaseModal({
           <h3>{title}</h3>
           {/* close button */}
           {hasCloseBtn && (
-            <button onClick={handleCloseModal}>
+            <button onClick={onClose}>
               <span>x</span>
             </button>
           )}
