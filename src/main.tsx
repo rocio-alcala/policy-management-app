@@ -11,7 +11,6 @@ import ActivePolicies from "./components/views/ActivePolicies.tsx";
 import Callback from "./components/views/Callback.tsx";
 import ProvidersWrappers from "./components/organisms/ProvidersWrappers.tsx";
 import ConfirmEmail from "./components/organisms/ConfirmEmail.tsx";
-import Policy from "./components/views/Policy.tsx";
 import PolicyDetails from "./components/views/PolicyDetails.tsx";
 import PersonalDetails from "./components/views/PersonalDetails.tsx";
 import PaymentMethod from "./components/views/PaymentMethod.tsx";
@@ -21,6 +20,7 @@ import PolicesLayout from "./components/organisms/PolicesLayout.tsx";
 import ProtectedRoutes from "./components/organisms/ProtectedRoutes.tsx";
 import BeneficiaryEdit from "./components/views/BeneficiaryEdit.tsx";
 import PolicyHolderEdit from "./components/views/PolicyHolderEdit.tsx";
+import PolicyLayout from "./components/organisms/PolicyLayout.tsx";
 
 const WRAPPER_PATH = "";
 
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
                 path: ":policyId",
                 children: [
                   {
-                    element: <Policy />,
+                    element: <PolicyLayout />,
                     children: [
                       {
                         path: "policy-details",
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
                   },
                   {
                     path: "payment-method",
-                    element: <PaymentMethod /> 
+                    element: <PaymentMethod />
                   },
                   {
                     path: "edit/policy-holder",

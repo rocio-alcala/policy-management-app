@@ -6,8 +6,9 @@ import {
   useNavigate,
   useParams
 } from "react-router-dom";
-import ConfirmModal from "../organisms/ConfirmModal";
-import SuccessfulModal from "../organisms/SuccessfulModal";
+import ConfirmModal from "./ConfirmModal";
+import SuccessfulModal from "./SuccessfulModal";
+import ImageButton from "./ImageButton";
 
 const policy = {
   product: "Travel insurance",
@@ -19,7 +20,7 @@ const policy = {
   status: "cancelled"
 };
 
-export default function Policy() {
+export default function PolicyLayout() {
   const { policyId } = useParams();
   const navigate = useNavigate();
   const [isConfirmCancelModalOpen, setConfirmCancelModalOpen] = useState(false);
@@ -43,51 +44,25 @@ export default function Policy() {
           {policy.product}
         </div>
         <div className="flex justify-around my-4">
-          <div
-            className="flex flex-col items-center hover:cursor-pointer"
+          <ImageButton
             onClick={() => navigate("/confirm-email")}
-          >
-            <img
-              src="../../../public/MailIcon.png"
-              className="h-8 w-8 mb-3"
-            ></img>
-            <p className="text-axa-blue text-xs leading-[14px] font-bold text-center">
-              POLICY/ CERTIFICATE
-            </p>
-          </div>
-          <div className="flex flex-col items-center hover:cursor-pointer">
-            <img
-              src="../../../public/PlusIcon.png"
-              className="h-8 w-8 mb-3"
-            ></img>
-            <p className="text-axa-blue text-xs leading-[14px] font-bold text-center">
-              ADD TO WALLET
-            </p>
-          </div>
-          <div
-            className="flex flex-col items-center hover:cursor-pointer"
+            srcImage="../../../public/MailIcon.png"
+            text="POLICY/ CERTIFICATE"
+          />
+          <ImageButton
+            srcImage="../../../public/PlusIcon.png"
+            text="ADD TO WALLET"
+          />
+          <ImageButton
             onClick={() => setConfirmCancelModalOpen(true)}
-          >
-            <img
-              src="../../../public/TrashIcon.png"
-              className="h-8 w-8 mb-3"
-            ></img>
-            <p className="text-axa-blue text-xs leading-[14px] font-bold text-center">
-              CANCEL POLICY
-            </p>
-          </div>
-          <div
-            className="flex flex-col items-center hover:cursor-pointer"
-            onClick={() => navigate(`/payment-method`)}
-          >
-            <img
-              src="../../../public/PaymentMethod.png"
-              className="h-8 w-8 mb-3"
-            ></img>
-            <p className="text-axa-blue text-xs leading-[14px] font-bold text-center">
-              PAYMENT METHOD
-            </p>
-          </div>
+            srcImage="../../../public/TrashIcon.png"
+            text="CANCEL POLICY"
+          />
+          <ImageButton
+            onClick={() => navigate(`/policies/${policyId}/payment-method`)}
+            srcImage="../../../public/PaymentMethod.png"
+            text="PAYMENT METHOD"
+          />
         </div>
       </div>
       <div className="flex mt-5 bg-slate-200">
