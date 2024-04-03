@@ -27,9 +27,7 @@ export default function RootLayout() {
         <MobileMenu isMenuOpen={isMenuOpen} />
       </div>
       <Outlet></Outlet>
-      {location.pathname === "/" && (
-        <Navigate to="/policies/all" replace={true} />
-      )}
+
     </main>
   );
 }

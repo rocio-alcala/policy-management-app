@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Auth0ProviderWithNavigate } from "../../Auth0ProviderWithNavigate";
+import { Auth0ProviderWithNavigate } from "./Auth0ProviderWithNavigate";
 import { Provider } from "react-redux";
 import { store } from "../../store/store";
 

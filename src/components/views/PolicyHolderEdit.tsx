@@ -19,7 +19,7 @@ const validationSchema = {
   is_beneficiary: yup.string().required()
 };
 
-export default function PolicyHolder() {
+export default function PolicyHolderEdit() {
   const {
     register,
     handleSubmit,

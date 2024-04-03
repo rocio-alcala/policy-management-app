@@ -1,11 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import Spinner from "../bits/Spinner";
-import LogInButton from "../organisms/LogInButton";
-import RegisterButton from "../organisms/RegisterButton";
 import { Navigate } from "react-router-dom";
+import Button from "../bits/Button";
 
 export default function Login() {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
 
   if (isLoading) return <Spinner />;
   return (
@@ -18,10 +17,34 @@ export default function Login() {
             </h1>
             <p>Login to access your personal space</p>
           </div>
-          {/* label */}
           <div>
-            <LogInButton />
-            <RegisterButton />
+            <Button
+              primary={true}
+              onClick={() =>
+                loginWithRedirect({
+                  appState: { returnTo: window.location.pathname }
+                })
+              }
+              className="m-1"
+            >
+              LOG IN
+            </Button>
+            <Button
+              onClick={() =>
+                loginWithRedirect({
+                  appState: {
+                    returnTo: window.location.pathname //redirect location after signup
+                  },
+                  authorizationParams: {
+                    //authorizationParams object as query parameters of the call to the Auth0 /authorize endpoint
+                    screen_hint: "signup" //set screen_hint with a value of 'signup' to send to the sign-up page
+                  }
+                })
+              }
+              className="m-1"
+            >
+              REGISTER
+            </Button>
           </div>
         </div>
       ) : (
