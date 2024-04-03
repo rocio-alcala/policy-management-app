@@ -1,3 +1,6 @@
+import clsx, { ClassValue } from "clsx/lite";
+import { twMerge } from "tailwind-merge";
+
 export function getEnvironmentalVariable(constantKey: string) {
     const variable = import.meta.env[constantKey];
     if (!variable) {
@@ -6,3 +9,5 @@ export function getEnvironmentalVariable(constantKey: string) {
   
     return variable;
   }
+
+  export function cn(...inputs: ClassValue[]){ return twMerge(clsx(...inputs)) }

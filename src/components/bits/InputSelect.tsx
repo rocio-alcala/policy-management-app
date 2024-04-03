@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 import Errors from "./Errors";
-import clsx from "clsx/lite";
+import { cn } from "../../utils/utils";
 
 interface SelectSpecificProps {
   id: string | number;
@@ -15,7 +15,7 @@ const InputSelect = forwardRef<
   ComponentPropsWithoutRef<"select"> & SelectSpecificProps
 >(({ label, options, errors, required, placeholder, className, ...props }, ref) => {
   return (
-    <div className={clsx("flex-col",className)}>
+    <div className={cn("flex-col",className)}>
       <label>
         {label && (
           <legend className="font-semibold leading-6 py-1 text-grey8-dark-text">

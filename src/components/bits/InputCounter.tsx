@@ -2,20 +2,20 @@ import { ComponentPropsWithoutRef, forwardRef } from "react";
 import Errors from "./Errors";
 import { cn } from "../../utils/utils";
 
-interface InputTextSpecificProps {
+interface InputCounterSpecificProps {
   id: string | number;
   description?: string;
   errors?: string;
   label?: string;
 }
 
-const InputText = forwardRef<
+const InputCounter = forwardRef<
   HTMLInputElement,
-  ComponentPropsWithoutRef<"input"> & InputTextSpecificProps
->(({ label, errors, required, description, className, ...props }, ref) => {
+  ComponentPropsWithoutRef<"input"> & InputCounterSpecificProps
+>(({ label, errors, required, description, className, ...restProps }, ref) => {
   return (
-    <div className={cn("flex-col",className)}>
-      <label>
+    <div className={cn("flex flex-col", className)}>
+      <label className="mb-5 block text-base font-semibold text-gray-600">
         {label && (
           <legend className="font-semibold leading-6 py-1 text-grey8-dark-text">
             {label}
@@ -23,12 +23,12 @@ const InputText = forwardRef<
           </legend>
         )}
         <input
-          className="mt-1 p-3 border border-border-default placeholder:text-placeholder rounded-md w-full focus:outline-none focus:border-blue-500 disabled:bg-grey2"
           ref={ref}
-          type="text"
+          type="number"
+          className="cursor-pointer w-full border-border-default placeholder:text-placeholder mt-1 p-3 border rounded-md focus:outline-none focus:border-blue-500"
           aria-label={label}
-          {...props}
-        />
+          {...restProps}
+        ></input>
       </label>
       <Errors message={errors} />
       {description && (
@@ -40,4 +40,4 @@ const InputText = forwardRef<
   );
 });
 
-export default InputText;
+export default InputCounter;
