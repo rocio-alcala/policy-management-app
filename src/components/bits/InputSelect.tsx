@@ -29,7 +29,7 @@ const InputSelect = forwardRef<
           )}
           <select
             defaultValue=""
-            className="mt-1 p-3 h-11 border border-border-default placeholder:text-placeholder rounded-md w-full focus:outline-none focus:border-blue-500"
+            className="mt-1 p-3 h-12 border border-border-default placeholder:text-placeholder rounded-md w-full focus:outline-none focus:border-blue-500"
             ref={ref}
             aria-label={label}
             {...props}

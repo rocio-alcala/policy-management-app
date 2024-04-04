@@ -47,7 +47,7 @@ const InputDate = forwardRef<
           <DatePicker
             className="cursor-pointer w-full p-10 border rounded-md focus:outline-none border-border-default focus:border-blue-500 disabled:bg-slate-100"
             dateFormat="yyyy/MM/dd"
-            customInput={<input className="h-11 text-xl text-center px-12" />}
+            customInput={<input className="h-11 text-center px-12" />}
             showIcon={showIcon}
             wrapperClassName="w-full"
             calendarIconClassname="mt-[4px] ml-[10px] text-xl"

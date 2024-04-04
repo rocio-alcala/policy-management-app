@@ -20,6 +20,7 @@ import PolicesLayout from "./components/organisms/PolicesLayout.tsx";
 import ProtectedRoutes from "./components/organisms/ProtectedRoutes.tsx";
 import PolicyLayout from "./components/organisms/PolicyLayout.tsx";
 import Redirect from "./components/organisms/Redirect.tsx";
+import PolicyHolderEdit from "./components/views/PolicyHolderEdit.tsx";
 
 const WRAPPER_PATH = "";
 
@@ -82,10 +83,10 @@ const router = createBrowserRouter([
                     path: "payment-method",
                     element: <PaymentMethod />
                   },
-/*                   {
+                  {
                     path: "edit/policy-holder",
                     element: <PolicyHolderEdit />
-                  }, */
+                  },
    /*                {
                     path: "edit/beneficiaries",
                     element: <BeneficiaryEdit />

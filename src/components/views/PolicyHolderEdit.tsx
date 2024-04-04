@@ -1,4 +1,4 @@
-/* import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import InputText from "../bits/InputText";
 import Button from "../bits/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,18 +9,50 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
 import Spinner from "../bits/Spinner";
+import { Policy } from "../../types";
+import InputSelect from "../bits/InputSelect";
+
+interface PolicyHolderForm {
+  first_name: string;
+  last_name: string;
+  id_number: string;
+  phone_number?: string;
+  email: string;
+  address: string;
+  title: string;
+  birth_date?: string;
+  is_beneficiary: string;
+  language: string;
+}
 
 const validationSchema = {
-  first_name: yup.string().required(),
-  last_name: yup.string().required(),
-  id_number: yup.string().required(), //TO-DO: alfanumerico??
-  phone_number: yup.number().required(),
-  email: yup.string().email().required(),
-  address: yup.string().required(),
-  title: yup.string().required(),
+  first_name: yup.string().required("First name is required"),
+  last_name: yup.string().required("Last name is required"),
+  id_number: yup
+    .string()
+    .required("ID is required")
+    .matches(/^[a-zA-Z0-9]+$/, "ID must be alphanumeric"),
+  phone_number: yup.string().matches(/^[0-9]+$/, "Must be a valid number"),
+  email: yup
+    .string()
+    .email("Must be a valid email")
+    .required("Email is required"),
   birth_date: yup.string(),
-  is_beneficiary: yup.string().required()
+  address: yup.string().required("Address is required"),
+  title: yup.string().required("Title is required"),
+  is_beneficiary: yup.string().required("Is beneficiary is required"),
+  language: yup.string().required("Language is required")
 };
+
+const languages = [
+  { label: "English", value: "English" },
+  { label: "Spanish", value: "Spanish" },
+  { label: "Français", value: "Français" },
+  { label: "Dutch", value: "Dutch" },
+  { label: "Chinese", value: "Chinese" },
+  { label: "German", value: "de-DE" },
+  { label: "Russian", value: "Russian" }
+];
 
 export default function PolicyHolderEdit() {
   const navigate = useNavigate();
@@ -31,15 +63,40 @@ export default function PolicyHolderEdit() {
     error
   } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
 
+  function getDefaultValues(policy: Policy | undefined) {
+    if (typeof policy === "undefined") {
+      return undefined;
+    }
+    const policyHolderDefaultValues = {
+      first_name: policy.policy_holder.first_name,
+      last_name: policy.policy_holder.last_name,
+      id_number: "falta dato",
+      phone_number: "no hay dato",
+      email: policy.policy_holder.email,
+      address: policy.policy_holder.address.country + "falta info",
+      title: policy.policy_holder.title,
+      birth_date: policy.policy_holder.birth_date,
+      is_beneficiary: policy.policy_holder.is_policy_beneficiary
+        ? "true"
+        : "false",
+      language: policy.policy_holder.spoken_language
+    };
+    return policyHolderDefaultValues;
+  }
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     control
-  } = useForm({
+  } = useForm<PolicyHolderForm>({
     resolver: yupResolver(yup.object().shape(validationSchema)),
-    defaultValues: policyHolderDefaultValues
+    values: getDefaultValues(policy)
   });
+
+  function onSubmit(data: PolicyHolderForm) {
+    console.log(data);
+  }
 
   if (isLoading) {
     return <Spinner />;
@@ -50,30 +107,13 @@ export default function PolicyHolderEdit() {
     return;
   }
 
-  const policyHolderDefaultValues = {
-    first_name: policy.policy_holder.first_name,
-    last_name: policy.policy_holder.last_name,
-    id_number: "falta dato",
-    phone_number: policy.policy_holder.phone,
-    email: policy.policy_holder.email,
-    address: policy.policy_holder.address.country + "falta info",
-    title: policy.policy_holder.title,
-    birth_date: policy.policy_holder.birth_date,
-    is_beneficiary: policy.policy_holder.is_policy_beneficiary
-  };
-
-
-
   return (
     <div className="bg-background p-5 flex flex-col flex-1">
       <div
         className="flex mb-7 justify-start items-center hover:cursor-pointer"
         onClick={() => navigate(`/policies/${policyId}/personal-details`)}
       >
-        <img
-          src=".././../../public/ArrowBack.png"
-          className="h-4 w-4 mr-3"
-        ></img>
+        <img src="/ArrowBack.png" className="h-4 w-4 mr-3"></img>
         <div className="text-axa-blue leading-5">BACK</div>
       </div>
       <div className="bg-white flex flex-col rounded-md p-5">
@@ -84,7 +124,11 @@ export default function PolicyHolderEdit() {
           <FieldsetRadio
             id="title"
             label="Title"
-            items={[{ value: "Mr." }, { value: "Mrs." }, { value: "Miss." }]}
+            items={[
+              { value: "MR", label: "Mr." },
+              { value: "MRS", label: "Mrs." },
+              { value: "MISS", label: "Miss." }
+            ]}
             {...register("title")}
             className="my-2"
             errors={errors.title?.message}
@@ -157,6 +201,15 @@ export default function PolicyHolderEdit() {
             className="my-2"
             errors={errors.phone_number?.message}
           ></InputText>
+          <InputSelect
+            id="language"
+            label="Language"
+            {...register("language")}
+            options={languages}
+            errors={errors.language?.message}
+            placeholder="Select language"
+            className="mb-3"
+          ></InputSelect>
           <InputText
             id="email"
             label="E-mail"
@@ -180,4 +233,3 @@ export default function PolicyHolderEdit() {
     </div>
   );
 }
- */
