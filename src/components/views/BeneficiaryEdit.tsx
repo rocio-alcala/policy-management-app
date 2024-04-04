@@ -1,12 +1,8 @@
 /* import { yupResolver } from "@hookform/resolvers/yup";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
-import FieldsetRadio from "../bits/FieldsetRadio";
-import InputText from "../bits/InputText";
-import InputDate from "../bits/InputDate";
 import Button from "../bits/Button";
-import BeneficiaryEditCard from "../organisms/BeneficiaryEditCard";
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
 
 const validationSchema = {
@@ -34,7 +30,6 @@ export default function BeneficiaryEdit() {
   const navigate = useNavigate();
   const { policyId } = useParams();
   const { data: policy } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
- 
 
   function onSubmit(data) {
     console.log(data);
@@ -53,15 +48,15 @@ export default function BeneficiaryEdit() {
         <div className="text-axa-blue leading-5">BACK</div>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-{/*         {beneficiaries.map((beneficiary, index) => (
+                 {beneficiaries.map((beneficiary, index) => (
           <BeneficiaryEditCard key={beneficiary} />
-        ))} */}
+        ))} 
         <Button type="submit" primary className="my-1 mt-5">
           SAVE CHANGES
         </Button>
         <Button className="my-1">DISCARD CHANGES</Button>
       </form>
     </div>
-  );
+  )
 }
  */
