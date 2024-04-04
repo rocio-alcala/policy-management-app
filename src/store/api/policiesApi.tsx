@@ -8,18 +8,16 @@ export const policiesApi = createApi({
   reducerPath: "policiesApi",
   tagTypes: ["policies"],
   baseQuery: fetchBaseQuery({ baseUrl: SERVER_URL }),
-  endpoints: (builder) => ({   // faltan tipados
+  endpoints: (builder) => ({
     getPolicies: builder.query<SummaryPolicy[], void>({
-      query: () => `/policies`, 
+      query: () => `/policies`,
       providesTags: ["policies"]
     }),
     getPoliciesById: builder.query<Policy, string>({
       query: (policyId) => `/policies/${policyId}`,
-      providesTags: ["policies"],
+      providesTags: ["policies"]
     })
   })
 });
 
-export const { useGetPoliciesByIdQuery, useGetPoliciesQuery} = policiesApi
-
-
+export const { useGetPoliciesByIdQuery, useGetPoliciesQuery } = policiesApi;

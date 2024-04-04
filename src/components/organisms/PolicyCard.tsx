@@ -27,9 +27,9 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
             <h1 className="font-semibold text-xl leading-7 text-text-primary">
               {policy.product_name}
             </h1>
-            {policy.status === "active" ? (
+            {policy.status === "ACTIVE" ? (
               <div className="text-success leading-5 text-sm">Active</div>
-            ) : policy.status === "cancelled" ? (
+            ) : policy.status === "CANCELLED" ? (
               <div className="text-axa-sienna leading-5 text-sm">Cancelled</div>
             ) : (
               <div className="text-grey5-text-secundary leading-5 text-sm">

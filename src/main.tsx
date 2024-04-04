@@ -46,9 +46,9 @@ const router = createBrowserRouter([
             element: (location.pathname === "/policies" ||
               location.pathname === "/policies/") && (
               <>
-                <Outlet/>
+                <Outlet />
                 <Navigate to="/policies/all" replace={true} />{" "}
-              </>   //redirect to policies/all  TO-DO?? esta bien??
+              </> //redirect to policies/all  TO-DO?? esta bien??
             ),
             children: [
               {
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
               },
               {
                 path: ":policyId",
-                element: <Redirect/>,
+                element: <Redirect />,
                 children: [
                   {
                     element: <PolicyLayout />,
@@ -92,10 +92,6 @@ const router = createBrowserRouter([
                   {
                     path: "edit/beneficiaries",
                     element: <BeneficiaryEdit />
-                  },
-                  {
-                    path: "confirm-email", //to-d: que sea un modal on top of the policies view
-                    element: <ConfirmEmail />
                   }
                 ]
               }

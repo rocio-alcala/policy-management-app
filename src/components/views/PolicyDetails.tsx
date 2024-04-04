@@ -15,9 +15,10 @@ export default function PolicyDetails() {
   if (isLoading) {
     return <Spinner />;
   }
-  if (typeof policy === "undefined") {   //TO-DO?? MANEJO DE UNDFINED
+  if (typeof policy === "undefined") {
+    //TO-DO?? MANEJO DE UNDFINED
     console.error("@Error fetching policies ", error);
-    return
+    return;
   }
   return (
     <div className="bg-background">
