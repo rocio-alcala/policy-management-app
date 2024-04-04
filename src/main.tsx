@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import {
   Navigate,
+  Outlet,
   RouterProvider,
   createBrowserRouter
 } from "react-router-dom";
@@ -21,6 +22,7 @@ import ProtectedRoutes from "./components/organisms/ProtectedRoutes.tsx";
 import BeneficiaryEdit from "./components/views/BeneficiaryEdit.tsx";
 import PolicyHolderEdit from "./components/views/PolicyHolderEdit.tsx";
 import PolicyLayout from "./components/organisms/PolicyLayout.tsx";
+import Redirect from "./components/organisms/Redirect.tsx";
 
 const WRAPPER_PATH = "";
 
@@ -41,6 +43,13 @@ const router = createBrowserRouter([
           //protected routes
           {
             path: "policies",
+            element: (location.pathname === "/policies" ||
+              location.pathname === "/policies/") && (
+              <>
+                <Outlet/>
+                <Navigate to="/policies/all" replace={true} />{" "}
+              </>   //redirect to policies/all  TO-DO?? esta bien??
+            ),
             children: [
               {
                 element: <PolicesLayout />,
@@ -57,6 +66,7 @@ const router = createBrowserRouter([
               },
               {
                 path: ":policyId",
+                element: <Redirect/>,
                 children: [
                   {
                     element: <PolicyLayout />,
