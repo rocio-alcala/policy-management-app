@@ -85,8 +85,8 @@ const router = createBrowserRouter([
 /*                   {
                     path: "edit/policy-holder",
                     element: <PolicyHolderEdit />
-                  },
-                  {
+                  }, */
+   /*                {
                     path: "edit/beneficiaries",
                     element: <BeneficiaryEdit />
                   } */
@@ -103,7 +103,7 @@ const router = createBrowserRouter([
       },
       { path: "login", element: <Login /> }
     ]
-  }
+  }, { path: "hello", element: <h1>Hello world</h1> }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
