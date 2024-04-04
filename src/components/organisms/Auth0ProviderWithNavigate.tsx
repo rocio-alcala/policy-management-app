@@ -17,7 +17,7 @@ export const Auth0ProviderWithNavigate = ({
   const domain = getEnvironmentalVariable("VITE_AUTH0_DOMAIN");
   const clientId = getEnvironmentalVariable("VITE_AUTH0_CLIENT_ID");
   const redirectUri = getEnvironmentalVariable("VITE_AUTH0_CALLBACK_URL");
-
+console.log("entro a provider")
   const onRedirectCallback = ({ appState }: RedirectLoginOptions<AppState>) => {
     navigate(appState?.returnTo || window.location.pathname);
   }; //redirect to the url send in the appState
