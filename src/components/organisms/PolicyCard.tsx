@@ -97,8 +97,8 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
           />
         </div>
       </div>
+      
       {/* MODALS */}
-
       <ConfirmModal
         isOpen={isConfirmCancelModalOpen}
         onClose={() => setConfirmCancelModalOpen(false)}

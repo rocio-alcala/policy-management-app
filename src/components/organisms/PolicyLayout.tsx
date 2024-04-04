@@ -88,7 +88,8 @@ export default function PolicyLayout() {
           POLICY DETAILS
         </NavLink>
       </div>
-      <Outlet></Outlet>
+      <Outlet/>
+
       {/* MODALS */}
       <ConfirmModal
         isOpen={isConfirmCancelModalOpen}
@@ -96,19 +97,11 @@ export default function PolicyLayout() {
         onConfirm={mockPromise}
         message="Are you sure you want to cancel your policy? You will not be ensured."
       ></ConfirmModal>
-
       <SuccessfulModal
         isOpen={isSuccessfulCancelModalOpen}
         message="Your policy has been successfully canceled"
         onClose={() => setSuccessfulCancelModalOpen(false)}
       />
-
-      {location.pathname === `/policies/${policyId}` && (  //TO-DO?? ESTA BIEN??
-        <Navigate
-          to={`/policies/${policyId}/personal-details`}
-          replace={true}
-        />
-      )}
     </div>
   );
 }

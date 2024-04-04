@@ -31,7 +31,7 @@ export default function PolicesLayout() {
           ACTIVE POLICIES
         </NavLink>
       </div>
-      <Outlet></Outlet>
+      <Outlet/>
     </div>
   );
 }
