@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   NavLink,
-  Navigate,
   Outlet,
   useNavigate,
   useParams
@@ -10,23 +9,32 @@ import ConfirmModal from "./ConfirmModal";
 import SuccessfulModal from "./SuccessfulModal";
 import ImageButton from "./ImageButton";
 import { mockPromise } from "../../utils/utils";
-
-const policy = {
-  product: "Travel insurance",
-  policy_number: "AXA49262",
-  start_date: "30/11/2023",
-  end_date: "11/12/2023",
-  policy_type: "Single trip",
-  beneficiary: [{ name: "John", last_name: "Doe" }],
-  status: "cancelled"
-};
+import BaseModal from "./BaseModal";
+import ConfirmEmail from "./ConfirmEmail";
+import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
+import Spinner from "../bits/Spinner";
 
 export default function PolicyLayout() {
   const { policyId } = useParams();
   const navigate = useNavigate();
+  const {
+    data: policy,
+    isLoading,
+    error
+  } = useGetPoliciesByIdQuery(policyId as string); //TO-DO??DUDA! CASTEO
   const [isConfirmCancelModalOpen, setConfirmCancelModalOpen] = useState(false);
+  const [isConfirmEmailModalOpen, setConfirmEmailModalOpen] = useState(false);
   const [isSuccessfulCancelModalOpen, setSuccessfulCancelModalOpen] =
     useState(false);
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (typeof policy === "undefined") {
+    //TO-DO?? MANEJO DE UNDFINED
+    console.error("@Error fetching policies ", error);
+    return;
+  }
+
   return (
     <div className="bg-background p-5 flex flex-col flex-1">
       <div
@@ -42,11 +50,11 @@ export default function PolicyLayout() {
       <div className="rounded-md p-3 bg-white text-axa-blue">
         <div className="leading-6">{policy.policy_number}</div>
         <div className="font-bold text-2xl font-publico-headline ">
-          {policy.product}
+          {policy.product.name}
         </div>
         <div className="flex justify-around my-4">
           <ImageButton
-            onClick={() => navigate("/confirm-email")}
+            onClick={() => setConfirmEmailModalOpen(true)}
             srcImage="../../../public/MailIcon.png"
             text="POLICY/ CERTIFICATE"
           />
@@ -88,9 +96,15 @@ export default function PolicyLayout() {
           POLICY DETAILS
         </NavLink>
       </div>
-      <Outlet/>
+      <Outlet />
 
       {/* MODALS */}
+      <BaseModal
+        isOpen={isConfirmEmailModalOpen}
+        onClose={() => setConfirmEmailModalOpen(false)}
+      >
+        <ConfirmEmail email={policy.policy_holder.email} policyId={policyId!} />
+      </BaseModal>
       <ConfirmModal
         isOpen={isConfirmCancelModalOpen}
         onClose={() => setConfirmCancelModalOpen(false)}

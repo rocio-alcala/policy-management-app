@@ -4,14 +4,18 @@ import { useState } from "react";
 import SuccessfulModal from "./SuccessfulModal";
 import ImageButton from "./ImageButton";
 import { mockPromise } from "../../utils/utils";
+import BaseModal from "./BaseModal";
+import ConfirmEmail from "./ConfirmEmail";
+import { SummaryPolicy } from "../../types";
 
 interface PolicyCardProps {
-  policy: any;
+  policy: SummaryPolicy;
 }
 
 export default function PolicyCard({ policy }: PolicyCardProps) {
   const navigate = useNavigate();
   const [isConfirmCancelModalOpen, setConfirmCancelModalOpen] = useState(false);
+  const [isConfirmEmailModalOpen, setConfirmEmailModalOpen] = useState(false);
   const [isSuccessfulCancelModalOpen, setSuccessfulCancelModalOpen] =
     useState(false);
 
@@ -75,7 +79,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
         </div>
         <div className="flex bg-background p-4 justify-around">
           <ImageButton
-            onClick={() => navigate("/confirm-email")}
+            onClick={() => setConfirmEmailModalOpen(true)}
             srcImage="../../../public/MailIcon.png"
             text="POLICY/ CERTIFICATE"
           />
@@ -97,15 +101,23 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
           />
         </div>
       </div>
-      
+
       {/* MODALS */}
+      <BaseModal
+        isOpen={isConfirmEmailModalOpen}
+        onClose={() => setConfirmEmailModalOpen(false)}
+      >
+        <ConfirmEmail
+          policyId={policy.policy_id}
+          email={policy.policy_holder.email}
+        />
+      </BaseModal>
       <ConfirmModal
         isOpen={isConfirmCancelModalOpen}
         onClose={() => setConfirmCancelModalOpen(false)}
         onConfirm={mockPromise}
         message="Are you sure you want to cancel your policy? You will not be ensured."
       ></ConfirmModal>
-
       <SuccessfulModal
         isOpen={isSuccessfulCancelModalOpen}
         message="Your policy has been successfully canceled"

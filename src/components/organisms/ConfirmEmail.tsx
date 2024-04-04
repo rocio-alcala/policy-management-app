@@ -4,7 +4,6 @@ import InputText from "../bits/InputText";
 import InputSelect from "../bits/InputSelect";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useParams } from "react-router-dom";
 
 const languages = [
   "English",
@@ -22,10 +21,12 @@ const validationSchema = {
   language: yup.string().required("Language es requerido")
 };
 
-//TO-DO: receive like prop/param the id of the policy to send??
-export default function ConfirmEmail() {
-  const { policyId } = useParams();
-  console.log(policyId);
+interface ConfirmEmailProps {
+  policyId: string;
+  email: string;
+}
+
+export default function ConfirmEmail({ policyId, email }: ConfirmEmailProps) {
   const {
     register,
     handleSubmit,
@@ -35,19 +36,19 @@ export default function ConfirmEmail() {
   });
 
   function onSubmit(data) {
-    //TO-DO: POST A API
     console.log(data);
   }
 
   return (
-    <div className="bg-background flex-1">
-      <div className="bg-white flex flex-col m-4 p-3 rounded-md">
+    <div className="bg-background p-4">
+      <div className="bg-white flex flex-col p-3 rounded-md">
         <h1 className="font-publico-headline py-3 text-2xl font-bold leading-7 text-grey8-dark-text">
           Confirm e-mail address
         </h1>
         <p className="py-1 leading-6 text-grey8-dark-text">
           We will re-send the policy and certificate to the policy holder
-          e-mail: <span className="font-bold">{"emailexample@gmail.com"}</span>
+          e-mail:{" "}
+          <span className="font-bold">{email}</span>
         </p>
         <p className="py-1 leading-6 text-grey8-dark-text">
           If you want to send it to a different e-mail please type it here:
