@@ -3,7 +3,7 @@ import ConfirmModal from "./ConfirmModal";
 import { useState } from "react";
 import SuccessfulModal from "./SuccessfulModal";
 import ImageButton from "./ImageButton";
-import { mockPromise } from "../../utils/utils";
+import { capitalizeString, mockPromise } from "../../utils/utils";
 import BaseModal from "./BaseModal";
 import ConfirmEmail from "./ConfirmEmail";
 import { SummaryPolicy } from "../../types";
@@ -53,7 +53,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
                 className="mr-2 mt-1 h-4 w-4"
               ></img>
               <p className="text-base leading-6 text-text-primary">
-                Purchase date: {policy.purchase_date}
+                Purchase date: {capitalizeString(policy.purchase_date)}
               </p>
             </div>
             <div className="flex py-1">
@@ -62,7 +62,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
                 className="mr-2 mt-1 h-4 w-4"
               ></img>
               <p className="text-base leading-6 text-text-primary">
-                Policy type: {policy.policy_type}
+                Policy type: {capitalizeString(policy.policy_type)}
               </p>
             </div>
             <div className="flex py-1">
@@ -71,8 +71,8 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
                 className="mr-2 mt-1 h-4 w-4"
               ></img>
               <p className="text-base leading-6 text-text-primary">
-                Policy holder: {policy.policy_holder.first_name}{" "}
-                {policy.policy_holder.last_name}
+                Policy holder: {capitalizeString(policy.policy_holder.first_name)}{" "}
+                {capitalizeString(policy.policy_holder.last_name)}
               </p>
             </div>
           </div>

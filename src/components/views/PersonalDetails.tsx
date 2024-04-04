@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import BeneficiaryCard from "../organisms/BeneficiaryCard";
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
 import Spinner from "../bits/Spinner";
-
+import { capitalizeString } from "../../utils/utils";
 
 export default function PersonalDetails() {
   const { policyId } = useParams();
@@ -12,13 +12,14 @@ export default function PersonalDetails() {
     isLoading,
     error
   } = useGetPoliciesByIdQuery(policyId as string); //TO-DO??DUDA! CASTEO
-  
+
   if (isLoading) {
     return <Spinner />;
   }
-  if (typeof policy === "undefined") {   //TO-DO?? MANEJO DE UNDFINED
+  if (typeof policy === "undefined") {
+    //TO-DO?? MANEJO DE UNDFINED
     console.error("@Error fetching policies ", error);
-    return
+    return;
   }
 
   return (
@@ -33,36 +34,31 @@ export default function PersonalDetails() {
             className="flex mr-5 items-center hover:cursor-pointer"
             onClick={() => navigate(`/policies/${policyId}/edit/policy-holder`)}
           >
-            <img
-              src="/Edit.png"
-              className="h-4 w-4 mr-2"
-            ></img>
+            <img src="/Edit.png" className="h-4 w-4 mr-2"></img>
             <div className="text-axa-blue leading-5">EDIT</div>
           </div>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Title</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.policy_holder.title}
+            {capitalizeString(policy.policy_holder.title)}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">First name</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.policy_holder.first_name}
+            {capitalizeString(policy.policy_holder.first_name)}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Last name</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.policy_holder.last_name}
+            {capitalizeString(policy.policy_holder.last_name)}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">ID number</p>
-          <p className="text-start leading-6 text-grey8-dark-text">
-            sin info
-          </p>
+          <p className="text-start leading-6 text-grey8-dark-text">sin info</p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Is a beneficiary</p>
@@ -79,20 +75,20 @@ export default function PersonalDetails() {
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Spoken language</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.policy_holder.spoken_language}
+            {capitalizeString(policy.policy_holder.spoken_language)}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">email</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.policy_holder.email}
+            {capitalizeString(policy.policy_holder.email)}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Address</p>
           <p className="text-start leading-6 text-grey8-dark-text">
             {policy.policy_holder.address.country}+ FALTA INFO
-           </p>
+          </p>
         </div>
       </div>
       {/*  beneficiaries */}
@@ -105,18 +101,12 @@ export default function PersonalDetails() {
             className="flex mr-5 items-center hover:cursor-pointer"
             onClick={() => navigate(`/policies/${policyId}/edit/beneficiaries`)}
           >
-            <img
-              src="/Edit.png"
-              className="h-4 w-4 mr-2"
-            ></img>
+            <img src="/Edit.png" className="h-4 w-4 mr-2"></img>
             <div className="text-axa-blue leading-5">EDIT</div>
           </div>
         </div>
         {policy.beneficiaries.map((beneficiary) => (
-          <BeneficiaryCard
-            beneficiary={beneficiary}
-            key={beneficiary.id}
-          />
+          <BeneficiaryCard beneficiary={beneficiary} key={beneficiary.id} />
         ))}
       </div>
     </div>

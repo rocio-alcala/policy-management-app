@@ -21,3 +21,10 @@ export function mockPromise(): Promise<void> {
     }, 1000);
   });
 }
+
+export function capitalizeString(string: string): string {
+  const firstChar = string.charAt(0).toUpperCase();
+  const restOfString = string.slice(1).toLowerCase();
+  
+  return firstChar + restOfString;
+}

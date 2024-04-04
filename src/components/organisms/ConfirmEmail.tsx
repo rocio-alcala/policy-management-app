@@ -4,6 +4,7 @@ import InputText from "../bits/InputText";
 import InputSelect from "../bits/InputSelect";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { capitalizeString } from "../../utils/utils";
 
 const languages = [
   "English",
@@ -52,7 +53,7 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
         <p className="py-1 leading-6 text-grey8-dark-text">
           We will re-send the policy and certificate to the policy holder
           e-mail:{" "}
-          <span className="font-bold">{email}</span>
+          <span className="font-bold">{capitalizeString(email)}</span>
         </p>
         <p className="py-1 leading-6 text-grey8-dark-text">
           If you want to send it to a different e-mail please type it here:

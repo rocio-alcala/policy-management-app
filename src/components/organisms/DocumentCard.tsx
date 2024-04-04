@@ -1,3 +1,5 @@
+import { capitalizeString } from "../../utils/utils";
+
 interface DocumentProps {
   document: any;
 }
@@ -10,7 +12,7 @@ export default function DocumentCard({ document }: DocumentProps) {
           className="underline text-axa-blue font-bold leading-6 hover:cursor-pointer"
           href={document.content_url}
         >
-          {document.name}
+          {capitalizeString(document.name)}
         </a>
         <img src="/Download.png"></img>
       </div>
@@ -27,7 +29,7 @@ export default function DocumentCard({ document }: DocumentProps) {
           Nature
         </p>
         <p className="text-start leading-6 flex-1 text-grey6">
-          {document.type}
+          {capitalizeString(document.type)}
         </p>
       </div>
       <div className="flex px-5 py-3 border-border-default border-b-[1px]">
@@ -35,7 +37,7 @@ export default function DocumentCard({ document }: DocumentProps) {
           Sent via
         </p>
         <p className="text-start leading-6 flex-1 text-grey6">
-          cual es la info
+          {capitalizeString("cual es la info")}
         </p>
       </div>
     </div>

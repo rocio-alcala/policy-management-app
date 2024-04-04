@@ -3,6 +3,7 @@ import Button from "../bits/Button";
 import DocumentCard from "../organisms/DocumentCard";
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
 import Spinner from "../bits/Spinner";
+import { capitalizeString } from "../../utils/utils";
 
 export default function PolicyDetails() {
   const { policyId } = useParams();
@@ -20,6 +21,13 @@ export default function PolicyDetails() {
     console.error("@Error fetching policies ", error);
     return;
   }
+
+  const contractDetails: Record<string, string> = {};
+
+  policy.quoting_criteria.forEach((criteria) => {
+    contractDetails[criteria.name] = criteria.value;
+  });
+
   return (
     <div className="bg-background">
       {/*  contract id */}
@@ -42,7 +50,7 @@ export default function PolicyDetails() {
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Status</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.status.value}
+            {capitalizeString(policy.status.value)}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
@@ -80,43 +88,45 @@ export default function PolicyDetails() {
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Party composition</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.policy_number}
+            {capitalizeString(contractDetails["Party composition"])}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Number of travelers</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.policy_number}
+            {capitalizeString(
+              contractDetails["Number of Travelers as in PROD"]
+            )}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Number of adults</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.policy_number}
+            {capitalizeString(contractDetails["Number of adults as in PROD"])}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Number of children</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.policy_number}
+            {capitalizeString(contractDetails["Number of children as in PROD"])}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Age of oldest traveler</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.policy_number}
+            {capitalizeString(contractDetails["Oldest Travellers Age"])}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Trip cost</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.policy_number}
+            {capitalizeString(contractDetails["Trip Cost"])}
           </p>
         </div>
         <div className="flex justify-between border-y-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Destination area</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.policy_number}
+            {capitalizeString(contractDetails["Destination area"])}
           </p>
         </div>
         <div className="p-5">
