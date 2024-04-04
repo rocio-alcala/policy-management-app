@@ -31,7 +31,7 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
           <div className="py-1">
             <div className="flex justify-between items-center p-4 py-6 border-b-[1px] border-divider">
               <div className="flex justify-between hover:cursor-pointer">
-                <img className="mr-2" src="../../../public/ContactIcon.png" />
+                <img className="mr-2" src="/ContactIcon.png" />
                 <h1 className="font-semibold text-sm leading-5 text-deep-blue">
                   CONTACT
                 </h1>
@@ -40,7 +40,7 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
                 className="hover:cursor-pointer"
                 onClick={() => setIsContactOpen(!isContactOpen)}
               >
-                <img src="../../../public/Path.png" />
+                <img src="/Path.png" />
               </div>
             </div>
             {isContactOpen && (
@@ -55,14 +55,14 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
             )}
             <div className="flex justify-between items-center p-4 py-6 border-b-[1px] border-divider">
               <div className="flex justify-between hover:cursor-pointer">
-                <img className="mr-2" src="../../../public/LanguagesIcon.png" />
+                <img className="mr-2" src="/LanguagesIcon.png" />
                 <h1 className="font-semibold text-sm leading-5 text-deep-blue">
                   LANGUAGES
                 </h1>
               </div>
               <div className="hover:cursor-pointer">
                 <img
-                  src="../../../public/Path.png"
+                  src="/Path.png"
                   onClick={() => setIsLanguagesOpen(!isLanguagesOpen)}
                 />
               </div>
@@ -97,7 +97,7 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
                     });
                   }}
                 >
-                  <img className="mr-2" src="../../../public/LogoutIcon.png" />
+                  <img className="mr-2" src="/LogoutIcon.png" />
                   <h1 className="font-semibold text-sm leading-5 text-deep-blue">
                     LOG OUT
                   </h1>
@@ -116,7 +116,7 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
                   >
                     <img
                       className="mr-2"
-                      src="../../../public/LogoutIcon.png"
+                      src="/LogoutIcon.png"
                     />
                     <h1 className="font-semibold text-sm leading-5 text-deep-blue">
                       LOG IN
@@ -140,7 +140,7 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
                   >
                     <img
                       className="mr-2"
-                      src="../../../public/LogoutIcon.png"
+                      src="/LogoutIcon.png"
                     />
                     <h1 className="font-semibold text-sm leading-5 text-deep-blue">
                       REGISTER

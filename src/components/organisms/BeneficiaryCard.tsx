@@ -16,7 +16,7 @@ export default function BeneficiaryCard({ beneficiary }: BeneficiaryCardProps) {
             <div className="text-success leading-5 text-sm">Active</div>
             <img
               className="h-3.5 w-3.5 ml-2"
-              src="../.././../public/Active.png"
+              src="/Active.png"
             ></img>
           </div>
         ) : beneficiary.age_segment === "pending" ? (
@@ -24,7 +24,7 @@ export default function BeneficiaryCard({ beneficiary }: BeneficiaryCardProps) {
             <div className="text-axa-sienna leading-5 text-sm">Pending</div>
             <img
               className="h-3.5 w-3.5 ml-2"
-              src="../.././../public/Pending.png"
+              src="/Pending.png"
             ></img>
           </div>
         ) : (
@@ -34,7 +34,7 @@ export default function BeneficiaryCard({ beneficiary }: BeneficiaryCardProps) {
             </div>
             <img
               className="h-3.5 w-3.5 ml-2"
-              src="../.././../public/Exclude.png"
+              src="/Exclude.png"
             ></img>
           </div>
         )}

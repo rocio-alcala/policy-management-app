@@ -42,7 +42,7 @@ export default function PolicyLayout() {
         onClick={() => navigate("/policies/all")}
       >
         <img
-          src=".././../../public/ArrowBack.png"
+          src="/ArrowBack.png"
           className="h-4 w-4 mr-3"
         ></img>
         <div className="text-axa-blue leading-5">BACK</div>

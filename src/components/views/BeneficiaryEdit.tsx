@@ -42,7 +42,7 @@ export default function BeneficiaryEdit() {
         onClick={() => navigate(`/policies/${policyId}/personal-details`)}
       >
         <img
-          src=".././../../public/ArrowBack.png"
+          src="/ArrowBack.png"
           className="h-4 w-4 mr-3"
         ></img>
         <div className="text-axa-blue leading-5">BACK</div>

@@ -40,7 +40,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
           <div className="flex flex-col py-4">
             <div className="flex py-1 items-start">
               <img
-                src="../../../public/inventory.png"
+                src="/inventory.png"
                 className="mr-2 mt-1 h-4 w-4"
               ></img>
               <p className="text-base leading-6 text-text-primary">
@@ -49,7 +49,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
             </div>
             <div className="flex py-1">
               <img
-                src="../../../public/calendar.png"
+                src="/calendar.png"
                 className="mr-2 mt-1 h-4 w-4"
               ></img>
               <p className="text-base leading-6 text-text-primary">
@@ -58,7 +58,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
             </div>
             <div className="flex py-1">
               <img
-                src="../../../public/Clock.png"
+                src="/Clock.png"
                 className="mr-2 mt-1 h-4 w-4"
               ></img>
               <p className="text-base leading-6 text-text-primary">
@@ -67,7 +67,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
             </div>
             <div className="flex py-1">
               <img
-                src="../../../public/User.png"
+                src="/User.png"
                 className="mr-2 mt-1 h-4 w-4"
               ></img>
               <p className="text-base leading-6 text-text-primary">
@@ -84,19 +84,19 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
             text="POLICY/ CERTIFICATE"
           />
           <ImageButton
-            srcImage="../../../PlusIcon.png"
+            srcImage="/PlusIcon.png"
             text="ADD TO WALLET"
           />
           <ImageButton
             onClick={() => setConfirmCancelModalOpen(true)}
-            srcImage="../../../public/TrashIcon.png"
+            srcImage="/TrashIcon.png"
             text="CANCEL POLICY"
           />
           <ImageButton
             onClick={() =>
               navigate(`/policies/${policy.policy_id}/personal-details`)
             }
-            srcImage="../../../public/NextIcon.png"
+            srcImage="/NextIcon.png"
             text="VIEW MY POLICY"
           />
         </div>

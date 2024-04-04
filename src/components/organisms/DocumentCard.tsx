@@ -12,7 +12,7 @@ export default function DocumentCard({ document }: DocumentProps) {
         >
           {document.name}
         </a>
-        <img src="../../../public/Download.png"></img>
+        <img src="/Download.png"></img>
       </div>
       <div className="flex px-5 py-3 border-border-default border-b-[1px]">
         <p className="font-bold leading-6 flex-1 text-grey8-dark-text ">
@@ -35,7 +35,7 @@ export default function DocumentCard({ document }: DocumentProps) {
           Sent via
         </p>
         <p className="text-start leading-6 flex-1 text-grey6">
-          {document.type} {/* //CUAL ES LA INFO EN EL JSON?? */}
+          cual es la info
         </p>
       </div>
     </div>

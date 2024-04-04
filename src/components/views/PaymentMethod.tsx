@@ -35,7 +35,7 @@ export default function PaymentMethod() {
         onClick={() => navigate(`/policies/${policyId}/personal-details`)} //TO-DO: a donde vuelvo
       >
         <img
-          src=".././../../public/ArrowBack.png"
+          src="/ArrowBack.png"
           className="h-4 w-4 mr-3"
         ></img>
         <div className="text-axa-blue leading-5">BACK</div>
@@ -46,7 +46,7 @@ export default function PaymentMethod() {
           Payment method - NO HAY DATOS
         </h1>
         <div className="flex mr-5 items-center self-end">
-          <img src=".././../../public/Edit.png" className="h-4 w-4 mr-2"></img>
+          <img src="/Edit.png" className="h-4 w-4 mr-2"></img>
           <div className="text-axa-blue leading-5">EDIT</div>
         </div>
         <div className="flex flex-col rounded-b-md bg-white">
@@ -92,7 +92,7 @@ export default function PaymentMethod() {
                   </div>
                   <img
                     className="h-3.5 w-3.5 ml-2"
-                    src="../.././../public/Active.png"
+                    src="/Active.png"
                   ></img>
                 </>
               ) : payment.status === "pending" ? (
@@ -102,7 +102,7 @@ export default function PaymentMethod() {
                   </div>
                   <img
                     className="h-3.5 w-3.5 ml-2"
-                    src="../.././../public/Pending.png"
+                    src="/Pending.png"
                   ></img>
                 </>
               ) : (
@@ -112,7 +112,7 @@ export default function PaymentMethod() {
                   </div>
                   <img
                     className="h-3.5 w-3.5 ml-2"
-                    src="../.././../public/Exclude.png"
+                    src="/Exclude.png"
                   ></img>
                 </>
               )}

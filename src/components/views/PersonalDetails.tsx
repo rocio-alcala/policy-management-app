@@ -34,7 +34,7 @@ export default function PersonalDetails() {
             onClick={() => navigate(`/policies/${policyId}/edit/policy-holder`)}
           >
             <img
-              src=".././../../public/Edit.png"
+              src="/Edit.png"
               className="h-4 w-4 mr-2"
             ></img>
             <div className="text-axa-blue leading-5">EDIT</div>
@@ -106,7 +106,7 @@ export default function PersonalDetails() {
             onClick={() => navigate(`/policies/${policyId}/edit/beneficiaries`)}
           >
             <img
-              src=".././../../public/Edit.png"
+              src="/Edit.png"
               className="h-4 w-4 mr-2"
             ></img>
             <div className="text-axa-blue leading-5">EDIT</div>

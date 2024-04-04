@@ -25,7 +25,7 @@ export default function PolicyDetails() {
       {/*  contract id */}
       <div className="flex flex-col rounded-b-md bg-white">
         <div className="flex mr-5 mt-5 items-center self-end">
-          <img src=".././../../public/Edit.png" className="h-4 w-4 mr-2"></img>
+          <img src="/Edit.png" className="h-4 w-4 mr-2"></img>
           <div className="text-axa-blue leading-5">EDIT</div>
         </div>
         <div className="flex justify-between content-center items-center border-grey6">

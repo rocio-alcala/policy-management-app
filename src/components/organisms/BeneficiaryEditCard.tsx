@@ -12,7 +12,7 @@ export default function BeneficiaryEditCard({ title, register, beneficiary, erro
           </h1>
           <div className="flex mr-5 items-center hover:cursor-pointer">
             <img
-              src=".././../../public/Remove.png"
+              src="/Remove.png"
               className="h-4 w-4 mr-2"
             ></img>
             <div className="text-axa-blue leading-5">REMOVE</div>
