@@ -1,60 +1,26 @@
 import { useNavigate, useParams } from "react-router-dom";
 import BeneficiaryCard from "../organisms/BeneficiaryCard";
+import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
+import Spinner from "../bits/Spinner";
 
-const policyHolder = {
-  title: "Mrs",
-  firstName: "John",
-  lastName: "Doe",
-  idNumber: 19494364,
-  isBeneficiary: true,
-  birthDate: "15/11/2000",
-  language: "SPA",
-  address: "141 Silverlake St.",
-  email: "john@mail.com"
-};
-
-const beneficiaries = [
-  {
-    title: "Mrs",
-    firstName: "John",
-    lastName: "Doe",
-    idNumber: 19494364,
-    isBeneficiary: true,
-    birthDate: "15/11/2000",
-    language: "SPA",
-    address: "141 Silverlake St.",
-    email: "john@mail.com",
-    status: "pending"
-  },
-  {
-    title: "Mrs",
-    firstName: "John",
-    lastName: "Doe",
-    idNumber: 4457364,
-    isBeneficiary: true,
-    birthDate: "15/11/2000",
-    language: "SPA",
-    address: "141 Silverlake St.",
-    email: "john@mail.com",
-    status: "active"
-  },
-  {
-    title: "Mrs",
-    firstName: "John",
-    lastName: "Doe",
-    idNumber: 1947474,
-    isBeneficiary: true,
-    birthDate: "15/11/2000",
-    language: "SPA",
-    address: "141 Silverlake St.",
-    email: "john@mail.com",
-    status: "remove"
-  }
-];
 
 export default function PersonalDetails() {
-  const { policyId } = useParams()
-  const navigate = useNavigate()
+  const { policyId } = useParams();
+  const navigate = useNavigate();
+  const {
+    data: policy,
+    isLoading,
+    error
+  } = useGetPoliciesByIdQuery(policyId as string); //TO-DO??DUDA! CASTEO
+  
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (typeof policy === "undefined") {   //TO-DO?? MANEJO DE UNDFINED
+    console.error("@Error fetching policies ", error);
+    return
+  }
+
   return (
     <div className="bg-background">
       {/*  policy holder */}
@@ -63,7 +29,10 @@ export default function PersonalDetails() {
           <h1 className=" p-5 leading-8 font-bold text-xl text-grey8-dark-text">
             Policy holder
           </h1>
-          <div className="flex mr-5 items-center hover:cursor-pointer" onClick={()=> navigate(`/policies/${policyId}/edit/policy-holder`)}>
+          <div
+            className="flex mr-5 items-center hover:cursor-pointer"
+            onClick={() => navigate(`/policies/${policyId}/edit/policy-holder`)}
+          >
             <img
               src=".././../../public/Edit.png"
               className="h-4 w-4 mr-2"
@@ -74,56 +43,56 @@ export default function PersonalDetails() {
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Title</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policyHolder.title}
+            {policy.policy_holder.title}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">First name</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policyHolder.firstName}
+            {policy.policy_holder.first_name}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Last name</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policyHolder.lastName}
+            {policy.policy_holder.last_name}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">ID number</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policyHolder.idNumber}
+            sin info
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Is a beneficiary</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policyHolder.isBeneficiary ? "Yes" : "No"}
+            {policy.policy_holder.is_policy_beneficiary ? "Yes" : "No"}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Birth date</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policyHolder.birthDate}
+            {policy.policy_holder.birth_date}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Spoken language</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policyHolder.language}
+            {policy.policy_holder.spoken_language}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">email</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policyHolder.email}
+            {policy.policy_holder.email}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Address</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policyHolder.address}
-          </p>
+            {policy.policy_holder.address.country}+ FALTA INFO
+           </p>
         </div>
       </div>
       {/*  beneficiaries */}
@@ -132,7 +101,10 @@ export default function PersonalDetails() {
           <h1 className="p-5 leading-8 font-bold text-xl text-grey8-dark-text">
             Beneficiaries
           </h1>
-          <div className="flex mr-5 items-center hover:cursor-pointer" onClick={()=> navigate(`/policies/${policyId}/edit/beneficiaries`)}>
+          <div
+            className="flex mr-5 items-center hover:cursor-pointer"
+            onClick={() => navigate(`/policies/${policyId}/edit/beneficiaries`)}
+          >
             <img
               src=".././../../public/Edit.png"
               className="h-4 w-4 mr-2"
@@ -140,10 +112,10 @@ export default function PersonalDetails() {
             <div className="text-axa-blue leading-5">EDIT</div>
           </div>
         </div>
-        {beneficiaries.map((beneficiary) => (
+        {policy.beneficiaries.map((beneficiary) => (
           <BeneficiaryCard
             beneficiary={beneficiary}
-            key={beneficiary.idNumber}
+            key={beneficiary.id}
           />
         ))}
       </div>

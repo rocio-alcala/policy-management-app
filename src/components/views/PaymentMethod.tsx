@@ -1,4 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
+import Spinner from "../bits/Spinner";
 
 const creditCard = {
   nameOn: "John Doe",
@@ -17,11 +19,21 @@ const payment = {
 
 export default function PaymentMethod() {
   const navigate = useNavigate();
+  const { policyId } = useParams();
+  const { data: policy, isLoading, error } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (error) {
+    console.error("@Error fetching policies ", error);
+  }
+  
+  //TO-DO: NO ESTAN LOS DATOS PARA RENDERIZAR EN JSON BY ID
   return (
     <div className="bg-background p-5 flex flex-col flex-1">
       <div
         className="flex mb-7 justify-start items-center hover:cursor-pointer"
-        onClick={() => navigate("/policies/all")}
+        onClick={() => navigate(`/policies/${policyId}/personal-details`)} //TO-DO: a donde vuelvo
       >
         <img
           src=".././../../public/ArrowBack.png"
@@ -32,7 +44,7 @@ export default function PaymentMethod() {
       <div className="flex flex-col rounded-md bg-white">
         {/*  payment method */}
         <h1 className="font-publico-headline py-3 px-5 text-2xl font-bold leading-7 text-grey8-dark-text">
-          Payment method
+          Payment method - NO HAY DATOS
         </h1>
         <div className="flex mr-5 items-center self-end">
           <img src=".././../../public/Edit.png" className="h-4 w-4 mr-2"></img>

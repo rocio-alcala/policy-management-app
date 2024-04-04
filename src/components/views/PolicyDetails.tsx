@@ -1,35 +1,24 @@
 import { useParams } from "react-router-dom";
 import Button from "../bits/Button";
 import DocumentCard from "../organisms/DocumentCard";
-
-const policy = {
-  policy_number: "AHCBB45636",
-  status: "active",
-  purchaseDay: "05/11/2023",
-  startDate: "26/12/2023",
-  endDate: "30/3/2024",
-  isAutoRenewable: true,
-  cost: 750,
-  destination: "Europe"
-};
-
-const documents = [
-  {
-    title: "Nombre_del_archivo.pdf",
-    createOn: "28/03/24",
-    nature: "Policy certificate",
-    sentVia: "Confirmation email"
-  },
-  {
-    title: "Nombre_del_archivo.pdf",
-    createOn: "28/03/24",
-    nature: "Term and conditions",
-    sentVia: "Confirmation email"
-  }
-];
+import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
+import Spinner from "../bits/Spinner";
 
 export default function PolicyDetails() {
-  const { policyId } = useParams()
+  const { policyId } = useParams();
+  const {
+    data: policy,
+    isLoading,
+    error
+  } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (typeof policy === "undefined") {   //TO-DO?? MANEJO DE UNDFINED
+    console.error("@Error fetching policies ", error);
+    return
+  }
   return (
     <div className="bg-background">
       {/*  contract id */}
@@ -52,35 +41,35 @@ export default function PolicyDetails() {
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Status</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.status}
+            {policy.status.value}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Purchase day</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.purchaseDay}
+            {policy.purchase_date}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Policy start date</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.startDate}
+            {policy.effective_period.start_date}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Policy end date</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.endDate}
+            {policy.effective_period.end_date}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Is auto-renewable</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.isAutoRenewable ? "Yes" : "No"}
+            {policy.payment.is_renewable ? "Yes" : "No"}
           </p>
         </div>
       </div>
-      {/*  Contract details */}
+      {/*  Contract details */} {/* policy.quoting_criteria */}
       <div className="flex flex-col rounded-b-md bg-white">
         <div className="flex justify-between content-center items-center border-border-default border-t-[1px]">
           <h1 className=" p-5 leading-8 font-bold text-xl text-grey8-dark-text">
@@ -96,37 +85,37 @@ export default function PolicyDetails() {
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Number of travelers</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.status}
+            {policy.policy_number}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Number of adults</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.purchaseDay}
+            {policy.policy_number}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Number of children</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.startDate}
+            {policy.policy_number}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Age of oldest traveler</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.endDate}
+            {policy.policy_number}
           </p>
         </div>
         <div className="flex justify-between border-t-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Trip cost</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.cost}
+            {policy.policy_number}
           </p>
         </div>
         <div className="flex justify-between border-y-[1px] px-5 py-3 border-border-default">
           <p className=" leading-6  text-grey6">Destination area</p>
           <p className="text-start leading-6 text-grey8-dark-text">
-            {policy.destination}
+            {policy.policy_number}
           </p>
         </div>
         <div className="p-5">
@@ -134,12 +123,13 @@ export default function PolicyDetails() {
         </div>
       </div>
       {/* Documents */}
+      {/*  policy.attachments */}
       <div className="flex flex-col mt-5 rounded-md bg-white">
         <h1 className="font-publico-headline py-3 px-5 text-2xl font-bold leading-7 text-grey8-dark-text">
           Documents
         </h1>
-        {documents.map((document, index) => (
-          <DocumentCard key={index + document.title} document={document} />
+        {policy.attachments.map((document, index) => (
+          <DocumentCard key={index + document.id} document={document} />
         ))}
         <div className="p-5">
           <Button primary>DOWNLOAD ALL</Button>
