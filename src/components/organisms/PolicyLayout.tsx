@@ -55,21 +55,21 @@ export default function PolicyLayout() {
         <div className="flex justify-around my-4">
           <ImageButton
             onClick={() => setConfirmEmailModalOpen(true)}
-            srcImage="../../../public/MailIcon.png"
+            srcImage="/MailIcon.png"
             text="POLICY/ CERTIFICATE"
           />
           <ImageButton
-            srcImage="../../../public/PlusIcon.png"
+            srcImage="/PlusIcon.png"
             text="ADD TO WALLET"
           />
           <ImageButton
             onClick={() => setConfirmCancelModalOpen(true)}
-            srcImage="../../../public/TrashIcon.png"
+            srcImage="/TrashIcon.png"
             text="CANCEL POLICY"
           />
           <ImageButton
             onClick={() => navigate(`/policies/${policyId}/payment-method`)}
-            srcImage="../../../public/PaymentMethod.png"
+            srcImage="/PaymentMethod.png"
             text="PAYMENT METHOD"
           />
         </div>
