@@ -80,11 +80,11 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
         <div className="flex bg-background p-4 justify-around">
           <ImageButton
             onClick={() => setConfirmEmailModalOpen(true)}
-            srcImage="../../../public/MailIcon.png"
+            srcImage="/MailIcon.png"
             text="POLICY/ CERTIFICATE"
           />
           <ImageButton
-            srcImage="../../../public/PlusIcon.png"
+            srcImage="../../../PlusIcon.png"
             text="ADD TO WALLET"
           />
           <ImageButton
