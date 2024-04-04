@@ -11,7 +11,6 @@ import AllPolicies from "./components/views/AllPolicies.tsx";
 import ActivePolicies from "./components/views/ActivePolicies.tsx";
 import Callback from "./components/views/Callback.tsx";
 import ProvidersWrappers from "./components/organisms/ProvidersWrappers.tsx";
-import ConfirmEmail from "./components/organisms/ConfirmEmail.tsx";
 import PolicyDetails from "./components/views/PolicyDetails.tsx";
 import PersonalDetails from "./components/views/PersonalDetails.tsx";
 import PaymentMethod from "./components/views/PaymentMethod.tsx";
@@ -85,14 +84,14 @@ const router = createBrowserRouter([
                     path: "payment-method",
                     element: <PaymentMethod />
                   },
-                  {
+/*                   {
                     path: "edit/policy-holder",
                     element: <PolicyHolderEdit />
                   },
                   {
                     path: "edit/beneficiaries",
                     element: <BeneficiaryEdit />
-                  }
+                  } */
                 ]
               }
             ]

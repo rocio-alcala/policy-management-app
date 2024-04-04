@@ -103,7 +103,7 @@ export default function PolicyLayout() {
         isOpen={isConfirmEmailModalOpen}
         onClose={() => setConfirmEmailModalOpen(false)}
       >
-        <ConfirmEmail email={policy.policy_holder.email} policyId={policyId!} />
+        <ConfirmEmail email={policy.policy_holder.email} />
       </BaseModal>
       <ConfirmModal
         isOpen={isConfirmCancelModalOpen}

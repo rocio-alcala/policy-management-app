@@ -22,22 +22,26 @@ const validationSchema = {
 };
 
 interface ConfirmEmailProps {
-  policyId: string;
   email: string;
 }
 
-export default function ConfirmEmail({ policyId, email }: ConfirmEmailProps) {
+interface ConfirmEmailForm {
+  email?: string | undefined;
+  language: string;
+}
+
+export default function ConfirmEmail({ email }: ConfirmEmailProps) {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm({
+  } = useForm<ConfirmEmailForm>({
     resolver: yupResolver(yup.object().shape(validationSchema))
   });
 
-  function onSubmit(data) {
+  function onSubmit(data:ConfirmEmailForm) {
     console.log(data);
-  }
+  } 
 
   return (
     <div className="bg-background p-4">

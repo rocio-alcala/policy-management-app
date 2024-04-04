@@ -11,7 +11,7 @@ export default function BeneficiaryCard({ beneficiary }: BeneficiaryCardProps) {
         <p className="font-bold text-grey8-dark-text  text-lg  leading-5">
           {beneficiary.title} {beneficiary.first_name} {beneficiary.last_name}
         </p>
-        {beneficiary.status === "active" ? ( //?? TO-DO: no hay info para renderizarlo
+        {beneficiary.age_segment === "active" ? ( //?? TO-DO: change age_segment for status, but not in json
           <div className="flex items-center">
             <div className="text-success leading-5 text-sm">Active</div>
             <img
@@ -19,7 +19,7 @@ export default function BeneficiaryCard({ beneficiary }: BeneficiaryCardProps) {
               src="../.././../public/Active.png"
             ></img>
           </div>
-        ) : beneficiary.status === "pending" ? (
+        ) : beneficiary.age_segment === "pending" ? (
           <div className="flex items-center">
             <div className="text-axa-sienna leading-5 text-sm">Pending</div>
             <img
