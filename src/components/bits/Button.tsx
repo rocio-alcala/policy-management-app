@@ -15,7 +15,7 @@ export default function Button({
   ...rest
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & ButtonSpecificPropsType) {
   const buttonColorClassName = cn(
-    "w-full rounded disabled:bg-slate-400 p-3 text-center border-2  tracking-widest text-sm font-semibold leading-4",
+    "w-full rounded disabled:opacity-50 p-3 text-center border-2  tracking-widest text-sm font-semibold leading-4",
     primary &&
       "bg-button-primary text-text-button-primary shadow-button border-tertiary-default",
     !primary && "bg-transparent text-tertiary-default border-tertiary-default",
