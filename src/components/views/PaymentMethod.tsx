@@ -1,6 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
-import Spinner from "../bits/Spinner";
 
 const creditCard = {
   nameOn: "John Doe",
@@ -20,13 +18,14 @@ const payment = {
 export default function PaymentMethod() {
   const navigate = useNavigate();
   const { policyId } = useParams();
-  const { data: policy, isLoading, error } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
+  //TO-DO: obtener data de api pero no tiene la info a renderizar
+/*   const { data: policy, isLoading, error } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
   if (isLoading) {
     return <Spinner />;
   }
   if (error) {
     console.error("@Error fetching policies ", error);
-  }
+  } */
   
   //TO-DO: NO ESTAN LOS DATOS PARA RENDERIZAR EN JSON BY ID
   return (

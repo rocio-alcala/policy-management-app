@@ -108,7 +108,6 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
         onClose={() => setConfirmEmailModalOpen(false)}
       >
         <ConfirmEmail
-          policyId={policy.policy_id}
           email={policy.policy_holder.email}
         />
       </BaseModal>
