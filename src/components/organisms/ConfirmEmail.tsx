@@ -17,8 +17,8 @@ const languages = [
 ];
 
 const validationSchema = {
-  email: yup.string().email("E-mail debe tener formato de email"),
-  language: yup.string().required("Language es requerido")
+  email: yup.string().email('Must be a valid email'),
+  language: yup.string().required('Language is required')
 };
 
 interface ConfirmEmailProps {
