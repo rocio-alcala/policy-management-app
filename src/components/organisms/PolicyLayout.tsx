@@ -9,6 +9,7 @@ import {
 import ConfirmModal from "./ConfirmModal";
 import SuccessfulModal from "./SuccessfulModal";
 import ImageButton from "./ImageButton";
+import { mockPromise } from "../../utils/utils";
 
 const policy = {
   product: "Travel insurance",
@@ -92,6 +93,8 @@ export default function PolicyLayout() {
       <ConfirmModal
         isOpen={isConfirmCancelModalOpen}
         onClose={() => setConfirmCancelModalOpen(false)}
+        onConfirm={mockPromise}
+        message="Are you sure you want to cancel your policy? You will not be ensured."
       ></ConfirmModal>
 
       <SuccessfulModal
@@ -100,7 +103,7 @@ export default function PolicyLayout() {
         onClose={() => setSuccessfulCancelModalOpen(false)}
       />
 
-      {location.pathname === `/policies/${policyId}` && (
+      {location.pathname === `/policies/${policyId}` && (  //TO-DO?? ESTA BIEN??
         <Navigate
           to={`/policies/${policyId}/personal-details`}
           replace={true}

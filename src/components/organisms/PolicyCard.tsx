@@ -3,6 +3,7 @@ import ConfirmModal from "./ConfirmModal";
 import { useState } from "react";
 import SuccessfulModal from "./SuccessfulModal";
 import ImageButton from "./ImageButton";
+import { mockPromise } from "../../utils/utils";
 
 interface PolicyCardProps {
   policy: any;
@@ -20,7 +21,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
         <div className="flex flex-col p-4">
           <div className="flex justify-between items-center">
             <h1 className="font-semibold text-xl leading-7 text-text-primary">
-              {policy.product}
+              {policy.product_name}
             </h1>
             {policy.status === "active" ? (
               <div className="text-success leading-5 text-sm">Active</div>
@@ -89,7 +90,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
           />
           <ImageButton
             onClick={() =>
-              navigate(`/policies/${policy.policy_number}/personal-details`)
+              navigate(`/policies/${policy.policy_id}/personal-details`)
             }
             srcImage="../../../public/NextIcon.png"
             text="VIEW MY POLICY"
@@ -101,6 +102,8 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
       <ConfirmModal
         isOpen={isConfirmCancelModalOpen}
         onClose={() => setConfirmCancelModalOpen(false)}
+        onConfirm={mockPromise}
+        message="Are you sure you want to cancel your policy? You will not be ensured."
       ></ConfirmModal>
 
       <SuccessfulModal
