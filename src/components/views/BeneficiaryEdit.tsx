@@ -14,6 +14,20 @@ export default function BeneficiaryEdit() {
     isLoading,
     error
   } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
+<<<<<<< HEAD
+=======
+
+  const { register, handleSubmit, control } = useForm();
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (typeof policy === "undefined") {
+    //TO-DO?? MANEJO DE UNDFINED
+    console.error("@Error fetching policies ", error);
+    return;
+  }
+>>>>>>> 032733d1a6f21871cb179245c9dfb7b23215b28f
 
   const { register, handleSubmit, control } = useForm<Record<string,string>>();
 
