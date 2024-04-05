@@ -1,7 +1,7 @@
 import { Beneficiary } from "../../types";
 
 interface BeneficiaryCardProps {
-  beneficiary: Beneficiary
+  beneficiary: Beneficiary;
 }
 
 export default function BeneficiaryCard({ beneficiary }: BeneficiaryCardProps) {
@@ -11,31 +11,22 @@ export default function BeneficiaryCard({ beneficiary }: BeneficiaryCardProps) {
         <p className="font-bold text-grey8-dark-text  text-lg  leading-5">
           {beneficiary.title} {beneficiary.first_name} {beneficiary.last_name}
         </p>
-        {beneficiary.age_segment === "active" ? ( //?? TO-DO: change age_segment for status, but not in json
+        {beneficiary.age_segment === "active" ? ( // ?? TO-DO: change age_segment for status, but not in json
           <div className="flex items-center">
             <div className="text-success leading-5 text-sm">Active</div>
-            <img
-              className="h-3.5 w-3.5 ml-2"
-              src="/Active.png"
-            ></img>
+            <img className="h-3.5 w-3.5 ml-2" src="/Active.png"></img>
           </div>
         ) : beneficiary.age_segment === "pending" ? (
           <div className="flex items-center">
             <div className="text-axa-sienna leading-5 text-sm">Pending</div>
-            <img
-              className="h-3.5 w-3.5 ml-2"
-              src="/Pending.png"
-            ></img>
+            <img className="h-3.5 w-3.5 ml-2" src="/Pending.png"></img>
           </div>
         ) : (
           <div className="flex items-center">
             <div className="text-grey5-text-secundary leading-5 text-sm">
               no hay dato
             </div>
-            <img
-              className="h-3.5 w-3.5 ml-2"
-              src="/Exclude.png"
-            ></img>
+            <img className="h-3.5 w-3.5 ml-2" src="/Exclude.png"></img>
           </div>
         )}
       </div>

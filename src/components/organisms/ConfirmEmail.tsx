@@ -14,12 +14,12 @@ const languages = [
   "Russian",
   "Chinese",
   "Dutch",
-  "Swedish"
+  "Swedish",
 ];
 
 const validationSchema = {
-  email: yup.string().email('Must be a valid email'),
-  language: yup.string().required('Language is required')
+  email: yup.string().email("Must be a valid email"),
+  language: yup.string().required("Language is required"),
 };
 
 interface ConfirmEmailProps {
@@ -35,14 +35,14 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<ConfirmEmailForm>({
-    resolver: yupResolver(yup.object().shape(validationSchema))
+    resolver: yupResolver(yup.object().shape(validationSchema)),
   });
 
-  function onSubmit(data:ConfirmEmailForm) {
+  function onSubmit(data: ConfirmEmailForm) {
     console.log(data);
-  } 
+  }
 
   return (
     <div className="bg-background p-4">
@@ -52,8 +52,7 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
         </h1>
         <p className="py-1 leading-6 text-grey8-dark-text">
           We will re-send the policy and certificate to the policy holder
-          e-mail:{" "}
-          <span className="font-bold">{capitalizeString(email)}</span>
+          e-mail: <span className="font-bold">{capitalizeString(email)}</span>
         </p>
         <p className="py-1 leading-6 text-grey8-dark-text">
           If you want to send it to a different e-mail please type it here:
@@ -66,7 +65,7 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
             {...register("email")}
             errors={errors.email?.message}
             className="mb-3"
-          ></InputText>
+          />
           <InputSelect
             id="language"
             label="Language"
@@ -77,7 +76,7 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
             errors={errors.language?.message}
             placeholder="Select language"
             className="mb-3"
-          ></InputSelect>
+          />
           <Button primary={true} type="submit" className="mt-3">
             RE-SEND POLICY AND CERTIFICATE
           </Button>

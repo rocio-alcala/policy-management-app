@@ -10,15 +10,16 @@ export default function PolicyDetails() {
   const {
     data: policy,
     isLoading,
-    error
-  } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
+    error,
+  } = useGetPoliciesByIdQuery(policyId as string); // DUDA! CASTEO
 
   if (isLoading) {
     return <Spinner />;
   }
   if (typeof policy === "undefined") {
-    //TO-DO?? MANEJO DE UNDFINED
+    // TO-DO?? MANEJO DE UNDFINED
     console.error("@Error fetching policies ", error);
+
     return;
   }
 
@@ -95,7 +96,7 @@ export default function PolicyDetails() {
           <p className=" leading-6  text-grey6">Number of travelers</p>
           <p className="text-start leading-6 text-grey8-dark-text">
             {capitalizeString(
-              contractDetails["Number of Travelers as in PROD"]
+              contractDetails["Number of Travelers as in PROD"],
             )}
           </p>
         </div>

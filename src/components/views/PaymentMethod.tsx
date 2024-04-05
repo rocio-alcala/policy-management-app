@@ -4,7 +4,7 @@ const creditCard = {
   nameOn: "John Doe",
   brand: "Visa",
   cardNumber: "1994995972",
-  expirationDate: "25/03/29"
+  expirationDate: "25/03/29",
 };
 
 const payment = {
@@ -12,32 +12,29 @@ const payment = {
   amount: 265,
   currency: "EUR",
   date: "25/03/24",
-  nextPayment: "25/04/24"
+  nextPayment: "25/04/24",
 };
 
 export default function PaymentMethod() {
   const navigate = useNavigate();
   const { policyId } = useParams();
-  //TO-DO: obtener data de api pero no tiene la info a renderizar
-/*   const { data: policy, isLoading, error } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
+  // TO-DO: obtener data de api pero no tiene la info a renderizar
+  /*   const { data: policy, isLoading, error } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
   if (isLoading) {
     return <Spinner />;
   }
   if (error) {
     console.error("@Error fetching policies ", error);
   } */
-  
-  //TO-DO: NO ESTAN LOS DATOS PARA RENDERIZAR EN JSON BY ID
+
+  // TO-DO: NO ESTAN LOS DATOS PARA RENDERIZAR EN JSON BY ID
   return (
     <div className="bg-background p-5 flex flex-col flex-1">
       <div
         className="flex mb-7 justify-start items-center hover:cursor-pointer"
-        onClick={() => navigate(`/policies/${policyId}/personal-details`)} //TO-DO: a donde vuelvo
+        onClick={() => navigate(`/policies/${policyId}/personal-details`)}
       >
-        <img
-          src="/ArrowBack.png"
-          className="h-4 w-4 mr-3"
-        ></img>
+        <img src="/ArrowBack.png" className="h-4 w-4 mr-3"></img>
         <div className="text-axa-blue leading-5">BACK</div>
       </div>
       <div className="flex flex-col rounded-md bg-white">
@@ -90,30 +87,21 @@ export default function PaymentMethod() {
                   <div className="text-success leading-5 text-sm">
                     Processed
                   </div>
-                  <img
-                    className="h-3.5 w-3.5 ml-2"
-                    src="/Active.png"
-                  ></img>
+                  <img className="h-3.5 w-3.5 ml-2" src="/Active.png"></img>
                 </>
               ) : payment.status === "pending" ? (
                 <>
                   <div className="text-axa-sienna leading-5 text-sm">
                     Pending
                   </div>
-                  <img
-                    className="h-3.5 w-3.5 ml-2"
-                    src="/Pending.png"
-                  ></img>
+                  <img className="h-3.5 w-3.5 ml-2" src="/Pending.png"></img>
                 </>
               ) : (
                 <>
                   <div className="text-grey5-text-secundary leading-5 text-sm">
                     Removed
                   </div>
-                  <img
-                    className="h-3.5 w-3.5 ml-2"
-                    src="/Exclude.png"
-                  ></img>
+                  <img className="h-3.5 w-3.5 ml-2" src="/Exclude.png"></img>
                 </>
               )}
             </div>

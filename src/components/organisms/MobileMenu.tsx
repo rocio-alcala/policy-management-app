@@ -6,7 +6,7 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
-  //to-do: name aplication menu y hacer responsive
+  // to-do: name aplication menu y hacer responsive
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const [isLanguagesOpen, setIsLanguagesOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -129,11 +129,11 @@ export default function MobileMenu({ isMenuOpen }: MobileMenuProps) {
                     onClick={() =>
                       loginWithRedirect({
                         appState: {
-                          returnTo: window.location.pathname //redirect location after signup
+                          returnTo: window.location.pathname // redirect location after signup
                         },
                         authorizationParams: {
-                          //send authorizationParams object as query parameters of the call to the Auth0 /authorize endpoint
-                          screen_hint: "signup" //set screen_hint with a value of 'signup' to send to the sign-up page
+                          // send authorizationParams object as query parameters of the call to the Auth0 /authorize endpoint
+                          screen_hint: "signup" // set screen_hint with a value of 'signup' to send to the sign-up page
                         }
                       })
                     }

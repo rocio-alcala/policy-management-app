@@ -21,7 +21,7 @@ export default function PolicyLayout() {
     data: policy,
     isLoading,
     error
-  } = useGetPoliciesByIdQuery(policyId as string); //TO-DO??DUDA! CASTEO
+  } = useGetPoliciesByIdQuery(policyId as string); // TO-DO??DUDA! CASTEO
   const [isConfirmCancelModalOpen, setConfirmCancelModalOpen] = useState(false);
   const [isConfirmEmailModalOpen, setConfirmEmailModalOpen] = useState(false);
   const [isSuccessfulCancelModalOpen, setSuccessfulCancelModalOpen] =
@@ -36,7 +36,7 @@ export default function PolicyLayout() {
     return <Spinner />;
   }
   if (typeof policy === "undefined") {
-    //TO-DO?? MANEJO DE UNDFINED
+    // TO-DO?? MANEJO DE UNDFINED
     console.error("@Error fetching policies ", error);
     return;
   }
@@ -116,7 +116,7 @@ export default function PolicyLayout() {
         onClose={() => setConfirmCancelModalOpen(false)}
         onConfirm={()=>mockPromise(confirmModalCallback)}
         message="Are you sure you want to cancel your policy? You will not be ensured."
-      ></ConfirmModal>
+      />
       <SuccessfulModal
         isOpen={isSuccessfulCancelModalOpen}
         message="Your policy has been successfully canceled"

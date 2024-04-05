@@ -26,7 +26,7 @@ export default function RootLayout() {
       <div className="relative">
         <MobileMenu isMenuOpen={isMenuOpen} />
       </div>
-      <Outlet></Outlet>
+      <Outlet />
     </main>
   );
 }

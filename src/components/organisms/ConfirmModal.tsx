@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import Button from "../bits/Button";
 import BaseModal from "./BaseModal";
 
 interface ConfirmModalProps {
   onClose: () => void;
   isOpen: boolean;
-  onConfirm: ()=> Promise<void>;
+  onConfirm: () => Promise<void>;
   message?: string;
 }
 
@@ -13,12 +13,16 @@ export default function ConfirmModal({
   onClose,
   isOpen,
   message,
-  onConfirm
-}: ConfirmModalProps) {
+  onConfirm,
+  children
+}: PropsWithChildren<ConfirmModalProps>) {
   const [isConfirming, setIsConfirming] = useState(false);
   function handleConfirm() {
     setIsConfirming(true);
-    return onConfirm().then(() => setIsConfirming(false));
+    return onConfirm()
+      .then(() => setIsConfirming(false))
+      .catch((error) => console.log(error))
+      .finally(()=>setIsConfirming(false))
   }
 
   return (
@@ -27,6 +31,7 @@ export default function ConfirmModal({
         {message && (
           <p className="px-16 py-3 mb-2 leading-6 text-center">{message}</p>
         )}
+        {children}
         <Button
           disabled={isConfirming}
           onClick={handleConfirm}

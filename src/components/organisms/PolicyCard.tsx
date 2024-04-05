@@ -105,7 +105,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
         onClose={() => setConfirmCancelModalOpen(false)}
         onConfirm={()=>mockPromise(confirmModalCallback)}
         message="Are you sure you want to cancel your policy? You will not be ensured."
-      ></ConfirmModal>
+      />
       <SuccessfulModal
         isOpen={isSuccessfulCancelModalOpen}
         message="Your policy has been successfully canceled"

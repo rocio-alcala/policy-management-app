@@ -10,14 +10,15 @@ export default function PersonalDetails() {
   const {
     data: policy,
     isLoading,
-    error
-  } = useGetPoliciesByIdQuery(policyId as string); //TO-DO??DUDA! CASTEO
+    error,
+  } = useGetPoliciesByIdQuery(policyId as string); // TO-DO??DUDA! CASTEO
 
   if (isLoading) {
     return <Spinner />;
   }
+
   if (typeof policy === "undefined") {
-    //TO-DO?? MANEJO DE UNDFINED
+    // TO-DO?? MANEJO DE UNDFINED
     console.error("@Error fetching policies ", error);
     return;
   }

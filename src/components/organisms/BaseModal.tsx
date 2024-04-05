@@ -12,7 +12,7 @@ export default function BaseModal({
   title,
   hasCloseBtn,
   onClose,
-  children
+  children,
 }: PropsWithChildren<BaseModalProps>) {
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
@@ -22,23 +22,23 @@ export default function BaseModal({
 
   const closeMenu = useCallback(
     (event: MouseEvent) => {
-      //since the <dialog> element takes the whole screen
-      //target inside the dialog will be one of <dialog> children
-      //only close when target is dialog (outside <dialog>)
+      // since the <dialog> element takes the whole screen
+      // target inside the dialog will be one of <dialog> children
+      // only close when target is dialog (outside <dialog>)
       if (modalRef.current && modalRef.current === event.target) {
         onClose();
       }
     },
-    [onClose]
+    [onClose],
   );
 
-  //add event listener for close on click outside
+  // add event listener for close on click outside
   useEffect(() => {
     document.addEventListener("click", closeMenu);
     return () => document.removeEventListener("click", closeMenu);
   }, [closeMenu]);
 
-  //used to sync with dialog API
+  // used to sync with dialog API
   useEffect(() => {
     const modalElement = modalRef.current;
 

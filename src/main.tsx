@@ -5,7 +5,7 @@ import {
   Navigate,
   Outlet,
   RouterProvider,
-  createBrowserRouter
+  createBrowserRouter,
 } from "react-router-dom";
 import AllPolicies from "./components/views/AllPolicies.tsx";
 import ActivePolicies from "./components/views/ActivePolicies.tsx";
@@ -28,8 +28,8 @@ const WRAPPER_PATH = "";
 const router = createBrowserRouter([
   {
     path: WRAPPER_PATH,
-    element: <ProvidersWrappers />, //defined to wrap with de Auth0 provider the app
-    //to keep it inside the router provider
+    element: <ProvidersWrappers />, // defined to wrap with de Auth0 provider the app
+    // to keep it inside the router provider
     children: [
       {
         path: WRAPPER_PATH,
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
           </ProtectedRoutes>
         ),
         children: [
-          //protected routes
+          // protected routes
           {
             path: "policies",
             element: (location.pathname === "/policies" ||
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
               <>
                 <Outlet />
                 <Navigate to="/policies/all" replace={true} />{" "}
-              </> //redirect to policies/all  TO-DO?? esta bien??
+              </> // redirect to policies/all  TO-DO?? esta bien??
             ),
             children: [
               {
@@ -55,13 +55,13 @@ const router = createBrowserRouter([
                 children: [
                   {
                     path: "active",
-                    element: <ActivePolicies />
+                    element: <ActivePolicies />,
                   },
                   {
                     path: "all",
-                    element: <AllPolicies />
-                  }
-                ]
+                    element: <AllPolicies />,
+                  },
+                ],
               },
               {
                 path: ":policyId",
@@ -72,44 +72,47 @@ const router = createBrowserRouter([
                     children: [
                       {
                         path: "policy-details",
-                        element: <PolicyDetails />
+                        element: <PolicyDetails />,
                       },
                       {
                         path: "personal-details",
-                        element: <PersonalDetails />
-                      }
-                    ]
+                        element: <PersonalDetails />,
+                      },
+                    ],
                   },
                   {
                     path: "payment-method",
-                    element: <PaymentMethod />
+                    element: <PaymentMethod />,
                   },
                   {
                     path: "edit/policy-holder",
-                    element: <PolicyHolderEdit />
+                    element: <PolicyHolderEdit />,
                   },
                   {
                     path: "edit/beneficiaries",
-                    element: <BeneficiaryEdit />
-                  }
-                ]
-              }
-            ]
+                    element: <BeneficiaryEdit />,
+                  },
+                ],
+              },
+            ],
           },
           {
             path: "callback",
-            element: <Callback />
+            element: <Callback />,
           },
-          { path: "/", element: <Navigate to="/policies/all" replace={true} /> }
-        ]
+          {
+            path: "/",
+            element: <Navigate to="/policies/all" replace={true} />,
+          },
+        ],
       },
-      { path: "login", element: <Login /> }
-    ]
-  }
+      { path: "login", element: <Login /> },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

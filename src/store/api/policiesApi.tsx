@@ -11,13 +11,13 @@ export const policiesApi = createApi({
   endpoints: (builder) => ({
     getPolicies: builder.query<SummaryPolicy[], void>({
       query: () => `/policies`,
-      providesTags: ["policies"]
+      providesTags: ["policies"],
     }),
     getPoliciesById: builder.query<Policy, string>({
       query: (policyId) => `/policies/${policyId}`,
-      providesTags: ["policies"]
-    })
-  })
+      providesTags: ["policies"],
+    }),
+  }),
 });
 
 export const { useGetPoliciesByIdQuery, useGetPoliciesQuery } = policiesApi;
