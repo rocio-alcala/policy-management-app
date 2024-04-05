@@ -14,10 +14,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(...inputs));
 }
 
-export function mockPromise(): Promise<void> {
+export function mockPromise(callback: ()=>void): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve();
+      resolve(callback());
     }, 1000);
   });
 }

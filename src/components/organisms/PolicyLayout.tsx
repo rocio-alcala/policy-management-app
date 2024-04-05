@@ -26,6 +26,12 @@ export default function PolicyLayout() {
   const [isConfirmEmailModalOpen, setConfirmEmailModalOpen] = useState(false);
   const [isSuccessfulCancelModalOpen, setSuccessfulCancelModalOpen] =
     useState(false);
+
+    function confirmModalCallback() {
+      setConfirmCancelModalOpen(false)
+      setSuccessfulCancelModalOpen(true)
+    }
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -108,7 +114,7 @@ export default function PolicyLayout() {
       <ConfirmModal
         isOpen={isConfirmCancelModalOpen}
         onClose={() => setConfirmCancelModalOpen(false)}
-        onConfirm={mockPromise}
+        onConfirm={()=>mockPromise(confirmModalCallback)}
         message="Are you sure you want to cancel your policy? You will not be ensured."
       ></ConfirmModal>
       <SuccessfulModal

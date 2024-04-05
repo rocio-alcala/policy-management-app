@@ -19,6 +19,11 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
   const [isSuccessfulCancelModalOpen, setSuccessfulCancelModalOpen] =
     useState(false);
 
+  function confirmModalCallback() {
+    setConfirmCancelModalOpen(false)
+    setSuccessfulCancelModalOpen(true)
+  }
+
   return (
     <>
       <div className="flex flex-col shadow-card m-3 rounded-lg">
@@ -39,39 +44,28 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
           </div>
           <div className="flex flex-col py-4">
             <div className="flex py-1 items-start">
-              <img
-                src="/inventory.png"
-                className="mr-2 mt-1 h-4 w-4"
-              ></img>
+              <img src="/inventory.png" className="mr-2 mt-1 h-4 w-4"></img>
               <p className="text-base leading-6 text-text-primary">
                 Policy number: {policy.policy_number}
               </p>
             </div>
             <div className="flex py-1">
-              <img
-                src="/calendar.png"
-                className="mr-2 mt-1 h-4 w-4"
-              ></img>
+              <img src="/calendar.png" className="mr-2 mt-1 h-4 w-4"></img>
               <p className="text-base leading-6 text-text-primary">
                 Purchase date: {capitalizeString(policy.purchase_date)}
               </p>
             </div>
             <div className="flex py-1">
-              <img
-                src="/Clock.png"
-                className="mr-2 mt-1 h-4 w-4"
-              ></img>
+              <img src="/Clock.png" className="mr-2 mt-1 h-4 w-4"></img>
               <p className="text-base leading-6 text-text-primary">
                 Policy type: {capitalizeString(policy.policy_type)}
               </p>
             </div>
             <div className="flex py-1">
-              <img
-                src="/User.png"
-                className="mr-2 mt-1 h-4 w-4"
-              ></img>
+              <img src="/User.png" className="mr-2 mt-1 h-4 w-4"></img>
               <p className="text-base leading-6 text-text-primary">
-                Policy holder: {capitalizeString(policy.policy_holder.first_name)}{" "}
+                Policy holder:{" "}
+                {capitalizeString(policy.policy_holder.first_name)}{" "}
                 {capitalizeString(policy.policy_holder.last_name)}
               </p>
             </div>
@@ -83,10 +77,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
             srcImage="/MailIcon.png"
             text="POLICY/ CERTIFICATE"
           />
-          <ImageButton
-            srcImage="/PlusIcon.png"
-            text="ADD TO WALLET"
-          />
+          <ImageButton srcImage="/PlusIcon.png" text="ADD TO WALLET" />
           <ImageButton
             onClick={() => setConfirmCancelModalOpen(true)}
             srcImage="/TrashIcon.png"
@@ -107,14 +98,12 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
         isOpen={isConfirmEmailModalOpen}
         onClose={() => setConfirmEmailModalOpen(false)}
       >
-        <ConfirmEmail
-          email={policy.policy_holder.email}
-        />
+        <ConfirmEmail email={policy.policy_holder.email} />
       </BaseModal>
       <ConfirmModal
         isOpen={isConfirmCancelModalOpen}
         onClose={() => setConfirmCancelModalOpen(false)}
-        onConfirm={mockPromise}
+        onConfirm={()=>mockPromise(confirmModalCallback)}
         message="Are you sure you want to cancel your policy? You will not be ensured."
       ></ConfirmModal>
       <SuccessfulModal
