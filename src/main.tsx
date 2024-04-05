@@ -21,6 +21,7 @@ import ProtectedRoutes from "./components/organisms/ProtectedRoutes.tsx";
 import PolicyLayout from "./components/organisms/PolicyLayout.tsx";
 import Redirect from "./components/organisms/Redirect.tsx";
 import PolicyHolderEdit from "./components/views/PolicyHolderEdit.tsx";
+import BeneficiaryEdit from "./components/views/BeneficiaryEdit.tsx";
 
 const WRAPPER_PATH = "";
 
@@ -87,10 +88,10 @@ const router = createBrowserRouter([
                     path: "edit/policy-holder",
                     element: <PolicyHolderEdit />
                   },
-   /*                {
+                  {
                     path: "edit/beneficiaries",
                     element: <BeneficiaryEdit />
-                  } */
+                  }
                 ]
               }
             ]
