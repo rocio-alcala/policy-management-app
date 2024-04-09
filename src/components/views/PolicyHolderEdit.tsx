@@ -62,7 +62,7 @@ export default function PolicyHolderEdit() {
     data: policy,
     isLoading,
     error,
-  } = useGetPoliciesByIdQuery(policyId as string); // DUDA! CASTEO
+  } = useGetPoliciesByIdQuery(policyId as string); // ??casteo o hook??
 
   function getDefaultValues(policy: Policy | undefined) {
     if (typeof policy === "undefined") {

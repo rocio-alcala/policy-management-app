@@ -18,7 +18,7 @@ export default function PolicyLayout() {
     data: policy,
     isLoading,
     error,
-  } = useGetPoliciesByIdQuery(policyId as string); // TO-DO??DUDA! CASTEO
+  } = useGetPoliciesByIdQuery(policyId as string); // ??casteo o hook??
   const [isConfirmCancelModalOpen, setConfirmCancelModalOpen] = useState(false);
   const [isConfirmEmailModalOpen, setConfirmEmailModalOpen] = useState(false);
   const [isSuccessfulCancelModalOpen, setSuccessfulCancelModalOpen] =
@@ -33,9 +33,9 @@ export default function PolicyLayout() {
     return <Spinner />;
   }
   if (typeof policy === "undefined") {
-    // TO-DO?? MANEJO DE UNDFINED
+    // esta bien manejado el undefined que error tengo que tirar??
     console.error("@Error fetching policies ", error);
-    return;
+    throw new Error();
   }
 
   return (
