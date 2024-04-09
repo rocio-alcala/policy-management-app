@@ -1,8 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
-import BeneficiaryCard from "../organisms/BeneficiaryCard";
+
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
-import Spinner from "../bits/Spinner";
 import { capitalizeString } from "../../utils/utils";
+import Spinner from "../bits/Spinner";
+import BeneficiaryCard from "../organisms/BeneficiaryCard";
 
 export default function PersonalDetails() {
   const { policyId } = useParams();

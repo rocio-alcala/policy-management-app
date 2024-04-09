@@ -4,6 +4,7 @@ import PolicyCard from "../organisms/PolicyCard";
 
 export default function ActivePolicies() {
   const { data: policies, isLoading, error } = useGetPoliciesQuery();
+
   if (isLoading) {
     return <Spinner />;
   }

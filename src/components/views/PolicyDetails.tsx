@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
-import Button from "../bits/Button";
-import DocumentCard from "../organisms/DocumentCard";
+
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
-import Spinner from "../bits/Spinner";
 import { capitalizeString } from "../../utils/utils";
+import Button from "../bits/Button";
+import Spinner from "../bits/Spinner";
+import DocumentCard from "../organisms/DocumentCard";
 
 export default function PolicyDetails() {
   const { policyId } = useParams();

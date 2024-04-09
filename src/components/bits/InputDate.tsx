@@ -1,9 +1,11 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 import DatePicker, { ReactDatePickerProps } from "react-datepicker";
-import Errors from "./Errors";
 import ReactDatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
 import { cn } from "../../utils/utils";
+
+import Errors from "./Errors";
 
 interface InputDateSpecificProps {
   id: string | number;
@@ -31,7 +33,7 @@ const InputDate = forwardRef<
       className,
       ...restProps
     },
-    ref
+    ref,
   ) => {
     return (
       <div className={cn("flex flex-col", className)}>
@@ -65,7 +67,7 @@ const InputDate = forwardRef<
         )}
       </div>
     );
-  }
+  },
 );
 
 export default InputDate;

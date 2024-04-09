@@ -7,21 +7,22 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
-import AllPolicies from "./components/views/AllPolicies.tsx";
-import ActivePolicies from "./components/views/ActivePolicies.tsx";
-import Callback from "./components/views/Callback.tsx";
-import ProvidersWrappers from "./components/organisms/ProvidersWrappers.tsx";
-import PolicyDetails from "./components/views/PolicyDetails.tsx";
-import PersonalDetails from "./components/views/PersonalDetails.tsx";
-import PaymentMethod from "./components/views/PaymentMethod.tsx";
-import Login from "./components/views/Login.tsx";
-import RootLayout from "./components/organisms/RootLayout.tsx";
+
 import PolicesLayout from "./components/organisms/PolicesLayout.tsx";
-import ProtectedRoutes from "./components/organisms/ProtectedRoutes.tsx";
 import PolicyLayout from "./components/organisms/PolicyLayout.tsx";
+import ProtectedRoutes from "./components/organisms/ProtectedRoutes.tsx";
+import ProvidersWrappers from "./components/organisms/ProvidersWrappers.tsx";
 import Redirect from "./components/organisms/Redirect.tsx";
-import PolicyHolderEdit from "./components/views/PolicyHolderEdit.tsx";
+import RootLayout from "./components/organisms/RootLayout.tsx";
+import ActivePolicies from "./components/views/ActivePolicies.tsx";
+import AllPolicies from "./components/views/AllPolicies.tsx";
 import BeneficiaryEdit from "./components/views/BeneficiaryEdit.tsx";
+import Callback from "./components/views/Callback.tsx";
+import Login from "./components/views/Login.tsx";
+import PaymentMethod from "./components/views/PaymentMethod.tsx";
+import PersonalDetails from "./components/views/PersonalDetails.tsx";
+import PolicyDetails from "./components/views/PolicyDetails.tsx";
+import PolicyHolderEdit from "./components/views/PolicyHolderEdit.tsx";
 
 const WRAPPER_PATH = "";
 

@@ -1,6 +1,8 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
-import Errors from "./Errors";
+
 import { cn } from "../../utils/utils";
+
+import Errors from "./Errors";
 
 interface SelectSpecificProps {
   id: string | number;
@@ -16,7 +18,7 @@ const InputSelect = forwardRef<
 >(
   (
     { label, options, errors, required, placeholder, className, ...props },
-    ref
+    ref,
   ) => {
     return (
       <div className={cn("flex-col", className)}>
@@ -49,7 +51,7 @@ const InputSelect = forwardRef<
         <Errors message={errors} />
       </div>
     );
-  }
+  },
 );
 
 export default InputSelect;

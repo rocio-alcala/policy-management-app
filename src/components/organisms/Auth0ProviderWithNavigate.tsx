@@ -5,6 +5,7 @@ import {
 } from "@auth0/auth0-react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { getEnvironmentalVariable } from "../../utils/utils";
 
 export function Auth0ProviderWithNavigate({

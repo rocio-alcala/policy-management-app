@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getEnvironmentalVariable } from "../../utils/utils";
+
 import { Policy, SummaryPolicy } from "../../types";
+import { getEnvironmentalVariable } from "../../utils/utils";
 
 const SERVER_URL = getEnvironmentalVariable("VITE_API_BASE_URL");
 

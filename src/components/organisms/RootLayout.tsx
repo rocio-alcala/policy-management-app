@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Outlet, useNavigate } from "react-router-dom";
+
 import MobileMenu from "./MobileMenu";
 
 export default function RootLayout() {

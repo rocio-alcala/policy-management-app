@@ -1,6 +1,7 @@
-import Errors from "../bits/Errors";
 import { ComponentPropsWithoutRef, forwardRef } from "react";
+
 import { cn } from "../../utils/utils";
+import Errors from "../bits/Errors";
 
 interface FieldsetRadioPropsType {
   items: {
@@ -33,31 +34,31 @@ const FieldsetRadio = forwardRef<
       className,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const itemsContainerClassName = cn(
       valuesAsColumn && "flex-col",
-      !valuesAsColumn && "flex flex-wrap justify-between"
+      !valuesAsColumn && "flex flex-wrap justify-between",
     );
     const divContainerClassName = cn(
       "h-max",
       asButton && "mr-4 text-center min-w-[fit-content]",
-      !asButton && "mr-8 flex items-center"
+      !asButton && "mr-8 flex items-center",
     );
     const inputClassName = cn(
       "peer",
       asButton && "hidden",
-      !asButton && "h-5 w-5 text-red-800"
+      !asButton && "h-5 w-5 text-red-800",
     );
     const labelClassName = cn(
       "block w-full ",
       asButton &&
         "border-2 rounded-md hover:border-blue-500 hover:ring cursor-pointer peer-checked:border-blue-500 bg-white peer-disabled:bg-[#f5f5f5]",
-      !asButton && "cursor-pointer peer-checked:text-blue-900"
+      !asButton && "cursor-pointer peer-checked:text-blue-900",
     );
 
     return (
-      <fieldset className={cn("flex flex-col",className)}>
+      <fieldset className={cn("flex flex-col", className)}>
         {label && (
           <legend className="font-semibold leading-6 py-1 text-grey8-dark-text">
             {label}
@@ -94,7 +95,7 @@ const FieldsetRadio = forwardRef<
         )}
       </fieldset>
     );
-  }
+  },
 );
 
 export default FieldsetRadio;

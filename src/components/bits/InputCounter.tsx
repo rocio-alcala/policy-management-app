@@ -1,6 +1,8 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
-import Errors from "./Errors";
+
 import { cn } from "../../utils/utils";
+
+import Errors from "./Errors";
 
 interface InputCounterSpecificProps {
   id: string | number;

@@ -1,18 +1,15 @@
 import { useState } from "react";
-import {
-  NavLink,
-  Outlet,
-  useNavigate,
-  useParams
-} from "react-router-dom";
-import ConfirmModal from "./ConfirmModal";
-import SuccessfulModal from "./SuccessfulModal";
-import ImageButton from "./ImageButton";
+import { NavLink, Outlet, useNavigate, useParams } from "react-router-dom";
+
+import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
 import { mockPromise } from "../../utils/utils";
+import Spinner from "../bits/Spinner";
+
 import BaseModal from "./BaseModal";
 import ConfirmEmail from "./ConfirmEmail";
-import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
-import Spinner from "../bits/Spinner";
+import ConfirmModal from "./ConfirmModal";
+import ImageButton from "./ImageButton";
+import SuccessfulModal from "./SuccessfulModal";
 
 export default function PolicyLayout() {
   const { policyId } = useParams();
@@ -20,17 +17,17 @@ export default function PolicyLayout() {
   const {
     data: policy,
     isLoading,
-    error
+    error,
   } = useGetPoliciesByIdQuery(policyId as string); // TO-DO??DUDA! CASTEO
   const [isConfirmCancelModalOpen, setConfirmCancelModalOpen] = useState(false);
   const [isConfirmEmailModalOpen, setConfirmEmailModalOpen] = useState(false);
   const [isSuccessfulCancelModalOpen, setSuccessfulCancelModalOpen] =
     useState(false);
 
-    function confirmModalCallback() {
-      setConfirmCancelModalOpen(false)
-      setSuccessfulCancelModalOpen(true)
-    }
+  function confirmModalCallback() {
+    setConfirmCancelModalOpen(false);
+    setSuccessfulCancelModalOpen(true);
+  }
 
   if (isLoading) {
     return <Spinner />;
@@ -47,10 +44,7 @@ export default function PolicyLayout() {
         className="flex mb-7 justify-start items-center hover:cursor-pointer"
         onClick={() => navigate("/policies/all")}
       >
-        <img
-          src="/ArrowBack.png"
-          className="h-4 w-4 mr-3"
-        ></img>
+        <img src="/ArrowBack.png" className="h-4 w-4 mr-3"></img>
         <div className="text-axa-blue leading-5">BACK</div>
       </div>
       <div className="rounded-md p-3 bg-white text-axa-blue">
@@ -64,10 +58,7 @@ export default function PolicyLayout() {
             srcImage="/MailIcon.png"
             text="POLICY/ CERTIFICATE"
           />
-          <ImageButton
-            srcImage="/PlusIcon.png"
-            text="ADD TO WALLET"
-          />
+          <ImageButton srcImage="/PlusIcon.png" text="ADD TO WALLET" />
           <ImageButton
             onClick={() => setConfirmCancelModalOpen(true)}
             srcImage="/TrashIcon.png"
@@ -114,7 +105,7 @@ export default function PolicyLayout() {
       <ConfirmModal
         isOpen={isConfirmCancelModalOpen}
         onClose={() => setConfirmCancelModalOpen(false)}
-        onConfirm={()=>mockPromise(confirmModalCallback)}
+        onConfirm={() => mockPromise(confirmModalCallback)}
         message="Are you sure you want to cancel your policy? You will not be ensured."
       />
       <SuccessfulModal

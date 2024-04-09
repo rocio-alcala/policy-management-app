@@ -1,12 +1,14 @@
-import { useNavigate } from "react-router-dom";
-import ConfirmModal from "./ConfirmModal";
 import { useState } from "react";
-import SuccessfulModal from "./SuccessfulModal";
-import ImageButton from "./ImageButton";
+import { useNavigate } from "react-router-dom";
+
+import { SummaryPolicy } from "../../types";
 import { capitalizeString, mockPromise } from "../../utils/utils";
+
 import BaseModal from "./BaseModal";
 import ConfirmEmail from "./ConfirmEmail";
-import { SummaryPolicy } from "../../types";
+import ConfirmModal from "./ConfirmModal";
+import ImageButton from "./ImageButton";
+import SuccessfulModal from "./SuccessfulModal";
 
 interface PolicyCardProps {
   policy: SummaryPolicy;
@@ -20,8 +22,8 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
     useState(false);
 
   function confirmModalCallback() {
-    setConfirmCancelModalOpen(false)
-    setSuccessfulCancelModalOpen(true)
+    setConfirmCancelModalOpen(false);
+    setSuccessfulCancelModalOpen(true);
   }
 
   return (
@@ -103,7 +105,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
       <ConfirmModal
         isOpen={isConfirmCancelModalOpen}
         onClose={() => setConfirmCancelModalOpen(false)}
-        onConfirm={()=>mockPromise(confirmModalCallback)}
+        onConfirm={() => mockPromise(confirmModalCallback)}
         message="Are you sure you want to cancel your policy? You will not be ensured."
       />
       <SuccessfulModal

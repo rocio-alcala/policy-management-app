@@ -1,6 +1,8 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
-import Errors from "./Errors";
+
 import { cn } from "../../utils/utils";
+
+import Errors from "./Errors";
 
 interface InputTextSpecificProps {
   id: string | number;
@@ -14,7 +16,7 @@ const InputText = forwardRef<
   ComponentPropsWithoutRef<"input"> & InputTextSpecificProps
 >(({ label, errors, required, description, className, ...props }, ref) => {
   return (
-    <div className={cn("flex-col",className)}>
+    <div className={cn("flex-col", className)}>
       <label>
         {label && (
           <legend className="font-semibold leading-6 py-1 text-grey8-dark-text">

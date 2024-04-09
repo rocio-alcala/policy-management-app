@@ -1,10 +1,11 @@
-import { useForm } from "react-hook-form";
-import Button from "../bits/Button";
-import InputText from "../bits/InputText";
-import InputSelect from "../bits/InputSelect";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+
 import { capitalizeString } from "../../utils/utils";
+import Button from "../bits/Button";
+import InputSelect from "../bits/InputSelect";
+import InputText from "../bits/InputText";
 
 const languages = [
   "English",
