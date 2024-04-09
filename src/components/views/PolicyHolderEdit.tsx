@@ -1,26 +1,31 @@
-import { Controller, useForm } from "react-hook-form";
-import InputText from "../bits/InputText";
-import Button from "../bits/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
+import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
+import _ from "lodash";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
+
+import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
+import { Policy } from "../../types";
+import { mockPromise } from "../../utils/utils";
+import Button from "../bits/Button";
 import FieldsetRadio from "../bits/FieldsetRadio";
 import InputDate from "../bits/InputDate";
-import "react-datepicker/dist/react-datepicker.css";
-import { useNavigate, useParams } from "react-router-dom";
-import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
-import Spinner from "../bits/Spinner";
-import { Policy } from "../../types";
 import InputSelect from "../bits/InputSelect";
-
+import InputText from "../bits/InputText";
+import Spinner from "../bits/Spinner";
+import ConfirmModal from "../organisms/ConfirmModal";
 interface PolicyHolderForm {
   first_name: string;
   last_name: string;
-  id_number: string;
+  id_number?: string;
   phone_number?: string;
   email: string;
   address: string;
   title: string;
-  birth_date?: string;
+  birth_date: string | Date;
   is_beneficiary: string;
   language: string;
 }
@@ -28,20 +33,17 @@ interface PolicyHolderForm {
 const validationSchema = {
   first_name: yup.string().required("First name is required"),
   last_name: yup.string().required("Last name is required"),
-  id_number: yup
-    .string()
-    .required("ID is required")
-    .matches(/^[a-zA-Z0-9]+$/, "ID must be alphanumeric"),
-  phone_number: yup.string().matches(/^[0-9]+$/, "Must be a valid number"),
+  id_number: yup.string(),
+  phone_number: yup.string(),
   email: yup
     .string()
     .email("Must be a valid email")
     .required("Email is required"),
-  birth_date: yup.string(),
   address: yup.string().required("Address is required"),
   title: yup.string().required("Title is required"),
   is_beneficiary: yup.string().required("Is beneficiary is required"),
-  language: yup.string().required("Language is required")
+  birth_date: yup.date().required(),
+  language: yup.string().required("Language is required"),
 };
 
 const languages = [
@@ -51,17 +53,21 @@ const languages = [
   { label: "Dutch", value: "Dutch" },
   { label: "Chinese", value: "Chinese" },
   { label: "German", value: "de-DE" },
-  { label: "Russian", value: "Russian" }
+  { label: "Russian", value: "Russian" },
 ];
 
 export default function PolicyHolderEdit() {
+  const [isConfirmChangeModalOpen, setIsConfirmChangeModalOpen] =
+    useState(false);
+
+  const [updatedValues, setUpdatedValues] = useState([]);
   const navigate = useNavigate();
   const { policyId } = useParams();
   const {
     data: policy,
     isLoading,
-    error
-  } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
+    error,
+  } = useGetPoliciesByIdQuery(policyId as string); // DUDA! CASTEO
 
   function getDefaultValues(policy: Policy | undefined) {
     if (typeof policy === "undefined") {
@@ -79,30 +85,49 @@ export default function PolicyHolderEdit() {
       is_beneficiary: policy.policy_holder.is_policy_beneficiary
         ? "true"
         : "false",
-      language: policy.policy_holder.spoken_language
+      language: policy.policy_holder.spoken_language,
     };
     return policyHolderDefaultValues;
+  }
+
+  function getUpdatedValues(defaultValues: any, newValues: any) {
+    const updatedValues: Record<string, string>[] = [];
+    const cloneNewValues = _.cloneDeep(newValues);
+    for (const key in cloneNewValues) {
+      if (cloneNewValues[key] instanceof Date) {
+        cloneNewValues[key] = format(cloneNewValues[key], "yyyy-MM-dd");
+      }
+      if (defaultValues[key] !== cloneNewValues[key])
+        updatedValues.push({ [key]: cloneNewValues[key] });
+    }
+    return updatedValues;
   }
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    control
+    control,
   } = useForm<PolicyHolderForm>({
     resolver: yupResolver(yup.object().shape(validationSchema)),
-    values: getDefaultValues(policy)
+    values: getDefaultValues(policy),
   });
 
-  function onSubmit(data: PolicyHolderForm) {
-    console.log(data);
+  function onSubmit(policyHolderFormData: PolicyHolderForm) {
+    setUpdatedValues(
+      getUpdatedValues(getDefaultValues(policy), policyHolderFormData),
+    );
+    setIsConfirmChangeModalOpen(true);
+  }
+  function onConfirmCallback() {
+    setIsConfirmChangeModalOpen(false);
   }
 
   if (isLoading) {
     return <Spinner />;
   }
   if (typeof policy === "undefined") {
-    //TO-DO?? MANEJO DE UNDFINED
+    // TO-DO?? MANEJO DE UNDFINED
     console.error("@Error fetching policies ", error);
     return;
   }
@@ -127,26 +152,26 @@ export default function PolicyHolderEdit() {
             items={[
               { value: "MR", label: "Mr." },
               { value: "MRS", label: "Mrs." },
-              { value: "MISS", label: "Miss." }
+              { value: "MISS", label: "Miss." },
             ]}
             {...register("title")}
             className="my-2"
             errors={errors.title?.message}
-          ></FieldsetRadio>
+          />
           <InputText
             id="first_name"
             label="First name"
             {...register("first_name")}
             className="my-2"
             errors={errors.first_name?.message}
-          ></InputText>
+          />
           <InputText
             id="last_name"
             label="Last name"
             {...register("last_name")}
             className="my-2"
             errors={errors.last_name?.message}
-          ></InputText>
+          />
           <InputText
             id="id_number"
             label="ID number"
@@ -154,35 +179,29 @@ export default function PolicyHolderEdit() {
             {...register("id_number")}
             className="my-2"
             errors={errors.id_number?.message}
-          ></InputText>
+          />
           <FieldsetRadio
             id="is_beneficiary"
             label="Is a beneficiary"
             items={[
               { value: "true", label: "Yes" },
-              { value: "false", label: "No" }
+              { value: "false", label: "No" },
             ]}
             {...register("is_beneficiary")}
             className="my-2"
             errors={errors.is_beneficiary?.message}
-          ></FieldsetRadio>
+          />
           <Controller
             name="birth_date"
             control={control}
             render={({ field: renderField }) => {
               const { value, ...rest } = renderField;
-              // check value type number or boolean not assignable to InputDate
-              if (typeof value === "number" || typeof value === "boolean") {
-                throw new Error(
-                  `Value for field of type date is not valid: ${value}`
-                );
-              }
               return (
                 <div>
                   <InputDate
                     selectedValue={
                       typeof value === "string" ? new Date(value) : value
-                    } //check and transform value type string
+                    } // check and transform value type string
                     showIcon
                     label="Birth date"
                     id="birth_date"
@@ -200,7 +219,7 @@ export default function PolicyHolderEdit() {
             {...register("phone_number")}
             className="my-2"
             errors={errors.phone_number?.message}
-          ></InputText>
+          />
           <InputSelect
             id="language"
             label="Language"
@@ -209,27 +228,44 @@ export default function PolicyHolderEdit() {
             errors={errors.language?.message}
             placeholder="Select language"
             className="mb-3"
-          ></InputSelect>
+          />
           <InputText
             id="email"
             label="E-mail"
             {...register("email")}
             className="my-2"
             errors={errors.email?.message}
-          ></InputText>
+          />
           <InputText
             id="address"
             label="Address"
             {...register("address")}
             className="my-2"
             errors={errors.address?.message}
-          ></InputText>
+          />
           <Button type="submit" primary className="my-1 mt-5">
             SAVE CHANGES
           </Button>
           <Button className="my-1">DISCARD CHANGES</Button>
         </form>
       </div>
+      {/* MODALS */}
+      <ConfirmModal
+        isOpen={isConfirmChangeModalOpen}
+        onClose={() => setIsConfirmChangeModalOpen(false)}
+        onConfirm={() => mockPromise(onConfirmCallback)}
+      >
+        <>
+          <p className="px-16 py-3 leading-6 text-center">
+            We are about to make this changes:
+          </p>
+          <p>RENDERIZAR DATOS CAMBIADOS</p>
+          <p className="px-16 py-3 leading-6 text-center">
+            Are you sure you want to apply them?
+          </p>
+          <></>
+        </>
+      </ConfirmModal>
     </div>
   );
 }
