@@ -1,18 +1,20 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+import { useMandatoryParams } from "../../hooks/useMandatoryParams";
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
 import { capitalizeString } from "../../utils/utils";
 import Spinner from "../bits/Spinner";
 import BeneficiaryCard from "../organisms/BeneficiaryCard";
 
 export default function PersonalDetails() {
-  const { policyId } = useParams();
+  const { policyId } = useMandatoryParams<{ policyId: string }>();
+  // creo un custom hook que me devuelve los params
+  // con el tipado especifico (de los contrario el params puede ser undefined)
+  // tambien puedo hacerlo con casteo como hago en los otros componentes
+  // cual es mejor??
+
   const navigate = useNavigate();
-  const {
-    data: policy,
-    isLoading,
-    error,
-  } = useGetPoliciesByIdQuery(policyId as string); // TO-DO??DUDA! CASTEO
+  const { data: policy, isLoading, error } = useGetPoliciesByIdQuery(policyId);
 
   if (isLoading) {
     return <Spinner />;
