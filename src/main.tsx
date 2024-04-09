@@ -18,6 +18,7 @@ import ActivePolicies from "./components/views/ActivePolicies.tsx";
 import AllPolicies from "./components/views/AllPolicies.tsx";
 import BeneficiaryEdit from "./components/views/BeneficiaryEdit.tsx";
 import Callback from "./components/views/Callback.tsx";
+import ErrorRoute from "./components/views/ErrorRoute.tsx";
 import Login from "./components/views/Login.tsx";
 import PaymentMethod from "./components/views/PaymentMethod.tsx";
 import PersonalDetails from "./components/views/PersonalDetails.tsx";
@@ -29,6 +30,7 @@ const WRAPPER_PATH = "";
 const router = createBrowserRouter([
   {
     path: WRAPPER_PATH,
+    errorElement: <ErrorRoute />,
     element: <ProvidersWrappers />, // defined to wrap with de Auth0 provider the app
     // to keep it inside the router provider
     children: [
@@ -43,12 +45,16 @@ const router = createBrowserRouter([
           // protected routes
           {
             path: "policies",
+            errorElement: <ErrorRoute />,
             element: (location.pathname === "/policies" ||
               location.pathname === "/policies/") && (
+              // cuando caigo en /policies o /policies/
+              // necesito redirigir to policies/all
+              // es correcto hacerlo con un navigate aca??
               <>
                 <Outlet />
-                <Navigate to="/policies/all" replace={true} />{" "}
-              </> // redirect to policies/all  TO-DO?? esta bien??
+                <Navigate to="/policies/all" replace={true} />
+              </>
             ),
             children: [
               {
@@ -66,7 +72,11 @@ const router = createBrowserRouter([
               },
               {
                 path: ":policyId",
-                element: <Redirect />,
+                element: <Redirect />, // igual que en /policies si caigo en
+                // policies/:id debo redirigir a /policies/:id/policy-details
+                // pero aqui lo hago en un componente para poder obtener
+                // mediante params el id en el que me encuentro
+                // es correcto?
                 children: [
                   {
                     element: <PolicyLayout />,
