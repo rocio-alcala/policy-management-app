@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import Button from "../bits/Button";
-import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
-import BeneficiaryEditCard from "../organisms/BeneficiaryEditCard";
-import Spinner from "../bits/Spinner";
 
+import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
+import Button from "../bits/Button";
+import Spinner from "../bits/Spinner";
+import BeneficiaryEditCard from "../organisms/BeneficiaryEditCard";
 
 export default function BeneficiaryEdit() {
   const navigate = useNavigate();
@@ -12,21 +12,21 @@ export default function BeneficiaryEdit() {
   const {
     data: policy,
     isLoading,
-    error
-  } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
+    error,
+  } = useGetPoliciesByIdQuery(policyId as string); // DUDA! CASTEO
 
-  const { register, handleSubmit, control } = useForm<Record<string,string>>();
+  const { register, handleSubmit, control } = useForm<Record<string, string>>();
 
   if (isLoading) {
     return <Spinner />;
   }
   if (typeof policy === "undefined") {
-    //TO-DO?? MANEJO DE UNDFINED
+    // TO-DO?? MANEJO DE UNDFINED
     console.error("@Error fetching policies ", error);
     return;
   }
 
-  function onSubmit(data: Record<string,string>) {
+  function onSubmit(data: Record<string, string>) {
     console.log(data);
   }
 

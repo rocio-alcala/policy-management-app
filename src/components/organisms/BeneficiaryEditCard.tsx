@@ -2,11 +2,12 @@ import {
   Control,
   Controller,
   FieldValues,
-  UseFormRegister
+  UseFormRegister,
 } from "react-hook-form";
+
 import FieldsetRadio from "../bits/FieldsetRadio";
-import InputText from "../bits/InputText";
 import InputDate from "../bits/InputDate";
+import InputText from "../bits/InputText";
 
 interface BeneficiaryEditCard {
   beneficiaryNumber: number;
@@ -17,7 +18,7 @@ interface BeneficiaryEditCard {
 export default function BeneficiaryEditCard({
   beneficiaryNumber,
   register,
-  control
+  control,
 }: BeneficiaryEditCard) {
   return (
     <div className="bg-white flex flex-col rounded-md p-5 mb-4">
@@ -36,23 +37,23 @@ export default function BeneficiaryEditCard({
         items={[
           { value: "MR", label: "Mr." },
           { value: "MRS", label: "Mrs." },
-          { value: "MISS", label: "Miss." }
+          { value: "MISS", label: "Miss." },
         ]}
         {...register("title")}
         className="my-2"
-      ></FieldsetRadio>
+      />
       <InputText
         id="first_name"
         label="First name"
         {...register("first_name")}
         className="my-2"
-      ></InputText>
+      />
       <InputText
         id="last_name"
         label="Last name"
         {...register("last_name")}
         className="my-2"
-      ></InputText>
+      />
       <Controller
         name="birth_date"
         control={control}
@@ -63,7 +64,7 @@ export default function BeneficiaryEditCard({
               <InputDate
                 selectedValue={
                   typeof value === "string" ? new Date(value) : value
-                } //check and transform value type string
+                } // check and transform value type string
                 showIcon
                 label="Birth date"
                 id="birth_date"
