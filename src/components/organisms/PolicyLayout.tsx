@@ -18,7 +18,7 @@ export default function PolicyLayout() {
     data: policy,
     isLoading,
     error,
-  } = useGetPoliciesByIdQuery(policyId as string); // ??casteo o hook??
+  } = useGetPoliciesByIdQuery(policyId || "");
   const [isConfirmCancelModalOpen, setConfirmCancelModalOpen] = useState(false);
   const [isConfirmEmailModalOpen, setConfirmEmailModalOpen] = useState(false);
   const [isSuccessfulCancelModalOpen, setSuccessfulCancelModalOpen] =

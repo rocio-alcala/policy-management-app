@@ -12,7 +12,7 @@ export default function PolicyDetails() {
     data: policy,
     isLoading,
     error,
-  } = useGetPoliciesByIdQuery(policyId as string); // ??casteo o hook??
+  } = useGetPoliciesByIdQuery(policyId || "");
 
   if (isLoading) {
     return <Spinner />;

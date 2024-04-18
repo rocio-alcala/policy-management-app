@@ -13,7 +13,7 @@ export default function BeneficiaryEdit() {
     data: policy,
     isLoading,
     error,
-  } = useGetPoliciesByIdQuery(policyId as string); // DUDA! CASTEO
+  } = useGetPoliciesByIdQuery(policyId || "");
 
   const { register, handleSubmit, control } = useForm<Record<string, string>>();
 
