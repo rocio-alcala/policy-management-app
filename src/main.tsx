@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import {
   Navigate,
-  Outlet,
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
@@ -12,7 +11,6 @@ import PolicesLayout from "./components/organisms/PolicesLayout.tsx";
 import PolicyLayout from "./components/organisms/PolicyLayout.tsx";
 import ProtectedRoutes from "./components/organisms/ProtectedRoutes.tsx";
 import ProvidersWrappers from "./components/organisms/ProvidersWrappers.tsx";
-import Redirect from "./components/organisms/Redirect.tsx";
 import RootLayout from "./components/organisms/RootLayout.tsx";
 import ActivePolicies from "./components/views/ActivePolicies.tsx";
 import AllPolicies from "./components/views/AllPolicies.tsx";
@@ -41,85 +39,60 @@ const router = createBrowserRouter([
             <RootLayout />
           </ProtectedRoutes>
         ),
+        errorElement: <ErrorRoute />,
         children: [
           // protected routes
           {
-            path: "policies",
-            errorElement: <ErrorRoute />,
-            element: (location.pathname === "/policies" ||
-              location.pathname === "/policies/") && (
-              // cuando caigo en /policies o /policies/
-              // necesito redirigir to policies/all
-              // es correcto hacerlo con un navigate aca??
-              <>
-                <Outlet />
-                <Navigate to="/policies/all" replace={true} />
-              </>
-            ),
+            element: <PolicesLayout />,
             children: [
               {
-                element: <PolicesLayout />,
-                children: [
-                  {
-                    path: "active",
-                    element: <ActivePolicies />,
-                  },
-                  {
-                    path: "all",
-                    element: <AllPolicies />,
-                  },
-                ],
+                path: "policies/active",
+                element: <ActivePolicies />,
               },
               {
-                path: ":policyId",
-                element: <Redirect />, // igual que en /policies si caigo en
-                // policies/:id debo redirigir a /policies/:id/policy-details
-                // pero aqui lo hago en un componente para poder obtener
-                // mediante params el id en el que me encuentro
-                // es correcto?
-                children: [
-                  {
-                    element: <PolicyLayout />,
-                    children: [
-                      {
-                        path: "policy-details",
-                        element: <PolicyDetails />,
-                      },
-                      {
-                        path: "personal-details",
-                        element: <PersonalDetails />,
-                      },
-                    ],
-                  },
-                  {
-                    path: "payment-method",
-                    element: <PaymentMethod />,
-                  },
-                  {
-                    path: "edit/policy-holder",
-                    element: <PolicyHolderEdit />,
-                  },
-                  {
-                    path: "edit/beneficiaries",
-                    element: <BeneficiaryEdit />,
-                  },
-                ],
+                path: "policies/all",
+                element: <AllPolicies />,
               },
             ],
           },
           {
-            path: "callback",
-            element: <Callback />,
+            element: <PolicyLayout />,
+            children: [
+              {
+                path: "policies/:policyId/policy-details",
+                element: <PolicyDetails />,
+              },
+              {
+                path: "policies/:policyId/personal-details",
+                element: <PersonalDetails />,
+              },
+            ],
           },
           {
-            path: "/",
-            element: <Navigate to="/policies/all" replace={true} />,
+            path: "policies/:policyId/payment-method",
+            element: <PaymentMethod />,
+          },
+          {
+            path: "policies/:policyId/edit/policy-holder",
+            element: <PolicyHolderEdit />,
+          },
+          {
+            path: "policies/:policyId/edit/beneficiaries",
+            element: <BeneficiaryEdit />,
           },
         ],
       },
-      { path: "login", element: <Login /> },
+      {
+        path: "callback",
+        element: <Callback />,
+      },
+      {
+        path: "/",
+        element: <Navigate to="/policies/all" replace={true} />,
+      },
     ],
   },
+  { path: "login", element: <Login /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
