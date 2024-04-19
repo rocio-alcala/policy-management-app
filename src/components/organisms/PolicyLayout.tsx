@@ -8,6 +8,7 @@ import Spinner from "../bits/Spinner";
 import BaseModal from "./BaseModal";
 import ConfirmEmail from "./ConfirmEmail";
 import ConfirmModal from "./ConfirmModal";
+import ErrorPage from "./ErrorPage";
 import ImageButton from "./ImageButton";
 import SuccessfulModal from "./SuccessfulModal";
 
@@ -33,9 +34,27 @@ export default function PolicyLayout() {
     return <Spinner />;
   }
   if (typeof policy === "undefined") {
-    // esta bien manejado el undefined que error tengo que tirar??
-    console.error("@Error fetching policies ", error);
-    throw new Error();
+    if (error) {
+      // check for error type
+      if ("status" in error) {
+        // you can access all properties of `FetchBaseQueryError` here
+        const errMsg =
+          "error" in error ? error.error : JSON.stringify(error.data);
+
+        return <ErrorPage errorMsg={errMsg} status={error.status} />;
+      } else {
+        // you can access all properties of `SerializedError` here
+        return (
+          <ErrorPage
+            errorMsg={error.message || "Error fetching policy"}
+            status={error.code}
+          />
+        );
+      }
+    } else {
+      // if policy is undefined, error should be always be populated
+      return <ErrorPage errorMsg="Error fetching policy" />;
+    }
   }
 
   return (
