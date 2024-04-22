@@ -1,7 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import Spinner from "../bits/Spinner";
 import { Navigate } from "react-router-dom";
+
 import Button from "../bits/Button";
+import Spinner from "../bits/Spinner";
 
 export default function Login() {
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();

@@ -8,6 +8,7 @@ import Spinner from "../bits/Spinner";
 import BaseModal from "./BaseModal";
 import ConfirmEmail from "./ConfirmEmail";
 import ConfirmModal from "./ConfirmModal";
+import ErrorPage from "./ErrorPage";
 import ImageButton from "./ImageButton";
 import SuccessfulModal from "./SuccessfulModal";
 
@@ -18,7 +19,7 @@ export default function PolicyLayout() {
     data: policy,
     isLoading,
     error,
-  } = useGetPoliciesByIdQuery(policyId as string); // TO-DO??DUDA! CASTEO
+  } = useGetPoliciesByIdQuery(policyId || "");
   const [isConfirmCancelModalOpen, setConfirmCancelModalOpen] = useState(false);
   const [isConfirmEmailModalOpen, setConfirmEmailModalOpen] = useState(false);
   const [isSuccessfulCancelModalOpen, setSuccessfulCancelModalOpen] =
@@ -33,9 +34,27 @@ export default function PolicyLayout() {
     return <Spinner />;
   }
   if (typeof policy === "undefined") {
-    // TO-DO?? MANEJO DE UNDFINED
-    console.error("@Error fetching policies ", error);
-    return;
+    if (error) {
+      // check for error type
+      if ("status" in error) {
+        // you can access all properties of `FetchBaseQueryError` here
+        const errMsg =
+          "error" in error ? error.error : JSON.stringify(error.data);
+
+        return <ErrorPage errorMsg={errMsg} status={error.status} />;
+      } else {
+        // you can access all properties of `SerializedError` here
+        return (
+          <ErrorPage
+            errorMsg={error.message || "Error fetching policy"}
+            status={error.code}
+          />
+        );
+      }
+    } else {
+      // if policy is undefined, error should be always be populated
+      return <ErrorPage errorMsg="Error fetching policy" />;
+    }
   }
 
   return (

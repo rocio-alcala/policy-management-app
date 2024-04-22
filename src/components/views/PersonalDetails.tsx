@@ -7,12 +7,13 @@ import BeneficiaryCard from "../organisms/BeneficiaryCard";
 
 export default function PersonalDetails() {
   const { policyId } = useParams();
+
   const navigate = useNavigate();
   const {
     data: policy,
     isLoading,
     error,
-  } = useGetPoliciesByIdQuery(policyId as string); // TO-DO??DUDA! CASTEO
+  } = useGetPoliciesByIdQuery(policyId || "");
 
   if (isLoading) {
     return <Spinner />;

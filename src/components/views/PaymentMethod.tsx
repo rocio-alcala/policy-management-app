@@ -19,8 +19,7 @@ export default function PaymentMethod() {
   const navigate = useNavigate();
   const { policyId } = useParams();
   // TO-DO: obtener data de api pero no tiene la info a renderizar
-  /*   const { data: policy, isLoading, error } = useGetPoliciesByIdQuery(policyId as string); //DUDA! CASTEO
-  if (isLoading) {
+  /*   const { data: policy, isLoading, error } = useGetPoliciesByIdQuery(policyId as string)
     return <Spinner />;
   }
   if (error) {
