@@ -14,9 +14,9 @@ export default function ErrorPage({ errorMsg, status }: ErrorPageProps) {
       <p className="text-lg mb-6">{errorMsg}</p>
       <p className="text-base">
         <Link to="/policies/all">
-          <div className="text-blue-500 hover:underline">
+          <span className="text-blue-500 hover:underline">
             Back to all policies page
-          </div>
+          </span>
         </Link>
       </p>
     </div>

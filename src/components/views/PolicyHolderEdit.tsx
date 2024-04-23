@@ -12,6 +12,7 @@ import InputDate from "../bits/InputDate";
 import InputSelect from "../bits/InputSelect";
 import InputText from "../bits/InputText";
 import Spinner from "../bits/Spinner";
+import ErrorPage from "../organisms/ErrorPage";
 
 interface PolicyHolderForm {
   first_name: string;
@@ -103,11 +104,28 @@ export default function PolicyHolderEdit() {
     return <Spinner />;
   }
   if (typeof policy === "undefined") {
-    // TO-DO?? MANEJO DE UNDFINED
-    console.error("@Error fetching policies ", error);
-    return;
-  }
+    if (error) {
+      // check for error type
+      if ("status" in error) {
+        // you can access all properties of `FetchBaseQueryError` here
+        const errMsg =
+          "error" in error ? error.error : JSON.stringify(error.data);
 
+        return <ErrorPage errorMsg={errMsg} status={error.status} />;
+      } else {
+        // you can access all properties of `SerializedError` here
+        return (
+          <ErrorPage
+            errorMsg={error.message || "Error fetching policy"}
+            status={error.code}
+          />
+        );
+      }
+    } else {
+      // if policy is undefined, error should be always be populated
+      return <ErrorPage errorMsg="Error fetching policy" />;
+    }
+  }
   return (
     <div className="bg-background p-5 flex flex-col flex-1">
       <div

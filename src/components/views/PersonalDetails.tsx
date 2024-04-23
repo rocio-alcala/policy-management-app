@@ -4,6 +4,7 @@ import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
 import { capitalizeString } from "../../utils/utils";
 import Spinner from "../bits/Spinner";
 import BeneficiaryCard from "../organisms/BeneficiaryCard";
+import ErrorPage from "../organisms/ErrorPage";
 
 export default function PersonalDetails() {
   const { policyId } = useParams();
@@ -18,13 +19,29 @@ export default function PersonalDetails() {
   if (isLoading) {
     return <Spinner />;
   }
-
   if (typeof policy === "undefined") {
-    // TO-DO?? MANEJO DE UNDFINED
-    console.error("@Error fetching policies ", error);
-    return;
-  }
+    if (error) {
+      // check for error type
+      if ("status" in error) {
+        // you can access all properties of `FetchBaseQueryError` here
+        const errMsg =
+          "error" in error ? error.error : JSON.stringify(error.data);
 
+        return <ErrorPage errorMsg={errMsg} status={error.status} />;
+      } else {
+        // you can access all properties of `SerializedError` here
+        return (
+          <ErrorPage
+            errorMsg={error.message || "Error fetching policy"}
+            status={error.code}
+          />
+        );
+      }
+    } else {
+      // if policy is undefined, error should be always be populated
+      return <ErrorPage errorMsg="Error fetching policy" />;
+    }
+  }
   return (
     <div className="bg-background">
       {/*  policy holder */}
