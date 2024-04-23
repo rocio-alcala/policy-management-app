@@ -20,10 +20,31 @@ export default function PaymentMethod() {
   const { policyId } = useParams();
   // TO-DO: obtener data de api pero no tiene la info a renderizar
   /*   const { data: policy, isLoading, error } = useGetPoliciesByIdQuery(policyId as string)
+   if (isLoading) {
     return <Spinner />;
   }
-  if (error) {
-    console.error("@Error fetching policies ", error);
+  if (typeof policy === "undefined") {
+    if (error) {
+      // check for error type
+      if ("status" in error) {
+        // you can access all properties of `FetchBaseQueryError` here
+        const errMsg =
+          "error" in error ? error.error : JSON.stringify(error.data);
+
+        return <ErrorPage errorMsg={errMsg} status={error.status} />;
+      } else {
+        // you can access all properties of `SerializedError` here
+        return (
+          <ErrorPage
+            errorMsg={error.message || "Error fetching policy"}
+            status={error.code}
+          />
+        );
+      }
+    } else {
+      // if policy is undefined, error should be always be populated
+      return <ErrorPage errorMsg="Error fetching policy" />;
+    }
   } */
 
   // TO-DO: NO ESTAN LOS DATOS PARA RENDERIZAR EN JSON BY ID

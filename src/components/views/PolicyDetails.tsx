@@ -5,6 +5,7 @@ import { capitalizeString } from "../../utils/utils";
 import Button from "../bits/Button";
 import Spinner from "../bits/Spinner";
 import DocumentCard from "../organisms/DocumentCard";
+import ErrorPage from "../organisms/ErrorPage";
 
 export default function PolicyDetails() {
   const { policyId } = useParams();
@@ -18,12 +19,28 @@ export default function PolicyDetails() {
     return <Spinner />;
   }
   if (typeof policy === "undefined") {
-    // TO-DO?? MANEJO DE UNDFINED
-    console.error("@Error fetching policies ", error);
+    if (error) {
+      // check for error type
+      if ("status" in error) {
+        // you can access all properties of `FetchBaseQueryError` here
+        const errMsg =
+          "error" in error ? error.error : JSON.stringify(error.data);
 
-    return;
+        return <ErrorPage errorMsg={errMsg} status={error.status} />;
+      } else {
+        // you can access all properties of `SerializedError` here
+        return (
+          <ErrorPage
+            errorMsg={error.message || "Error fetching policy"}
+            status={error.code}
+          />
+        );
+      }
+    } else {
+      // if policy is undefined, error should be always be populated
+      return <ErrorPage errorMsg="Error fetching policy" />;
+    }
   }
-
   const contractDetails: Record<string, string> = {};
 
   policy.quoting_criteria.forEach((criteria) => {
