@@ -23,6 +23,7 @@ import PaymentMethod from "./components/views/PaymentMethod.tsx";
 import PersonalDetails from "./components/views/PersonalDetails.tsx";
 import PolicyDetails from "./components/views/PolicyDetails.tsx";
 import PolicyHolderEdit from "./components/views/PolicyHolderEdit.tsx";
+import PolicyEdit from "./components/views/PolicyEdit.tsx";
 
 const WRAPPER_PATH = "";
 
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
           {
             path: "policies/:policyId/edit/beneficiaries/remove/:beneficiaryId",
             element: <BeneficiaryRemove />,
+          },
+          {
+            path: "policies/:policyId/edit/policy-details",
+            element: <PolicyEdit />,
           },
         ],
       },

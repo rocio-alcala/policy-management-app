@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
 import { capitalizeString } from "../../utils/utils";
@@ -9,6 +9,7 @@ import ErrorPage from "../organisms/ErrorPage";
 
 export default function PolicyDetails() {
   const { policyId } = useParams();
+  const navigate = useNavigate();
   const {
     data: policy,
     isLoading,
@@ -51,7 +52,10 @@ export default function PolicyDetails() {
     <div className="bg-background">
       {/*  contract id */}
       <div className="flex flex-col rounded-b-md bg-white">
-        <div className="flex mr-5 mt-5 items-center self-end">
+        <div
+          className="flex mr-5 mt-5 items-center self-end"
+          onClick={() => navigate(`/policies/${policyId}/edit/policy-details`)}
+        >
           <img src="/Edit.png" className="h-4 w-4 mr-2"></img>
           <div className="text-axa-blue leading-5">EDIT</div>
         </div>
