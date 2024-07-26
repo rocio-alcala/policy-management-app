@@ -14,7 +14,7 @@ export default function RootLayout() {
         <img
           src="/Axa.png"
           className="rounded px-4 text-white "
-          onClick={() => navigate("/home")}
+          onClick={() => navigate("/policies/all")}
         />
 
         <div
@@ -27,7 +27,9 @@ export default function RootLayout() {
       <div className="relative">
         <MobileMenu isMenuOpen={isMenuOpen} />
       </div>
-      <Outlet />
+      <div className="flex-1">
+        <Outlet />
+      </div>
     </main>
   );
 }

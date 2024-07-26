@@ -13,7 +13,6 @@ export default function ProtectedRoutes({ children }: PropsWithChildren) {
     loginWithRedirect({
       appState: { returnTo: window.location.pathname },
     });
-    return <Spinner />;
   }
 
   return <>{children}</>;

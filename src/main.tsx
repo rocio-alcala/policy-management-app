@@ -29,7 +29,7 @@ const router = createBrowserRouter([
   {
     path: WRAPPER_PATH,
     errorElement: <ErrorRoute />,
-    element: <ProvidersWrappers />, // defined to wrap with de Auth0 provider the app
+    element: <ProvidersWrappers />, // defined to wrap the app with de Auth0 provider and Redux provider
     // to keep it inside the router provider
     children: [
       {
@@ -42,6 +42,10 @@ const router = createBrowserRouter([
         errorElement: <ErrorRoute />,
         children: [
           // protected routes
+          {
+            path: "",
+            element: <Navigate to="policies/all" replace={true} />,
+          },
           {
             element: <PolicesLayout />,
             children: [
@@ -86,13 +90,10 @@ const router = createBrowserRouter([
         path: "callback",
         element: <Callback />,
       },
-      {
-        path: "/",
-        element: <Navigate to="/policies/all" replace={true} />,
-      },
+
+      { path: "login", element: <Login /> },
     ],
   },
-  { path: "login", element: <Login /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
