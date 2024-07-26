@@ -5,8 +5,13 @@ interface SpinnerProps {
 
 export default function Spinner({ className }: SpinnerProps) {
   return (
-    <div className={cn("flex justify-center items-center mt-24", className)}>
-      <div className="spinner-blue-900 h-12 w-12 border-t-4 border-b-4 border-axa-blue rounded-full animate-spin"></div>
+    <div className="flex h-full justify-center items-center">
+      <div
+        className={cn(
+          "border-4 border-solid border-gray-200 border-t-axa-blue rounded-full w-8 h-8 animate-spin",
+          className,
+        )}
+      ></div>
     </div>
   );
 }

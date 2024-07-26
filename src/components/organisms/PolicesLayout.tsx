@@ -2,7 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 export default function PolicesLayout() {
   return (
-    <div className="flex-1">
+    <div className="flex flex-col h-full">
       <div className="p-3 py-5 bg-background">
         <h1 className="font-semibold leading-8 text-xl">Hello!</h1>
         <p className="leading-6 text-base font-normal">
@@ -31,7 +31,8 @@ export default function PolicesLayout() {
           ACTIVE POLICIES
         </NavLink>
       </div>
-      <Outlet/>
+
+      <Outlet />
     </div>
   );
 }

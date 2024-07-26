@@ -58,7 +58,7 @@ export default function PolicyLayout() {
   }
 
   return (
-    <div className="bg-background p-5 flex flex-col flex-1">
+    <div className="bg-background p-5 flex flex-col h-full">
       <div
         className="flex mb-7 justify-start items-center hover:cursor-pointer"
         onClick={() => navigate("/policies/all")}

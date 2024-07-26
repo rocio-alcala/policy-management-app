@@ -50,7 +50,7 @@ export default function Login() {
         </div>
       ) : (
         <>
-          <Navigate to="/" replace={true} />
+          <Navigate to="/policies/all" replace={true} />
         </>
       )}
     </>
