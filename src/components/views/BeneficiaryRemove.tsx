@@ -30,6 +30,7 @@ export default function BeneficiaryRemove() {
           label="Proof of cancelation (Visa refusal. id)"
           id="documents"
           accept=".doc,.pdf"
+          className="mt-3"
           description="Max file size XXKgb. Only XXX files formats supported."
         >
           UPLOAD DOCUMENTS

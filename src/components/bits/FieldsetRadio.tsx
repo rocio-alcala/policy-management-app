@@ -5,7 +5,7 @@ import Errors from "../bits/Errors";
 
 interface FieldsetRadioPropsType {
   items: {
-    value: string;
+    value: string | number | boolean;
     label?: string;
     description?: string;
   }[];

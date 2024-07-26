@@ -21,7 +21,7 @@ const InputFile = forwardRef<
     ref,
   ) => {
     return (
-      <div className={cn("flex-col mt-3", className)}>
+      <div className={cn("flex-col", className)}>
         <label>
           {label && (
             <legend className="font-semibold leading-6 py-1 text-grey8-dark-text">
