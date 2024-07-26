@@ -50,7 +50,7 @@ export default function BeneficiaryEdit() {
   }
 
   return (
-    <div className="bg-background p-5 flex flex-col flex-1">
+    <div className="bg-background p-5 flex flex-col h-full">
       <div
         className="flex mb-7 justify-start items-center hover:cursor-pointer"
         onClick={() => navigate(`/policies/${policyId}/personal-details`)}
@@ -65,6 +65,7 @@ export default function BeneficiaryEdit() {
             beneficiaryNumber={index}
             register={register}
             control={control}
+            beneficiaryId={beneficiary.id}
           />
         ))}
         <div className="text-center text-axa-blue tracking-widest text-sm font-semibold leading-4 p-5 hover:cursor-pointer">

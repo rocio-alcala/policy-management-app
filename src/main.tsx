@@ -15,6 +15,7 @@ import RootLayout from "./components/organisms/RootLayout.tsx";
 import ActivePolicies from "./components/views/ActivePolicies.tsx";
 import AllPolicies from "./components/views/AllPolicies.tsx";
 import BeneficiaryEdit from "./components/views/BeneficiaryEdit.tsx";
+import BeneficiaryRemove from "./components/views/BeneficiaryRemove.tsx";
 import Callback from "./components/views/Callback.tsx";
 import ErrorRoute from "./components/views/ErrorRoute.tsx";
 import Login from "./components/views/Login.tsx";
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
           {
             path: "policies/:policyId/edit/beneficiaries",
             element: <BeneficiaryEdit />,
+          },
+          {
+            path: "policies/:policyId/edit/beneficiaries/remove/:beneficiaryId",
+            element: <BeneficiaryRemove />,
           },
         ],
       },
