@@ -8,7 +8,7 @@ export default function BeneficiaryRemove() {
   const { policyId, beneficiaryId } = useParams();
 
   return (
-    <div className="bg-background p-5 flex flex-col h-full">
+    <div className="bg-background-axa p-5 flex flex-col h-full">
       <div
         className="flex mb-7 justify-start items-center hover:cursor-pointer"
         onClick={() => navigate(`/policies/${policyId}/edit/beneficiaries`)}

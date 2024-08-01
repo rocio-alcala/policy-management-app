@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 export default function PolicesLayout() {
   return (
     <div className="flex flex-col h-full">
-      <div className="p-3 py-5 bg-background">
+      <div className="p-3 py-5 bg-background-axa">
         <h1 className="font-semibold leading-8 text-xl">Hello!</h1>
         <p className="leading-6 text-base font-normal">
           Welcome to your personal space

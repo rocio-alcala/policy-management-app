@@ -28,7 +28,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
 
   return (
     <>
-      <div className="flex flex-col shadow-card m-3 rounded-lg">
+      <div className="flex flex-col shadow-[0_4px_8px_0px_rgba(0,0,0,0.2)] m-3 rounded-lg">
         <div className="flex flex-col p-4">
           <div className="flex justify-between items-center">
             <h1 className="font-semibold text-xl leading-7 text-text-primary">
@@ -73,7 +73,7 @@ export default function PolicyCard({ policy }: PolicyCardProps) {
             </div>
           </div>
         </div>
-        <div className="flex bg-background p-4 justify-around">
+        <div className="flex bg-background-axa p-4 justify-around">
           <ImageButton
             onClick={() => setConfirmEmailModalOpen(true)}
             srcImage="/MailIcon.png"

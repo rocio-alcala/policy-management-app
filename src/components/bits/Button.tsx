@@ -1,4 +1,3 @@
-
 import { cn } from "../../utils/utils";
 
 interface ButtonSpecificPropsType {
@@ -19,7 +18,7 @@ export default function Button({
     primary &&
       "bg-button-primary text-text-button-primary shadow-button border-tertiary-default",
     !primary && "bg-transparent text-tertiary-default border-tertiary-default",
-    className
+    className,
   );
 
   return (

@@ -46,7 +46,7 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
   }
 
   return (
-    <div className="bg-background p-4">
+    <div className="bg-background-axa p-4">
       <div className="bg-white flex flex-col p-3 rounded-md">
         <h1 className="font-publico-headline py-3 text-2xl font-bold leading-7 text-grey8-dark-text">
           Confirm e-mail address

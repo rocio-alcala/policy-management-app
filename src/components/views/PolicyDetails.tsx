@@ -49,7 +49,7 @@ export default function PolicyDetails() {
   });
 
   return (
-    <div className="bg-background">
+    <div className="bg-background-axa">
       {/*  contract id */}
       <div className="flex flex-col rounded-b-md bg-white">
         <div
