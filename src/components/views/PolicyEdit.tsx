@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-import Button from "../bits/Button";
 import FieldsetRadio from "../bits/FieldsetRadio";
 import InputText from "../bits/InputText";
+import { Button } from "../ui/button";
 
 export default function PolicyEdit() {
   const navigate = useNavigate();
@@ -32,8 +32,8 @@ export default function PolicyEdit() {
           id="auto-renewable"
           label="Is auto-renewable"
           items={[
-            { value: true, label: "Yes" },
-            { value: false, label: "No" },
+            { value: "Yes", label: "Yes" },
+            { value: "No", label: "No" },
           ]}
         />
         {/* CONTRACT DETAILS  */}
@@ -51,10 +51,12 @@ export default function PolicyEdit() {
         <InputText id="destination_area" label="Destination area" />
         {/* should be a select?? */}
 
-        <Button type="submit" primary className="my-1 mt-5">
+        <Button type="submit" variant={"axa-primary"} className="my-1 mt-5">
           SAVE CHANGES
         </Button>
-        <Button className="my-1">DISCARD CHANGES</Button>
+        <Button variant={"axa-secondary"} className="my-1">
+          DISCARD CHANGES
+        </Button>
       </div>
     </div>
   );
