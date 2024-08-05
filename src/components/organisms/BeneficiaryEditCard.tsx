@@ -9,7 +9,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Beneficiary } from "../../types";
 import FieldsetRadio from "../bits/FieldsetRadio";
 import InputDate from "../bits/InputDate";
-import InputText from "../bits/InputText";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
 interface BeneficiaryEditCard {
   beneficiaryNumber: number;
@@ -56,18 +57,11 @@ export default function BeneficiaryEditCard({
         {...register("title")}
         className="my-2"
       />
-      <InputText
-        id="first_name"
-        label="First name"
-        {...register("first_name")}
-        className="my-2"
-      />
-      <InputText
-        id="last_name"
-        label="Last name"
-        {...register("last_name")}
-        className="my-2"
-      />
+      <Label htmlFor="first_name">First name</Label>
+      <Input id="first_name" {...register("first_name")} className="my-2" />
+      <Label htmlFor="last_name">Last name</Label>
+      <Input id="last_name" {...register("last_name")} className="my-2" />
+      {/*  TODO: errors  */}
       <Controller
         name="birth_date"
         control={control}

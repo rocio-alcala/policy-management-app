@@ -6,13 +6,15 @@ import * as yup from "yup";
 
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
 import { Policy } from "../../types";
+import Errors from "../bits/Errors";
 import FieldsetRadio from "../bits/FieldsetRadio";
 import InputDate from "../bits/InputDate";
 import InputSelect from "../bits/InputSelect";
-import InputText from "../bits/InputText";
 import Spinner from "../bits/Spinner";
 import ErrorPage from "../organisms/ErrorPage";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
 interface PolicyHolderForm {
   first_name: string;
@@ -100,6 +102,8 @@ export default function PolicyHolderEdit() {
     console.log(data);
   }
 
+  console.log(errors);
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -152,28 +156,15 @@ export default function PolicyHolderEdit() {
             className="my-2"
             errors={errors.title?.message}
           />
-          <InputText
-            id="first_name"
-            label="First name"
-            {...register("first_name")}
-            className="my-2"
-            errors={errors.first_name?.message}
-          />
-          <InputText
-            id="last_name"
-            label="Last name"
-            {...register("last_name")}
-            className="my-2"
-            errors={errors.last_name?.message}
-          />
-          <InputText
-            id="id_number"
-            label="ID number"
-            disabled
-            {...register("id_number")}
-            className="my-2"
-            errors={errors.id_number?.message}
-          />
+          <Label htmlFor="first_name">First name</Label>
+          <Input id="first_name" {...register("first_name")} />
+          <Errors message={errors.first_name?.message} />
+          <Label htmlFor="last_name">Last name</Label>
+          <Input id="last_name" {...register("last_name")} />
+          <Errors message={errors.last_name?.message} />
+          <Label htmlFor="id_number">ID number</Label>
+          <Input id="id_number" disabled {...register("id_number")} />
+          <Errors message={errors.id_number?.message} />
           <FieldsetRadio
             id="is_beneficiary"
             label="Is a beneficiary"
@@ -212,14 +203,10 @@ export default function PolicyHolderEdit() {
               );
             }}
           />
+          <Label htmlFor="phone_number">Phone</Label>
+          <Input id="phone_number" {...register("phone_number")} />
+          <Errors message={errors.phone_number?.message} />
 
-          <InputText
-            id="phone_number"
-            label="Phone"
-            {...register("phone_number")}
-            className="my-2"
-            errors={errors.phone_number?.message}
-          />
           <InputSelect
             id="language"
             label="Language"
@@ -229,20 +216,13 @@ export default function PolicyHolderEdit() {
             placeholder="Select language"
             className="mb-3"
           />
-          <InputText
-            id="email"
-            label="E-mail"
-            {...register("email")}
-            className="my-2"
-            errors={errors.email?.message}
-          />
-          <InputText
-            id="address"
-            label="Address"
-            {...register("address")}
-            className="my-2"
-            errors={errors.address?.message}
-          />
+          <Label htmlFor="email">E-mail</Label>
+          <Input id="email" {...register("email")} />
+          <Errors message={errors.email?.message} />
+          <Label htmlFor="address">Address</Label>
+          <Input id="address" {...register("address")} />
+          <Errors message={errors.address?.message} />
+
           <Button type="submit" variant={"axa-primary"} className="my-1 mt-5">
             SAVE CHANGES
           </Button>

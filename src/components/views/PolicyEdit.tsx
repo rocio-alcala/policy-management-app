@@ -1,8 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 
 import FieldsetRadio from "../bits/FieldsetRadio";
-import InputText from "../bits/InputText";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
 export default function PolicyEdit() {
   const navigate = useNavigate();
@@ -42,13 +43,12 @@ export default function PolicyEdit() {
             Contract details
           </h1>
         </div>
-        <InputText id="trip_cost" label="Trip cost" />
-        <InputText
-          id="trip_cost_per_traveler"
-          label="Trip cost per traveler"
-          disabled
-        />
-        <InputText id="destination_area" label="Destination area" />
+        <Label htmlFor="trip_cost">Trip cost</Label>
+        <Input id="trip_cost" type="text" />
+        <Label htmlFor="trip_cost_per_traveler">Trip cost per traveler</Label>
+        <Input type="text" id="trip_cost_per_traveler" disabled />
+        <Label htmlFor="destination_area">Destination area</Label>
+        <Input type="text" id="destination_area" />
         {/* should be a select?? */}
 
         <Button type="submit" variant={"axa-primary"} className="my-1 mt-5">

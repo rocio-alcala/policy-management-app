@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 import { capitalizeString } from "../../utils/utils";
+import Errors from "../bits/Errors";
 import InputSelect from "../bits/InputSelect";
-import InputText from "../bits/InputText";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
 const languages = [
   "English",
@@ -59,14 +61,14 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
           If you want to send it to a different e-mail please type it here:
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <InputText
+          <Label htmlFor="email">e-mail</Label>
+          <Input
+            type="text"
             id="email"
-            label="e-mail"
             placeholder="example@mail.com"
             {...register("email")}
-            errors={errors.email?.message}
-            className="mb-3"
           />
+          <Errors message={errors.email?.message} />
           <InputSelect
             id="language"
             label="Language"
