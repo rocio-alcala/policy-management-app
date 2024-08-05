@@ -1,8 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate } from "react-router-dom";
 
-import Button from "../bits/Button";
 import Spinner from "../bits/Spinner";
+import { Button } from "../ui/button";
 
 export default function Login() {
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -20,7 +20,7 @@ export default function Login() {
           </div>
           <div>
             <Button
-              primary={true}
+              variant={"axa-primary"}
               onClick={() =>
                 loginWithRedirect({
                   appState: { returnTo: window.location.pathname },
@@ -31,6 +31,7 @@ export default function Login() {
               LOG IN
             </Button>
             <Button
+              variant={"axa-secondary"}
               onClick={() =>
                 loginWithRedirect({
                   appState: {

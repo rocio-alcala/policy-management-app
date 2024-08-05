@@ -6,13 +6,13 @@ import * as yup from "yup";
 
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
 import { Policy } from "../../types";
-import Button from "../bits/Button";
 import FieldsetRadio from "../bits/FieldsetRadio";
 import InputDate from "../bits/InputDate";
 import InputSelect from "../bits/InputSelect";
 import InputText from "../bits/InputText";
 import Spinner from "../bits/Spinner";
 import ErrorPage from "../organisms/ErrorPage";
+import { Button } from "../ui/button";
 
 interface PolicyHolderForm {
   first_name: string;
@@ -243,10 +243,12 @@ export default function PolicyHolderEdit() {
             className="my-2"
             errors={errors.address?.message}
           />
-          <Button type="submit" primary className="my-1 mt-5">
+          <Button type="submit" variant={"axa-primary"} className="my-1 mt-5">
             SAVE CHANGES
           </Button>
-          <Button className="my-1">DISCARD CHANGES</Button>
+          <Button className="my-1" variant={"axa-secondary"}>
+            DISCARD CHANGES
+          </Button>
         </form>
       </div>
     </div>

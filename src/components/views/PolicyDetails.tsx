@@ -2,10 +2,10 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
 import { capitalizeString } from "../../utils/utils";
-import Button from "../bits/Button";
 import Spinner from "../bits/Spinner";
 import DocumentCard from "../organisms/DocumentCard";
 import ErrorPage from "../organisms/ErrorPage";
+import { Button } from "../ui/button";
 
 export default function PolicyDetails() {
   const { policyId } = useParams();
@@ -153,7 +153,7 @@ export default function PolicyDetails() {
           </p>
         </div>
         <div className="p-5">
-          <Button primary>UPGRADE MY POLICY</Button>{" "}
+          <Button variant={"axa-primary"}>UPGRADE MY POLICY</Button>
         </div>
       </div>
       {/* Documents */}
@@ -166,7 +166,7 @@ export default function PolicyDetails() {
           <DocumentCard key={index + document.id} document={document} />
         ))}
         <div className="p-5">
-          <Button primary>DOWNLOAD ALL</Button>
+          <Button variant={"axa-primary"}>DOWNLOAD ALL</Button>
         </div>
       </div>
     </div>

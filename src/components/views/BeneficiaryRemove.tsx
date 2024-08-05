@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-import Button from "../bits/Button";
 import InputFile from "../bits/InputFile";
+import { Button } from "../ui/button";
 
 export default function BeneficiaryRemove() {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ export default function BeneficiaryRemove() {
           UPLOAD DOCUMENTS
         </InputFile>
 
-        <Button type="submit" primary className="my-1 mt-5">
+        <Button type="submit" variant={"axa-primary"} className="my-1 mt-5">
           REMOVE
         </Button>
       </div>

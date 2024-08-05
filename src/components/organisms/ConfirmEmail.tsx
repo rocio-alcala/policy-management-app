@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 import { capitalizeString } from "../../utils/utils";
-import Button from "../bits/Button";
 import InputSelect from "../bits/InputSelect";
 import InputText from "../bits/InputText";
+import { Button } from "../ui/button";
 
 const languages = [
   "English",
@@ -78,7 +78,7 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
             placeholder="Select language"
             className="mb-3"
           />
-          <Button primary={true} type="submit" className="mt-3">
+          <Button variant="axa-primary" type="submit" className="mt-3">
             RE-SEND POLICY AND CERTIFICATE
           </Button>
         </form>
