@@ -1,4 +1,4 @@
-import { capitalizeString } from "../../utils/utils";
+import { capitalizeString } from "../../lib/utils";
 
 interface DocumentProps {
   document: any;

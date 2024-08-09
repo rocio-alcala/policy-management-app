@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { NavLink, Outlet, useNavigate, useParams } from "react-router-dom";
 
+import { mockPromise } from "../../lib/utils";
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
-import { mockPromise } from "../../utils/utils";
 import Spinner from "../bits/Spinner";
 
 import BaseModal from "./BaseModal";

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 
+import { capitalizeString } from "../../lib/utils";
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
-import { capitalizeString } from "../../utils/utils";
 import Spinner from "../bits/Spinner";
 import DocumentCard from "../organisms/DocumentCard";
 import ErrorPage from "../organisms/ErrorPage";

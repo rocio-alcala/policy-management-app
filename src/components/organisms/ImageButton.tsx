@@ -1,4 +1,4 @@
-import { cn } from "../../utils/utils";
+import { cn } from "../../lib/utils";
 
 interface ImageButtonProps {
   onClick?: () => void;
@@ -11,20 +11,20 @@ export default function ImageButton({
   onClick,
   className,
   text,
-  srcImage
+  srcImage,
 }: ImageButtonProps) {
   return (
     <div
       className={cn(
         "flex flex-col items-center hover:cursor-pointer",
-        className
+        className,
       )}
       onClick={onClick}
     >
       {srcImage && <img src={srcImage} className="h-8 w-8 mb-3"></img>}
       {text && (
         <p className="text-axa-blue text-xs leading-[14px] font-bold text-center">
-         {text}
+          {text}
         </p>
       )}
     </div>

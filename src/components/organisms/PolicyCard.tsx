@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { capitalizeString, mockPromise } from "../../lib/utils";
 import { SummaryPolicy } from "../../types";
-import { capitalizeString, mockPromise } from "../../utils/utils";
 
 import BaseModal from "./BaseModal";
 import ConfirmEmail from "./ConfirmEmail";

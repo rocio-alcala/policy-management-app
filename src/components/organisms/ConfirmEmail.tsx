@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
-import { capitalizeString } from "../../utils/utils";
+import { capitalizeString } from "../../lib/utils";
 import Errors from "../bits/Errors";
 import InputSelect from "../bits/InputSelect";
 import { Button } from "../ui/button";

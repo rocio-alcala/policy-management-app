@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 import { MdFileUpload } from "react-icons/md";
 
-import { cn } from "../../utils/utils";
+import { cn } from "../../lib/utils";
 
 import Errors from "./Errors";
 

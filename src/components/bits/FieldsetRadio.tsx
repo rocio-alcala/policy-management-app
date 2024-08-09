@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { cn } from "../../utils/utils";
+import { cn } from "../../lib/utils";
 import Errors from "../bits/Errors";
 
 interface FieldsetRadioPropsType {

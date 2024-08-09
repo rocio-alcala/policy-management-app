@@ -3,7 +3,7 @@ import DatePicker, { ReactDatePickerProps } from "react-datepicker";
 import ReactDatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { cn } from "../../utils/utils";
+import { cn } from "../../lib/utils";
 
 import Errors from "./Errors";
 
