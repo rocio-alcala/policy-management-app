@@ -15,6 +15,7 @@ import RootLayout from "./components/organisms/RootLayout.tsx";
 import ActivePolicies from "./components/views/ActivePolicies.tsx";
 import AllPolicies from "./components/views/AllPolicies.tsx";
 import BeneficiaryEdit from "./components/views/BeneficiaryEdit.tsx";
+import BeneficiaryRemove from "./components/views/BeneficiaryRemove.tsx";
 import Callback from "./components/views/Callback.tsx";
 import ErrorRoute from "./components/views/ErrorRoute.tsx";
 import Login from "./components/views/Login.tsx";
@@ -22,6 +23,7 @@ import PaymentMethod from "./components/views/PaymentMethod.tsx";
 import PersonalDetails from "./components/views/PersonalDetails.tsx";
 import PolicyDetails from "./components/views/PolicyDetails.tsx";
 import PolicyHolderEdit from "./components/views/PolicyHolderEdit.tsx";
+import PolicyEdit from "./components/views/PolicyEdit.tsx";
 
 const WRAPPER_PATH = "";
 
@@ -84,13 +86,20 @@ const router = createBrowserRouter([
             path: "policies/:policyId/edit/beneficiaries",
             element: <BeneficiaryEdit />,
           },
+          {
+            path: "policies/:policyId/edit/beneficiaries/remove/:beneficiaryId",
+            element: <BeneficiaryRemove />,
+          },
+          {
+            path: "policies/:policyId/edit/policy-details",
+            element: <PolicyEdit />,
+          },
         ],
       },
       {
         path: "callback",
         element: <Callback />,
       },
-
       { path: "login", element: <Login /> },
     ],
   },

@@ -1,14 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
+import { capitalizeString } from "../../lib/utils";
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
-import { capitalizeString } from "../../utils/utils";
-import Button from "../bits/Button";
 import Spinner from "../bits/Spinner";
 import DocumentCard from "../organisms/DocumentCard";
 import ErrorPage from "../organisms/ErrorPage";
+import { Button } from "../ui/button";
 
 export default function PolicyDetails() {
   const { policyId } = useParams();
+  const navigate = useNavigate();
   const {
     data: policy,
     isLoading,
@@ -48,10 +49,13 @@ export default function PolicyDetails() {
   });
 
   return (
-    <div className="bg-background">
+    <div className="bg-background-axa">
       {/*  contract id */}
       <div className="flex flex-col rounded-b-md bg-white">
-        <div className="flex mr-5 mt-5 items-center self-end">
+        <div
+          className="flex mr-5 mt-5 items-center self-end"
+          onClick={() => navigate(`/policies/${policyId}/edit/policy-details`)}
+        >
           <img src="/Edit.png" className="h-4 w-4 mr-2"></img>
           <div className="text-axa-blue leading-5">EDIT</div>
         </div>
@@ -149,7 +153,7 @@ export default function PolicyDetails() {
           </p>
         </div>
         <div className="p-5">
-          <Button primary>UPGRADE MY POLICY</Button>{" "}
+          <Button variant={"axa-primary"}>UPGRADE MY POLICY</Button>
         </div>
       </div>
       {/* Documents */}
@@ -162,7 +166,7 @@ export default function PolicyDetails() {
           <DocumentCard key={index + document.id} document={document} />
         ))}
         <div className="p-5">
-          <Button primary>DOWNLOAD ALL</Button>
+          <Button variant={"axa-primary"}>DOWNLOAD ALL</Button>
         </div>
       </div>
     </div>

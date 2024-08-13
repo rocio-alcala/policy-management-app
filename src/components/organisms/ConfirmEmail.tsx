@@ -2,10 +2,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
-import { capitalizeString } from "../../utils/utils";
-import Button from "../bits/Button";
+import { capitalizeString } from "../../lib/utils";
+import Errors from "../bits/Errors";
 import InputSelect from "../bits/InputSelect";
-import InputText from "../bits/InputText";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
 const languages = [
   "English",
@@ -46,7 +48,7 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
   }
 
   return (
-    <div className="bg-background p-4">
+    <div className="bg-background-axa p-4">
       <div className="bg-white flex flex-col p-3 rounded-md">
         <h1 className="font-publico-headline py-3 text-2xl font-bold leading-7 text-grey8-dark-text">
           Confirm e-mail address
@@ -59,14 +61,14 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
           If you want to send it to a different e-mail please type it here:
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <InputText
+          <Label htmlFor="email">e-mail</Label>
+          <Input
+            type="text"
             id="email"
-            label="e-mail"
             placeholder="example@mail.com"
             {...register("email")}
-            errors={errors.email?.message}
-            className="mb-3"
           />
+          <Errors message={errors.email?.message} />
           <InputSelect
             id="language"
             label="Language"
@@ -78,7 +80,7 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
             placeholder="Select language"
             className="mb-3"
           />
-          <Button primary={true} type="submit" className="mt-3">
+          <Button variant="axa-primary" type="submit" className="mt-3">
             RE-SEND POLICY AND CERTIFICATE
           </Button>
         </form>

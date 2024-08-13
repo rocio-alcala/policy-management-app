@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
-import Button from "../bits/Button";
 import Spinner from "../bits/Spinner";
 import BeneficiaryEditCard from "../organisms/BeneficiaryEditCard";
 import ErrorPage from "../organisms/ErrorPage";
+import { Button } from "../ui/button";
 
 export default function BeneficiaryEdit() {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ export default function BeneficiaryEdit() {
   }
 
   return (
-    <div className="bg-background p-5 flex flex-col flex-1">
+    <div className="bg-background-axa p-5 flex flex-col h-full">
       <div
         className="flex mb-7 justify-start items-center hover:cursor-pointer"
         onClick={() => navigate(`/policies/${policyId}/personal-details`)}
@@ -65,15 +65,18 @@ export default function BeneficiaryEdit() {
             beneficiaryNumber={index}
             register={register}
             control={control}
+            beneficiaryId={beneficiary.id}
           />
         ))}
         <div className="text-center text-axa-blue tracking-widest text-sm font-semibold leading-4 p-5 hover:cursor-pointer">
           + ADD NEW BENEFICIARY
         </div>
-        <Button type="submit" primary className="my-1 mt-5">
+        <Button type="submit" variant={"axa-primary"} className="my-1 mt-5">
           SAVE CHANGES
         </Button>
-        <Button className="my-1">DISCARD CHANGES</Button>
+        <Button className="my-1" variant={"axa-secondary"}>
+          DISCARD CHANGES
+        </Button>
       </form>
     </div>
   );

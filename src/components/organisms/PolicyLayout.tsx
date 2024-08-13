@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { NavLink, Outlet, useNavigate, useParams } from "react-router-dom";
 
+import { mockPromise } from "../../lib/utils";
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
-import { mockPromise } from "../../utils/utils";
 import Spinner from "../bits/Spinner";
 
 import BaseModal from "./BaseModal";
@@ -58,7 +58,7 @@ export default function PolicyLayout() {
   }
 
   return (
-    <div className="bg-background p-5 flex flex-col h-full">
+    <div className="bg-background-axa p-5 flex flex-col h-full">
       <div
         className="flex mb-7 justify-start items-center hover:cursor-pointer"
         onClick={() => navigate("/policies/all")}

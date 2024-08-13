@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 
+import { capitalizeString } from "../../lib/utils";
 import { useGetPoliciesByIdQuery } from "../../store/api/policiesApi";
-import { capitalizeString } from "../../utils/utils";
 import Spinner from "../bits/Spinner";
 import BeneficiaryCard from "../organisms/BeneficiaryCard";
 import ErrorPage from "../organisms/ErrorPage";
@@ -43,7 +43,7 @@ export default function PersonalDetails() {
     }
   }
   return (
-    <div className="bg-background">
+    <div className="bg-background-axa">
       {/*  policy holder */}
       <div className="flex flex-col rounded-b-md bg-white">
         <div className="flex justify-between content-center items-center border-grey6">

@@ -1,14 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-import Button from "../bits/Button";
 import InputFile from "../bits/InputFile";
+import { Button } from "../ui/button";
 
 export default function BeneficiaryRemove() {
   const navigate = useNavigate();
   const { policyId, beneficiaryId } = useParams();
 
   return (
-    <div className="bg-background p-5 flex flex-col h-full">
+    <div className="bg-background-axa p-5 flex flex-col h-full">
       <div
         className="flex mb-7 justify-start items-center hover:cursor-pointer"
         onClick={() => navigate(`/policies/${policyId}/edit/beneficiaries`)}
@@ -30,12 +30,13 @@ export default function BeneficiaryRemove() {
           label="Proof of cancelation (Visa refusal. id)"
           id="documents"
           accept=".doc,.pdf"
+          className="mt-3"
           description="Max file size XXKgb. Only XXX files formats supported."
         >
           UPLOAD DOCUMENTS
         </InputFile>
 
-        <Button type="submit" primary className="my-1 mt-5">
+        <Button type="submit" variant={"axa-primary"} className="my-1 mt-5">
           REMOVE
         </Button>
       </div>

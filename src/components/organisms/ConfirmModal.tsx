@@ -1,6 +1,6 @@
 import { PropsWithChildren, useState } from "react";
 
-import Button from "../bits/Button";
+import { Button } from "../ui/button";
 
 import BaseModal from "./BaseModal";
 
@@ -37,14 +37,16 @@ export default function ConfirmModal({
         <Button
           disabled={isConfirming}
           onClick={handleConfirm}
-          className="bg-button-secondary text-text-button-primary shadow-button border-button-secondary m-1"
+          className=" m-1"
+          variant={"axa-confirm-primary"}
         >
           {isConfirming ? "LOADING" : "CONFIRM"}
         </Button>
         <Button
           disabled={isConfirming}
           onClick={onClose}
-          className="text-button-secondary bg-text-button-primary border-button-secondary m-1"
+          className="m-1"
+          variant="axa-confirm-secondary"
         >
           EXIT
         </Button>

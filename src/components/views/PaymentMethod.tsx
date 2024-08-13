@@ -49,7 +49,7 @@ export default function PaymentMethod() {
 
   // TO-DO: NO ESTAN LOS DATOS PARA RENDERIZAR EN JSON BY ID
   return (
-    <div className="bg-background p-5 flex flex-col flex-1">
+    <div className="bg-background-axa p-5 flex flex-col flex-1">
       <div
         className="flex mb-7 justify-start items-center hover:cursor-pointer"
         onClick={() => navigate(`/policies/${policyId}/personal-details`)}

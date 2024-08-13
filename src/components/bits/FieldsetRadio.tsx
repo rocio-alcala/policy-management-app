@@ -1,11 +1,11 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { cn } from "../../utils/utils";
+import { cn } from "../../lib/utils";
 import Errors from "../bits/Errors";
 
 interface FieldsetRadioPropsType {
   items: {
-    value: string;
+    value: string | number;
     label?: string;
     description?: string;
   }[];
@@ -68,7 +68,10 @@ const FieldsetRadio = forwardRef<
         <div className={itemsContainerClassName}>
           {items.map((item, index) => {
             return (
-              <div key={item.value + index} className={divContainerClassName}>
+              <div
+                key={item.value.toString() + index}
+                className={divContainerClassName}
+              >
                 <input
                   id={item.value + id}
                   ref={ref}
