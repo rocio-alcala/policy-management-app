@@ -94,13 +94,12 @@ const router = createBrowserRouter([
             path: "policies/:policyId/edit/policy-details",
             element: <PolicyEdit />,
           },
-          {
-            path: "callback",
-            element: <Callback />,
-          },
         ],
       },
-
+      {
+        path: "callback",
+        element: <Callback />,
+      },
       { path: "login", element: <Login /> },
     ],
   },

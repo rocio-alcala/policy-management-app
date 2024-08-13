@@ -7,12 +7,7 @@ export default function AllPolicies() {
   const { data: policies, isLoading, error } = useGetPoliciesQuery();
 
   if (isLoading) {
-    return (
-      <>
-        <h1>all</h1>
-        <Spinner />
-      </>
-    );
+    return <Spinner />;
   }
   if (typeof policies === "undefined") {
     if (error) {
