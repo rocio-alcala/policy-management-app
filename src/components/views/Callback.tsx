@@ -7,6 +7,7 @@ export default function Callback() {
   return (
     <div className="flex flex-1 justify-center items-center">
       <Spinner />
+      <h1>En callback</h1>
     </div>
   );
 }

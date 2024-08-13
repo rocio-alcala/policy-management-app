@@ -5,10 +5,16 @@ import Spinner from "../bits/Spinner";
 
 export default function ProtectedRoutes({ children }: PropsWithChildren) {
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
-
+  console.log(isAuthenticated, "loading");
   // check for authentication and redirect to login if is not auth
   // else render the protected routes
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <>
+        <Spinner />
+        <h1>Is loading</h1>
+      </>
+    );
   if (!isAuthenticated) {
     loginWithRedirect({
       appState: { returnTo: window.location.pathname },
