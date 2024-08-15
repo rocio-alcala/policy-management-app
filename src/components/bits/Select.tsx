@@ -20,12 +20,12 @@ export default function Select({
   id,
   placeHolder,
 }: SelectProps) {
-  const selectedItem = items.find((item) => item.value === value) || null;
+  // filter items based on the input in the select
   const [inputValue, setInputValue] = useState("");
-
   const filteredItems = items.filter((item) =>
     item.label.toLowerCase().includes(inputValue.toLowerCase()),
   );
+
   const {
     isOpen,
     getToggleButtonProps,
@@ -34,11 +34,12 @@ export default function Select({
     getItemProps,
     getLabelProps,
     getInputProps,
-  } = useCombobox({
-    items,
-    itemToString: (item) => item?.label || "",
     selectedItem,
-    onSelectedItemChange: (item) => onChange(item.selectedItem.value),
+  } = useCombobox({
+    items: filteredItems,
+    itemToString: (item) => item?.label || "",
+    selectedItem: items.find((item) => item.value === value) || null, // to sync the selectedItem show in the input with the value of the form
+    onSelectedItemChange: (item) => onChange(item.selectedItem.value), // to sync the new selectedItem with the form
     onInputValueChange: ({ inputValue }) => setInputValue(inputValue),
   });
 
@@ -50,13 +51,13 @@ export default function Select({
         </label>
         <div
           {...getToggleButtonProps()}
-          id={id}
           className="flex mt-1 p-3 h-11 border border-border-default placeholder:text-placeholder rounded-md w-full focus:outline-none focus:border-blue-500 ex justify-between cursor-pointer items-center"
         >
           <input
+            id={id}
             {...getInputProps()}
             placeholder={placeHolder}
-            className=" focus:outline-none"
+            className="w-fit focus:outline-none"
           ></input>
           <span className="px-2">{isOpen ? <>&#8593;</> : <>&#8595;</>}</span>
         </div>
