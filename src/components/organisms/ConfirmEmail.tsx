@@ -1,23 +1,22 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 
 import { capitalizeString } from "../../lib/utils";
 import Errors from "../bits/Errors";
-import InputSelect from "../bits/InputSelect";
+import Select from "../bits/Select";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
 const languages = [
-  "English",
-  "Spanish",
-  "Français",
-  "German",
-  "Russian",
-  "Chinese",
-  "Dutch",
-  "Swedish",
+  { label: "English", value: "English" },
+  { label: "Spanish", value: "Spanish" },
+  { label: "Français", value: "Français" },
+  { label: "Dutch", value: "Dutch" },
+  { label: "Chinese", value: "Chinese" },
+  { label: "German", value: "de-DE" },
+  { label: "Russian", value: "Russian" },
 ];
 
 const validationSchema = {
@@ -38,6 +37,7 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<ConfirmEmailForm>({
     resolver: yupResolver(yup.object().shape(validationSchema)),
@@ -69,17 +69,20 @@ export default function ConfirmEmail({ email }: ConfirmEmailProps) {
             {...register("email")}
           />
           <Errors message={errors.email?.message} />
-          <InputSelect
-            id="language"
-            label="Language"
-            {...register("language")}
-            options={languages.map((language) => {
-              return { value: language, label: language };
-            })}
-            errors={errors.language?.message}
-            placeholder="Select language"
-            className="mb-3"
+          <Controller
+            name="language"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Select
+                placeHolder="Select a language"
+                items={languages}
+                value={value}
+                onChange={onChange}
+                id="language"
+              />
+            )}
           />
+          <Errors message={errors.language?.message} />
           <Button variant="axa-primary" type="submit" className="mt-3">
             RE-SEND POLICY AND CERTIFICATE
           </Button>

@@ -9,7 +9,7 @@ import { Policy } from "../../types";
 import Errors from "../bits/Errors";
 import FieldsetRadio from "../bits/FieldsetRadio";
 import InputDate from "../bits/InputDate";
-import InputSelect from "../bits/InputSelect";
+import Select from "../bits/Select";
 import Spinner from "../bits/Spinner";
 import ErrorPage from "../organisms/ErrorPage";
 import { Button } from "../ui/button";
@@ -74,7 +74,7 @@ export default function PolicyHolderEdit() {
     const policyHolderDefaultValues = {
       first_name: policy.policy_holder.first_name,
       last_name: policy.policy_holder.last_name,
-      id_number: "falta dato",
+      id_number: "16262asnohaydato",
       phone_number: "no hay dato",
       email: policy.policy_holder.email,
       address: policy.policy_holder.address.country + "falta info",
@@ -101,8 +101,6 @@ export default function PolicyHolderEdit() {
   function onSubmit(data: PolicyHolderForm) {
     console.log(data);
   }
-
-  console.log(errors);
 
   if (isLoading) {
     return <Spinner />;
@@ -156,15 +154,19 @@ export default function PolicyHolderEdit() {
             className="my-2"
             errors={errors.title?.message}
           />
+
           <Label htmlFor="first_name">First name</Label>
           <Input id="first_name" {...register("first_name")} />
           <Errors message={errors.first_name?.message} />
+
           <Label htmlFor="last_name">Last name</Label>
           <Input id="last_name" {...register("last_name")} />
           <Errors message={errors.last_name?.message} />
+
           <Label htmlFor="id_number">ID number</Label>
           <Input id="id_number" disabled {...register("id_number")} />
           <Errors message={errors.id_number?.message} />
+
           <FieldsetRadio
             id="is_beneficiary"
             label="Is a beneficiary"
@@ -203,22 +205,30 @@ export default function PolicyHolderEdit() {
               );
             }}
           />
+
           <Label htmlFor="phone_number">Phone</Label>
           <Input id="phone_number" {...register("phone_number")} />
           <Errors message={errors.phone_number?.message} />
 
-          <InputSelect
-            id="language"
-            label="Language"
-            {...register("language")}
-            options={languages}
-            errors={errors.language?.message}
-            placeholder="Select language"
-            className="mb-3"
+          <Controller
+            name="language"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Select
+                placeHolder="Select a language"
+                items={languages}
+                value={value}
+                onChange={onChange}
+                id="language"
+              />
+            )}
           />
+          <Errors message={errors.language?.message} />
+
           <Label htmlFor="email">E-mail</Label>
           <Input id="email" {...register("email")} />
           <Errors message={errors.email?.message} />
+
           <Label htmlFor="address">Address</Label>
           <Input id="address" {...register("address")} />
           <Errors message={errors.address?.message} />
